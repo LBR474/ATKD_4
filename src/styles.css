@@ -1,8 +1,48 @@
 :host {
     display: block;
-    
+
 }
 
 .canvas-container {
-    height: 50vh;
+    position: relative;
+
+    height: 100vh;
+    margin: auto;
+    width: 100%;
+    border: 5px solid #FFFF00;
+    /* padding: 10px; */
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+}
+
+.dojang-container {
+
+    height: 80%;
+    width: 80%;
+    border: 5px;
+    border-style: solid;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    
+    align-items: center;
+    justify-content: center;
+
+}
+
+.button-div {
+
+height: 10%;
+    width: 80%;
+    border: 5px;
+    border-style: double;
+    position: absolute;
+    /* top: 10%; */
+    left: 10%;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
 }

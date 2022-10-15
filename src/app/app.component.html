@@ -1,11 +1,22 @@
-
-<!-- <div>
-    <button *ngFor="let color of colors" [ngStyle]="{ background: color}"
+<div class="canvas-container">
+    <div class="button-div" >
+  <button
+  
+    *ngFor="let color of colors"
+    [ngStyle]="{ background: color }"
     (click)="selectedColor = color"
-    
-    > Click here</button>
+  >
+    Click here
+  </button>
+  </div>
+ 
+  
+  
+
+  <div class="dojang-container">
+    <app-xyz [colorer]="selectedColor"></app-xyz>
+  </div>
 </div>
-<app-xyz class="canvas-container" [colorer]="selectedColor"></app-xyz> -->
-<div >
+<!-- <div >
     <app-xyz2></app-xyz2>
-</div>
+</div> -->

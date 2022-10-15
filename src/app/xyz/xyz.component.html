@@ -1,9 +1,9 @@
-<p>xyz works!</p>
 
-<div class="canvas-container" >
-  Canvas goes here
+
+
+  
 <ngt-canvas [shadows]="true" [scene]="{ background: colorfirst }" 
- [camera]="{ position: [0, 3, 10], fov: 40 }"
+ [camera]="{ position: [0, 1, 3], fov: 75 }"
 >
 <ngt-axes-helper initialLog [args]=[5] ></ngt-axes-helper>
   <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
@@ -20,7 +20,10 @@
     [position]="[1, -1, 0]"
   ></ngt-point-light>
 
-<ngt-grid-helper [args]=[200,20]></ngt-grid-helper>
+<ngt-grid-helper [args]=[200,20]
+[position]="[0, -1, 0]"
+
+></ngt-grid-helper>
 
 <ngt-color attach="background" color="white"></ngt-color>
 
@@ -30,10 +33,10 @@
     <ngt-color attach="background" color="white"></ngt-color>
       <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
       <ngt-primitive  *ngIf="model$ | async as model" [object]="model.scene" 
-      (ready)="modelReady($event)" (ready) = "setSkeleton(model.scene)"
-      
+      (ready)="modelReady($event)" 
+      [position]="[0, -1, 0]"
       ></ngt-primitive>
     </ng-container>
     <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
 </ngt-canvas>
-</div>
+
