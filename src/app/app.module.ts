@@ -10,19 +10,23 @@ import { NgtPrimitive, NgtPrimitiveModule } from '@angular-three/core/primitive'
 import { NgtColorAttribute } from '@angular-three/core/attributes';
 import { XyzComponent } from './xyz/xyz.component';
 import { NgtAmbientLight, NgtPointLight } from '@angular-three/core/lights';
-import { NgtGridHelper } from '@angular-three/core/helpers'
+import { NgtGridHelper, NgtAxesHelper, NgtBoxHelper } from '@angular-three/core/helpers'
 import {NgtPerspectiveCamera} from '@angular-three/core/cameras'
 import { NgtSkeletonHelper } from '@angular-three/core/helpers';
-import { NgtMeshStandardMaterial} from '@angular-three/core/materials'
+import { NgtMeshStandardMaterial, NgtMeshBasicMaterial} from '@angular-three/core/materials'
+import {NgtMesh} from '@angular-three/core/meshes'
+import {NgtBoxGeometry} from '@angular-three/core/geometries'
 
 
 // soba imports
 import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
+import { Xyz2Component } from './xyz2/xyz2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    XyzComponent
+    XyzComponent,
+    Xyz2Component
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,11 @@ import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
     NgtSkeletonHelper,
     NgtMeshStandardMaterial,
     NgtPointLight,
+    NgtAxesHelper,
+    NgtMesh,
+    NgtBoxGeometry,
+    NgtMeshBasicMaterial,
+    NgtBoxHelper,
     
     
     
