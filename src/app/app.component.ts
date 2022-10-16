@@ -14,7 +14,11 @@ import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 })
 export class AppComponent implements OnInit {
   title = 'Angular-TKD_4';
-  public color = new THREE.Color('white');
+  public color = new THREE.Color('pink');
+  multi: string[][] = [
+    ['#b3478c', '#1e62c0', '#ffa764', '#3de68b', '#a11f2a', '#ffbf00'],
+    ['Pink', 'Blue', 'Orange', 'Green', 'Red', 'Yellow'],
+  ];
 
   colors: string[] = [
     '#b3478c',
@@ -25,7 +29,7 @@ export class AppComponent implements OnInit {
     '#ffbf00',
   ];
 
-  selectedColor = this.colors[0]
+  selectedColor = this.colors[0];
 
   model$ = this.ngtGLTFLoader.load('/assets/TKD_girl_4.gltf');
 
