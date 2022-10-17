@@ -1,17 +1,20 @@
 <div class="canvas-container">
   <div class="button-div">
     <button
-      *ngFor="let color of colors; let index = index;"
+      *ngFor="let color of multi[0]; let index = index;"
       [ngStyle]="{ background: color }"
       (click)="selectedColor = color"
       
     >
       {{ multi[1][index] }}
     </button>
+   
   </div>
 
   <div class="dojang-container">
-    <app-xyz [colorer]="selectedColor"></app-xyz>
+    
+    <app-xyz 
+    [colorer]="selectedColor"></app-xyz>
   </div>
 </div>
 <!-- <div >

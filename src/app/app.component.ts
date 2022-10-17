@@ -1,9 +1,6 @@
 // angular core imports
 import { Component, OnInit } from '@angular/core';
 
-// three imports
-import * as THREE from 'three';
-
 // soba imports
 import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 
@@ -13,25 +10,33 @@ import { NgtGLTFLoader } from '@angular-three/soba/loaders';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Angular-TKD_4';
-  public color = new THREE.Color('pink');
+  title = 'Taekwondo patterns game';
+
   multi: string[][] = [
-    ['#b3478c', '#1e62c0', '#ffa764', '#3de68b', '#a11f2a', '#ffbf00'],
-    ['Pink', 'Blue', 'Orange', 'Green', 'Red', 'Yellow'],
+    [
+      '#FFFFFF',
+      '#b3478c',
+      '#1e62c0',
+      '#ffa764',
+      '#3de68b',
+      '#a11f2a',
+      '#ffbf00',
+    ],
+    ['White', 'Pink', 'Blue', 'Orange', 'Green', 'Red', 'Yellow'],
   ];
 
-  colors: string[] = [
-    '#b3478c',
-    '#1e62c0',
-    '#ffa764',
-    '#3de68b',
-    '#a11f2a',
-    '#ffbf00',
-  ];
+  // colors: string[] = [
+  //   '#b3478c',
+  //   '#1e62c0',
+  //   '#ffa764',
+  //   '#3de68b',
+  //   '#a11f2a',
+  //   '#ffbf00',
+  // ];
 
-  selectedColor = this.colors[0];
+  selectedColor = this.multi[0][0];
 
-  model$ = this.ngtGLTFLoader.load('/assets/TKD_girl_4.gltf');
+ 
 
   constructor(private ngtGLTFLoader: NgtGLTFLoader) {}
 

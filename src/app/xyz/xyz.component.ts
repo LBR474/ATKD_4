@@ -46,12 +46,24 @@ export class XyzComponent implements OnInit {
   public ninety_degrees: number = Math['PI'] / 2;
 
   public boneNames: string[] = [];
-
+  // // root bone which moves whole body
   public spine: Object3D | undefined;
-  public shoulderL: Object3D | undefined;
-  public shoulderR: Object3D | undefined;
+
+  // // arms
+  public upper_armL: Object3D | undefined;
+  public upper_armR: Object3D | undefined;
+
+  public forearmL: Object3D | undefined;
+  public forearmR: Object3D | undefined;
+
+  public handL: Object3D | undefined;
+  public handR: Object3D | undefined;
+
+  // // legs
   public pelvisL: Object3D | undefined;
   public pelvisR: Object3D | undefined;
+
+  public attention_counter: number = 0;
 
   // // input area begins
 
@@ -68,45 +80,39 @@ export class XyzComponent implements OnInit {
   ngOnInit(): void {}
 
   //
-  // // modelready area begins
-  modelReady(object: Object3D) {
-    const wholeGirl = object.name;
-    const mesh = object.getObjectByName('metarig');
-
+  // // modelreadyMovement area begins
+  modelReadyMovement(object: Object3D) {
     this.spine = object.getObjectByName('spine');
-    this.shoulderL = object.getObjectByName('upper_armL');
-    this.shoulderR = object.getObjectByName('upper_armR');
+
+    this.upper_armL = object.getObjectByName('upper_armL');
+    this.upper_armR = object.getObjectByName('upper_armR');
+    this.forearmL = object.getObjectByName('forearmL');
+    this.forearmR = object.getObjectByName('forearmR');
+    this.handL = object.getObjectByName('handL');
+    this.handR = object.getObjectByName('handR');
+
     this.pelvisL = object.getObjectByName('pelvisL');
     this.pelvisR = object.getObjectByName('pelvisR');
 
-    this.modelMaterial = <MeshStandardMaterial>(
-      (<Mesh>object.getObjectByName('Sphere001_4')).material
-    );
-    //this.modelMaterial.wireframe = true;
-    //this.modelMaterial.color.setHex(parseInt('6c238c', 16))
-    this.applyColor(this.#color);
-    // console.log(mesh);
-    //console.log(this.boneNames);
+    console.log(this.upper_armL?.rotation.x);
   }
-
+  //
   attention = () => {
     if (
-      this.shoulderL &&
+      this.attention_counter < 1 &&
+      this.handL &&
+      this.upper_armL &&
       this.spine &&
-      this.shoulderR &&
+      this.upper_armR &&
       this.pelvisL &&
       this.pelvisR
     ) {
-      //  gsap.to(this.spine.rotation, {
-      //    duration: 1,
-      //    z: '+=0.785',
-      //  });
-      gsap.to(this.shoulderL.rotation, {
+      gsap.to(this.upper_armL.rotation, {
         duration: 1,
         z: '-=0.69 ',
       });
 
-      gsap.to(this.shoulderR.rotation, {
+      gsap.to(this.upper_armR.rotation, {
         duration: 1,
         z: '+=0.69',
       });
@@ -123,7 +129,82 @@ export class XyzComponent implements OnInit {
         x: '-=0.1',
       });
     }
+    this.attention_counter = 1;
   };
+  myFunction(forearmL: Object3D, forearmR: Object3D, angle: number) {
+    //console.log('Called: ' + selector);
+    if (forearmL && forearmR) {
+      gsap.to(forearmL.rotation, {
+        duration: 1,
+        z: angle,
+      });
+      gsap.to(forearmR.rotation, {
+        duration: 1,
+        z: -angle,
+      });
+    }
+  }
+  choon_bi = () => {
+    if (
+      //this.attention_counter < 1 &&
+      this.spine &&
+      this.upper_armL &&
+      this.upper_armR &&
+      this.forearmL &&
+      this.forearmR &&
+      this.pelvisL &&
+      this.pelvisR
+    ) {
+      gsap.to(this.upper_armL.rotation, {
+        duration: 1,
+        z: -2.17,
+        y: '-=0.9',
+        // onComplete: this.myFunction,
+        // onCompleteParams: [this.forearmL, this.forearmR, -1.57],
+      });
+
+      gsap.to(this.upper_armR.rotation, {
+        duration: 1,
+        z: 2.17,
+        y: '+=0.9',
+      });
+
+      gsap.to(this.forearmR.rotation, {
+        duration: 1,
+        z: 1.57,
+        y: '+=0.9',
+      });
+      gsap.to(this.forearmL.rotation, {
+        duration: 1,
+        z: -1.57,
+        y: '-=0.9',
+      });
+
+      gsap.to(this.pelvisL.rotation, {
+        duration: 1,
+        z: -1.533,
+      });
+      gsap.to(this.pelvisR.rotation, {
+        duration: 1,
+        z: +1.533,
+      });
+      gsap.to(this.spine.position, {
+        duration: 1,
+        x: 0.0,
+      });
+    }
+    this.attention_counter = 1;
+  };
+
+  //
+  // // modelreadyColor area begins
+  modelReadyColor(object: Object3D) {
+    this.modelMaterial = <MeshStandardMaterial>(
+      (<Mesh>object.getObjectByName('Sphere001_4')).material
+    );
+
+    this.applyColor(this.#color);
+  }
 
   applyColor(colorer: string) {
     if (this.modelMaterial) {
