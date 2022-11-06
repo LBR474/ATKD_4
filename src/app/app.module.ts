@@ -1,35 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // <--- JavaScript import from Angular
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
 
 // angular three imports
 import { NgtCanvas} from '@angular-three/core';
-import { NgtPrimitive, NgtPrimitiveModule } from '@angular-three/core/primitive'
-import { NgtColorAttribute } from '@angular-three/core/attributes';
+import { NgtPrimitive } from '@angular-three/core/primitive'
+import { NgtColorAttribute, NgtVector2Attribute } from '@angular-three/core/attributes';
 import { XyzComponent } from './xyz/xyz.component';
-import { NgtAmbientLight, NgtPointLight } from '@angular-three/core/lights';
+import { NgtAmbientLight, NgtHemisphereLight, NgtPointLight, NgtSpotLight, NgtDirectionalLight } from '@angular-three/core/lights';
 import { NgtGridHelper, NgtAxesHelper, NgtBoxHelper } from '@angular-three/core/helpers'
 import {NgtPerspectiveCamera} from '@angular-three/core/cameras'
 import { NgtSkeletonHelper } from '@angular-three/core/helpers';
-import { NgtMeshStandardMaterial, NgtMeshBasicMaterial} from '@angular-three/core/materials'
+import { NgtMeshStandardMaterial, NgtMeshBasicMaterial, NgtMeshPhongMaterial} from '@angular-three/core/materials'
 import {NgtMesh} from '@angular-three/core/meshes'
-import {NgtBoxGeometry} from '@angular-three/core/geometries'
+import {NgtBoxGeometry, NgtPlaneGeometry} from '@angular-three/core/geometries'
 
 
 // soba imports
 import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
 import { Xyz2Component } from './xyz2/xyz2.component';
+import { Xyz3Component } from './xyz3/xyz3.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     XyzComponent,
-    Xyz2Component
+    Xyz2Component,
+    Xyz3Component
+    
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    
+    
     NgtCanvas,
     NgtPrimitive,
     NgtColorAttribute,
@@ -45,6 +53,13 @@ import { Xyz2Component } from './xyz2/xyz2.component';
     NgtBoxGeometry,
     NgtMeshBasicMaterial,
     NgtBoxHelper,
+    NgtPlaneGeometry,
+    NgtMeshPhongMaterial,
+    NgtHemisphereLight,
+    NgtVector2Attribute,
+    NgtSpotLight,
+    NgtDirectionalLight,
+    
     
     
     

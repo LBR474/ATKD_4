@@ -25,20 +25,9 @@ export class AppComponent implements OnInit {
     ['White', 'Pink', 'Blue', 'Orange', 'Green', 'Red', 'Yellow'],
   ];
 
-  // colors: string[] = [
-  //   '#b3478c',
-  //   '#1e62c0',
-  //   '#ffa764',
-  //   '#3de68b',
-  //   '#a11f2a',
-  //   '#ffbf00',
-  // ];
+  selectedColor = this.multi[0][2];
 
-  selectedColor = this.multi[0][0];
-
- 
-
-  constructor(private ngtGLTFLoader: NgtGLTFLoader) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

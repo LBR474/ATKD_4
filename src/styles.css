@@ -18,13 +18,13 @@
 
 .dojang-container {
     
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
     border: 5px;
     border-style: solid;
-    position: absolute;
+    /* position: absolute;
     top: 10%;
-    left: 10%;
+    left: 10%; */
     
     align-items: center;
     justify-content: center;
@@ -39,7 +39,7 @@ height: 10%;
     border-style: double;
     position: absolute;
     /* top: 10%; */
-    left: 10%;
+    /* left: 10%; */
 display: flex;
     align-items: center;
     justify-content: center;

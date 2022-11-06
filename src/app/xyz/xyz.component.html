@@ -1,52 +1,34 @@
+<button (click)="attention()">Attention</button>
+<button (click)="choon_bi()">Choon Bi</button>
+<button (click)="turn_bone()">turn right</button> 
+<h2>{{ QuatW }} </h2>
+ <button (click)="changeName()">Turn left</button>
+<!--<button (click)="animate()">Make fist</button>
+<button (click)="go_straight()">Go straight</button> -->
 
-
-
-   <button
-    (click)="choon_bi()"
-    >Choon Bi</button>
-<ngt-canvas [shadows]="true" [scene]="{ background: colorfirst }" 
- [camera]="{ position: [0, 1, 3], fov: 75 }"
- (click)="attention()"
- 
+<ngt-canvas
+  shadows
+  [dpr]="[1, 2]"
+  [camera]="{ position: [0, 1.5, 4], fov: 75 }"
+  
 >
+  <ngt-color attach="background" color="white"></ngt-color>
 
-<ngt-axes-helper initialLog [args]=[5] 
+  <ngt-ambient-light></ngt-ambient-light>
+  <ngt-grid-helper [args]="[400, 40, color, colorfirst]" [position]="[0, 0, 0]">
+  </ngt-grid-helper>
 
-[position]="[0, -1, 0]"
-></ngt-axes-helper>
-  <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
-  <ngt-point-light
-    [intensity]="0.5"
-    [position]="[1, 1, 0]"
-  ></ngt-point-light>
-  <ngt-point-light
-    [intensity]="0.5"
-    [position]="[-1, 1, 0]"
-  ></ngt-point-light>
-  <ngt-point-light
-    [intensity]="0.5"
-    [position]="[1, -1, 0]"
-  ></ngt-point-light>
-
-<ngt-grid-helper [args]=[200,20]
-[position]="[0, -1, 0]"
-
-
-><ngt-color attach="background" color="gray"></ngt-color></ngt-grid-helper>
-
-<!-- <ngt-color attach="background" color="white"></ngt-color> -->
-
-
-  <ng-container >
-    <ngt-ambient-light [intensity]="0.9"></ngt-ambient-light>
-    <ngt-color attach="background" color="gray"></ngt-color>
-      <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
-      <ngt-primitive  *ngIf="model$ | async as model" [object]="model.scene" 
-      (ready)="modelReadyColor($event); modelReadyMovement($event);" 
-      [position]="[0, -1, 0]"
+  <ng-container>
+    <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
+    <ngt-primitive
+      *ngIf="model$ | async as model"
+      [object]="model.scene"
+      (ready)="modelReadyColor($event); modelReadyMovement($event)"
+      [position]="[0, 0, 0]"
       
-      ></ngt-primitive>
-    </ng-container>
-    <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
+    >
+      </ngt-primitive
+    >
+  </ng-container>
+  <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
 </ngt-canvas>
-

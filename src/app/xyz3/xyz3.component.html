@@ -1,0 +1,42 @@
+<button (click)="attention()">Attention</button>
+<button (click)="choon_bi()">Choon Bi</button>
+<button (click)="make_left_fist()">Make left fist</button>
+<button (click)="make_right_fist()">Make right fist</button>
+<ngt-canvas
+
+
+
+>
+
+<!-- [camera]="{ position: [0, 1.5, 4], fov: 75 }"
+[scene]="{background: bgcolor }" -->
+<ngt-ambient-light></ngt-ambient-light>
+ <ngt-color attach="background" color="lightblue"></ngt-color>
+
+  <ngt-ambient-light></ngt-ambient-light>
+  <ngt-grid-helper [args]="[400, 40, grid_center_line_color, bgcolor]" 
+  
+  [position]="[0, -1, 0]">
+  </ngt-grid-helper>
+<ng-container>
+    <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
+    <ngt-primitive
+      *ngIf="model$ | async as model"
+      (ready)="modelReadyMovement($event)"
+      [object]="model.scene"
+      
+      [position]="[0, -1, 0]"
+      
+    >
+      </ngt-primitive
+    >
+  </ng-container>
+  <ngt-soba-orbit-controls #controls 
+  (ready)="setInitial(controls)"
+  [target]="([0, 0.5, 0])"
+  
+  ></ngt-soba-orbit-controls>
+</ngt-canvas>
+
+
+
