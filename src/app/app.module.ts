@@ -24,13 +24,15 @@ import {NgtBoxGeometry, NgtPlaneGeometry} from '@angular-three/core/geometries'
 import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
 import { Xyz2Component } from './xyz2/xyz2.component';
 import { Xyz3Component } from './xyz3/xyz3.component';
+import { DemoPipe } from './demo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     XyzComponent,
     Xyz2Component,
-    Xyz3Component
+    Xyz3Component,
+    DemoPipe
     
   ],
   imports: [

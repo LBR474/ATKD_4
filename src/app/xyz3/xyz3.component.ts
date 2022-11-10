@@ -14,6 +14,7 @@ import { gsap } from 'gsap';
   styleUrls: ['./xyz3.component.css'],
 })
 export class Xyz3Component implements OnInit {
+  choonbi: string  = "choOn bi"
   public bgcolor = new THREE.Color(0x5f5f00);
   public grid_center_line_color = new THREE.Color(0xff5f00);
 
@@ -116,6 +117,8 @@ export class Xyz3Component implements OnInit {
 
   ngOnInit(): void {}
   modelReadyMovement(object: Object3D) {
+    let bone_name = object.getObjectByName('spine');
+
     // spine bones
     this.spine = object.getObjectByName('spine');
     this.spine001 = object.getObjectByName('spine001');
@@ -128,6 +131,21 @@ export class Xyz3Component implements OnInit {
     // // left arm
     this.shoulderL = object.getObjectByName('shoulderL');
     this.upper_armL = object.getObjectByName('upper_armL');
+
+    console.log(
+      // '_w: ' +
+      //   bone_name?.quaternion.w.toFixed(2) +
+      //   ',\n' +
+      '_x: ' +
+        bone_name?.position.x.toFixed(2) +
+        ',\n' +
+        '_y: ' +
+        bone_name?.position.y.toFixed(2) +
+        ',\n' +
+        '_z: ' +
+        bone_name?.position.z.toFixed(2) +
+        ',\n'
+    );
     this.forearmL = object.getObjectByName('forearmL');
     this.handL = object.getObjectByName('handL');
 
@@ -197,12 +215,8 @@ export class Xyz3Component implements OnInit {
 
   // // // attention function area begins
   attention = () => {
-    const x_axis = 1; // this is the upright, "y" axis
-    const y_axis = 0; // this is the crossways "x" axis
-    const z_axis = 0; // this is the thruways, "z" axis
-
-    const axisVector = new THREE.Vector3(z_axis, y_axis, x_axis);
-    const current_target: Object3D | undefined = this.pelvisL;
+    const axisVector = new THREE.Vector3(1, 0, 0);
+    const current_target: Object3D | undefined = this.shinL;
     const console_func = (current_target: Object3D) => {
       console.log(current_target?.name);
 
@@ -218,22 +232,22 @@ export class Xyz3Component implements OnInit {
           ', \n'
       );
     };
-
     if (
       this.spine &&
-      this.handL &&
+      this.shoulderL &&
+      this.shoulderR &&
       this.upper_armL &&
       this.upper_armR &&
       this.forearmL &&
       this.forearmR &&
+      this.handL &&
       this.handR &&
       this.pelvisL &&
-      this.pelvisR
+      this.pelvisR &&
+      this.shinL &&
+      this.shinR
     ) {
-      console_func(this.pelvisL);
-      //current_target?.rotateOnAxis(axisVector, -1.57 / 4.0);
-      //WorldAxis(axisVector, 1.57 / 1.0);
-
+      //current_target?.rotateOnAxis(axisVector, 1.57 / 8.0);
       gsap.to(this.upper_armL.quaternion, {
         _w: 0.4,
         _x: -0.08,
@@ -248,8 +262,6 @@ export class Xyz3Component implements OnInit {
         _x: -0.08,
         _y: -0.79,
         _z: 0.45,
-        onComplete: console_func,
-        onCompleteParams: [current_target],
       });
 
       gsap.to(this.forearmL.quaternion, {
@@ -266,38 +278,43 @@ export class Xyz3Component implements OnInit {
         _x: 0.04,
         _y: -0.04,
         _z: 0.17,
-        // onComplete: console_func,
-        // onCompleteParams: [current_target],
       });
 
-      gsap.to(this.handL.quaternion, {
-        // _w: 1.0,
-        // _x: 0.04,
-        // _y: -0.0,
-        // _z: -0.08,
-        duration: 1,
-      });
-      gsap.to(this.handR.quaternion, {
-        // _w: 1.0,
-        // _x: 0.04,
-        // _y: 0.0,
-        // _z: +0.08,
-        duration: 1,
-      });
       gsap.to(this.pelvisL.quaternion, {
-        _w: 0.4,
-        _x: -0.32,
-        _y: -0.72,
-        _z: -0.47,
+        // _w: 0.4,
+        // _x: -0.32,
+        // _y: -0.72,
+        // _z: -0.47,
+        _w: 0.53,
+        _x: -0.46,
+        _y: -0.56,
+        _z: -0.43,
         duration: 1,
       });
       gsap.to(this.pelvisR.quaternion, {
-        _w: 0.4,
-        _x: -0.32,
-        _y: 0.72,
-        _z: 0.47,
+        _w: 0.53,
+        _x: -0.46,
+        _y: 0.56,
+        _z: 0.43,
         duration: 1,
       });
+      gsap.to(this.shinL.quaternion, {
+        duration: 1,
+        _w: 0.97,
+        _x: 0.25,
+        _y: -0.01,
+        _z: -0.05,
+        onComplete: console_func,
+        onCompleteParams: [current_target],
+      });
+      gsap.to(this.shinR.quaternion, {
+        duration: 1,
+        _w: 0.97,
+        _x: 0.25,
+        _y: 0.01,
+        _z: 0.05,
+      });
+
       gsap.to(this.spine.position, {
         duration: 1,
         x: -0.1,
@@ -306,32 +323,12 @@ export class Xyz3Component implements OnInit {
   };
 
   // // // choon bi function area begins
-  choon_bi = () => {
-    const x_axis = 1; // this is the upright, "y" axis
-    const y_axis = 0; // this is the crossways "x" axis
-    const z_axis = 0; // this is the thruways, "z" axis
-
-    const axisVector = new THREE.Vector3(z_axis, y_axis, x_axis);
-    const current_target: Object3D | undefined = this.forearmL;
-    const console_func = (current_target: Object3D) => {
-      console.log(current_target?.name);
-
-      console.log(
-        '_w: ' +
-          current_target?.quaternion.w.toFixed(2) +
-          ', \n_x: ' +
-          current_target?.quaternion.x.toFixed(2) +
-          ', \n_y: ' +
-          current_target?.quaternion.y.toFixed(2) +
-          ', \n_z: ' +
-          current_target?.quaternion.z.toFixed(2) +
-          ', \n'
-      );
-    };
-
+  choon_bi_up_arms = () => {
     if (
       this.spine &&
       this.handL &&
+      this.shoulderL &&
+      this.shoulderR &&
       this.upper_armL &&
       this.upper_armR &&
       this.forearmL &&
@@ -340,11 +337,33 @@ export class Xyz3Component implements OnInit {
       this.pelvisL &&
       this.pelvisR
     ) {
-      // current_target?.rotateOnAxis(axisVector, -1.57 / 1.0);
-      //WorldAxis(axisVector, 1.57 / 1.0);
+      this.make_left_fist();
+      this.make_right_fist();
+      gsap.to(this.shoulderL.position, {
+        z: -0.1,
+        duration: 1,
+      });
+      gsap.to(this.shoulderR.position, {
+        z: -0.1,
+        duration: 1,
+      });
+      gsap.to(this.shoulderL.quaternion, {
+        _w: 0.26,
+        _x: -0.53,
+        _y: -0.59,
+        _z: -0.55,
+        duration: 1,
+      });
+      gsap.to(this.shoulderR.quaternion, {
+        _w: 0.26,
+        _x: -0.53,
+        _y: 0.59,
+        _z: 0.55,
+        duration: 1,
+      });
 
       gsap.to(this.upper_armL.quaternion, {
-        _w: 0.51,
+        _w: 0.5,
         _x: 0.12,
         _y: 0.78,
         _z: -0.33,
@@ -353,106 +372,79 @@ export class Xyz3Component implements OnInit {
 
       gsap.to(this.upper_armR.quaternion, {
         duration: 1,
-        _w: 0.51,
+        _w: 0.5,
         _x: 0.12,
         _y: -0.78,
         _z: 0.33,
-        onComplete: console_func,
-        onCompleteParams: [current_target],
       });
 
       gsap.to(this.forearmL.quaternion, {
-        _w: 1.0,
-        _x: 0.05,
-        _y: 0.03,
-        _z: 0.03,
-        duration: 0.5,
+        _w: 0.8,
+        _x: 0.6,
+        _y: 0.04,
+        _z: 0.02,
+        duration: 1,
       });
-      // gsap.to(this.forearmL.quaternion, {
-      //   _w: 0.57,
-      //   _x: 0.0,
-      //   _y: 0.06,
-      //   _z: -0.81,
-
-      //   duration: 0.5,
-      // });
 
       gsap.to(this.forearmR.quaternion, {
         duration: 1,
-        _w: 1.0,
-        _x: 0.05,
-        _y: 0.03,
-        _z: 0.03, // onComplete: console_func,
-        // onCompleteParams: [current_target],
+        _w: 0.8,
+        _x: 0.6,
+        _y: 0.04,
+        _z: 0.02,
       });
 
-      gsap.to(this.handL.quaternion, {
-        // _w: 1.0,
-        // _x: 0.04,
-        // _y: -0.0,
-        // _z: -0.08,
-        duration: 1,
-      });
-      gsap.to(this.handR.quaternion, {
-        // _w: 1.0,
-        // _x: 0.04,
-        // _y: 0.0,
-        // _z: +0.08,
-        duration: 1,
-      });
       gsap.to(this.pelvisL.quaternion, {
-        _w: 0.47,
-        _x: -0.27,
-        _y: -0.68,
-        _z: -0.5,
+        _w: 0.55,
+        _x: -0.43,
+        _y: -0.58,
+        _z: -0.4,
         duration: 1,
       });
       gsap.to(this.pelvisR.quaternion, {
-        _w: 0.47,
-        _x: -0.27,
-        _y: 0.68,
-        _z: 0.5,
+        _w: 0.55,
+        _x: -0.43,
+        _y: 0.58,
+        _z: 0.4,
         duration: 1,
       });
       gsap.to(this.spine.position, {
         duration: 1,
-        x: 0.1,
-        onComplete: this.choon_bi_arms,
-        onCompleteParams: [this.forearmL, this.forearmR]
+        x: 0.0,
+        onComplete: this.choon_bi,
       });
     }
   };
 
+  // // // choon bi function area begins
+  choon_bi = () => {
+    // const x_axis = 1; // this is the upright, "y" axis
+    // const y_axis = 0; // this is the crossways "x" axis
+    // const z_axis = 0; // this is the thruways, "z" axis
 
+    // const axisVector = new THREE.Vector3(z_axis, y_axis, x_axis);
+    // const current_target: Object3D | undefined = this.forearmL;
+    // const console_func = (current_target: Object3D) => {
+    //   console.log(current_target?.name);
 
-
- // // // choon bi arms function area begins
-  choon_bi_arms = () => {
-    const x_axis = 0; // this is the upright, "y" axis
-    const y_axis = 0; // this is the crossways "x" axis
-    const z_axis = 1; // this is the thruways, "z" axis
-
-    const axisVector = new THREE.Vector3(z_axis, y_axis, x_axis);
-    const current_target: Object3D | undefined = this.upper_armL;
-    const console_func = (current_target: Object3D) => {
-      console.log(current_target?.name);
-
-      console.log(
-        '_w: ' +
-          current_target?.quaternion.w.toFixed(2) +
-          ', \n_x: ' +
-          current_target?.quaternion.x.toFixed(2) +
-          ', \n_y: ' +
-          current_target?.quaternion.y.toFixed(2) +
-          ', \n_z: ' +
-          current_target?.quaternion.z.toFixed(2) +
-          ', \n'
-      );
-    };
+    //   console.log(
+    //     '_w: ' +
+    //       current_target?.quaternion.w.toFixed(2) +
+    //       ', \n_x: ' +
+    //       current_target?.quaternion.x.toFixed(2) +
+    //       ', \n_y: ' +
+    //       current_target?.quaternion.y.toFixed(2) +
+    //       ', \n_z: ' +
+    //       current_target?.quaternion.z.toFixed(2) +
+    //       ', \n'
+    //   );
+    // };
 
     if (
       this.spine &&
       this.handL &&
+      this.shoulderL &&
+      this.shoulderR &&
       this.upper_armL &&
       this.upper_armR &&
       this.forearmL &&
@@ -461,91 +453,172 @@ export class Xyz3Component implements OnInit {
       this.pelvisL &&
       this.pelvisR
     ) {
-      current_target?.rotateOnAxis(axisVector, 1.57 / 2.0);
+      //current_target?.rotateOnAxis(axisVector, -1.57 / 8.0);
       //WorldAxis(axisVector, 1.57 / 1.0);
 
-      // gsap.to(this.upper_armL.quaternion, {
-      //   _w: 0.51,
-      //   _x: 0.12,
-      //   _y: 0.78,
-      //   _z: -0.33,
-      //   duration: 1,
-      // });
-
-      // gsap.to(this.upper_armR.quaternion, {
-      //   duration: 1,
-      //   _w: 0.51,
-      //   _x: 0.12,
-      //   _y: -0.78,
-      //   _z: 0.33,
-      //   onComplete: console_func,
-      //   onCompleteParams: [current_target],
-      // });
-
-      gsap.to(this.forearmL.quaternion, {
-        _w: 0.57,
-        _x: 0.0,
-        _y: 0.06,
-        _z: -0.81,
-
-        duration: 0.5,
+      gsap.to(this.shoulderL.quaternion, {
+        _w: 0.26,
+        _x: -0.53,
+        _y: -0.59,
+        _z: -0.55,
+        duration: 1,
       });
-       gsap.to(this.forearmR.quaternion, {
-         _w: 0.57,
-         _x: 0.0,
-         _y: -0.06,
-         _z: 0.81,
+      gsap.to(this.shoulderR.quaternion, {
+        _w: 0.26,
+        _x: -0.53,
+        _y: 0.59,
+        _z: 0.55,
+        duration: 1,
+      });
 
-         duration: 0.5,
-       });
+      gsap.to(this.upper_armL.quaternion, {
+        _w: 0.3,
+        _x: -0.23,
+        _y: 0.76,
+        _z: -0.52,
+        duration: 1,
+      });
 
-     
+      gsap.to(this.upper_armR.quaternion, {
+        duration: 1,
+        _w: 0.3,
+        _x: -0.23,
+        _y: -0.76,
+        _z: 0.52,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
+      gsap.to(this.forearmL.quaternion, {
+        _w: 0.95,
+        _x: 0.31,
+        _y: 0.04,
+        _z: 0.02,
+        duration: 1,
+      });
 
-      // gsap.to(this.handL.quaternion, {
-      //   // _w: 1.0,
-      //   // _x: 0.04,
-      //   // _y: -0.0,
-      //   // _z: -0.08,
-      //   duration: 1,
-      // });
-      // gsap.to(this.handR.quaternion, {
-      //   // _w: 1.0,
-      //   // _x: 0.04,
-      //   // _y: 0.0,
-      //   // _z: +0.08,
-      //   duration: 1,
-      // });
-      // gsap.to(this.pelvisL.quaternion, {
-      //   _w: 0.47,
-      //   _x: -0.27,
-      //   _y: -0.68,
-      //   _z: -0.5,
-      //   duration: 1,
-      // });
-      // gsap.to(this.pelvisR.quaternion, {
-      //   _w: 0.47,
-      //   _x: -0.27,
-      //   _y: 0.68,
-      //   _z: 0.5,
-      //   duration: 1,
-      // });
-      // gsap.to(this.spine.position, {
-      //   duration: 1,
-      //   x: 0.1,
-      // });
+      gsap.to(this.forearmR.quaternion, {
+        duration: 1,
+        _w: 0.95,
+        _x: 0.31,
+        _y: 0.04,
+        _z: 0.02,
+      });
     }
   };
 
+  // // // short stance leg up function area begins
+  short_stance_leg_up = () => {
+    if (
+      this.spine &&
+      this.pelvisL &&
+      this.pelvisR &&
+      this.thighL &&
+      this.thighR &&
+      this.shinL &&
+      this.shinR &&
+      this.footR &&
+      this.footL
+    ) {
+      gsap.to(this.spine.position, {
+        y: 0.95,
+        duration: 1,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
+      gsap.to(this.spine.quaternion, {
+        duration: 1,
+        _w: 0.7,
+        _x: 0.09,
+        _y: 0.7,
+        _z: -0.09,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
 
+      gsap.to(this.thighR.quaternion, {
+        _w: 0.35,
+        _x: -0.59,
+        _y: 0.47,
+        _z: -0.56,
 
+        duration: 1,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
+      gsap.to(this.shinR.quaternion, {
+        duration: 1,
+        _w: 0.96,
+        _x: 0.27,
+        _y: 0.0,
+        _z: -0.0,
+        //onComplete: this.short_stance_leg_down,
+        // onCompleteParams: [current_target],
+      });
+      gsap.to(this.footR.quaternion, {
+        duration: 1,
+        _w: 0.65,
+        _x: -0.76,
+        _y: 0.1,
+        _z: 0.03,
+        onComplete: this.short_stance_leg_down,
+        // onCompleteParams: [current_target],
+      });
 
+      gsap.to(this.thighL.quaternion, {
+        _w: 0.23,
+        _x: -0.7,
+        _y: -0.58,
+        _z: 0.34,
+        duration: 1,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
 
+      gsap.to(this.shinL.quaternion, {
+        duration: 1,
+        _w: 0.96,
+        _x: 0.27,
+        _y: 0.0,
+        _z: -0.0,
+        onComplete: this.short_stance_leg_down,
+        // onCompleteParams: [current_target],
+      });
+      gsap.to(this.footL.quaternion, {
+        duration: 1,
+        _w: 0.79,
+        _x: -0.62,
+        _y: 0.01,
+        _z: -0.03,
+        onComplete: this.short_stance_leg_down,
+        // onCompleteParams: [current_target],
+      });
+    }
+  };
 
+  // // // short stance function area begins
+  short_stance_leg_down = () => {
+    if (
+      this.spine &&
+      this.pelvisL &&
+      this.pelvisR &&
+      this.thighL &&
+      this.thighR &&
+      this.shinL &&
+      this.shinR
+    ) {
+      gsap.to(this.thighL.quaternion, {
+        // _w: -0.707,
+        // _x: 0.00,
+        // _y: -0.707,
+        // _z: 0.00,
+        duration: 1,
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
+      });
 
-
-
-
-
+      
+    }
+  };
 
   // // // make right fist function area
 
@@ -633,8 +706,8 @@ export class Xyz3Component implements OnInit {
         _z: 0.05,
         duration: 1,
 
-        onComplete: console_func,
-        onCompleteParams: [current_target],
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
       });
     }
 
@@ -683,8 +756,8 @@ export class Xyz3Component implements OnInit {
         _z: 0.03,
         duration: 1,
 
-        onComplete: console_func,
-        onCompleteParams: [current_target],
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
       });
     }
   };
@@ -775,8 +848,8 @@ export class Xyz3Component implements OnInit {
         _z: 0.05,
         duration: 1,
 
-        onComplete: console_func,
-        onCompleteParams: [current_target],
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
       });
     }
 
@@ -825,8 +898,8 @@ export class Xyz3Component implements OnInit {
         _z: 0.03,
         duration: 1,
 
-        onComplete: console_func,
-        onCompleteParams: [current_target],
+        // onComplete: console_func,
+        // onCompleteParams: [current_target],
       });
     }
   };
