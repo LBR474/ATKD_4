@@ -1,7 +1,9 @@
-<button (click)="attention()">Attention</button>
+<button (click)="comp.attention()">Attention</button>
 <button (click)="choon_bi_up_arms()">{{ choonbi | titlecase}}</button>
-<!-- <button (click)="choon_bi_down_arms()">Choon Bi down arms</button> -->
-<button (click)="short_stance_leg_up()">Short stance</button>
+<button id="button_one" #button (click)="short_stance_leg_up()">
+  Short stance</button>
+<!-- <button (click)="callMe()">click</button> -->
+<!-- <button type="button" (click)="this.data.calling_data_service(button )">Buy</button> -->
 
 <ngt-canvas
 
@@ -22,9 +24,9 @@
   </ngt-grid-helper>
 <ng-container>
     <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
-    <ngt-primitive
+    <ngt-primitive #primitiveModel
       *ngIf="model$ | async as model"
-      (ready)="modelReadyMovement($event);"
+      (ready)="data.modelReadyService($event)"
       [object]="model.scene"
       
       [position]="[0, 0, 0]"

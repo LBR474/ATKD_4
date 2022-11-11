@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { NgtCanvas} from '@angular-three/core';
 import { NgtPrimitive } from '@angular-three/core/primitive'
 import { NgtColorAttribute, NgtVector2Attribute } from '@angular-three/core/attributes';
-import { XyzComponent } from './xyz/xyz.component';
+//import { XyzComponent } from './xyz/xyz.component';
 import { NgtAmbientLight, NgtHemisphereLight, NgtPointLight, NgtSpotLight, NgtDirectionalLight } from '@angular-three/core/lights';
 import { NgtGridHelper, NgtAxesHelper, NgtBoxHelper } from '@angular-three/core/helpers'
 import {NgtPerspectiveCamera} from '@angular-three/core/cameras'
@@ -22,17 +22,17 @@ import {NgtBoxGeometry, NgtPlaneGeometry} from '@angular-three/core/geometries'
 
 // soba imports
 import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
-import { Xyz2Component } from './xyz2/xyz2.component';
-import { Xyz3Component } from './xyz3/xyz3.component';
-import { DemoPipe } from './demo.pipe';
+import { AttentionComponent } from './attention/attention.component';
+import { StartPageComponent } from './startPage/startPage.component';
+//import { DemoPipe } from './demo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    XyzComponent,
-    Xyz2Component,
-    Xyz3Component,
-    DemoPipe
+    //XyzComponent,
+    AttentionComponent,
+    StartPageComponent,
+    //DemoPipe
     
   ],
   imports: [
