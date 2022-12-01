@@ -1,27 +1,15 @@
-<div class="canvas-container">
-  
-  <!-- <div class="button-div">
-    <button
-      *ngFor="let color of multi[0]; let index = index;"
-      [ngStyle]="{ background: color }"
-      (click)="selectedColor = color"
+<div class="mat-app-background">
+  <mat-toolbar color="primary" class="flex justify-content-between">
+    {{ title }}
+
+    <div>
+      <a mat-stroked-button (click)="rts.return_to_start_function(); 
+      title='Basic poomsae two'"
       
-    >
-      {{ multi[1][index] }}
-    </button>
-   
-  </div> -->
-
-  <div class="dojang-container">
-    
-    <!-- <app-xyz 
-    [colorer]="selectedColor"
-    ></app-xyz> -->
-
-    <app-startPage></app-startPage>
-  </div>
-</div>
-<!-- <div >
+      >BP2</a>
+      <a routerLink="/BP2" mat-stroked-button (click)="toggler.toggle()">BP3</a>
+    </div>
+  </mat-toolbar>
   
-    <app-xyz2></app-xyz2>
-</div> -->
+  <router-outlet></router-outlet>
+</div>

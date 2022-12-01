@@ -1,0 +1,43 @@
+<div class="mat-app-background" backgroundColor="primary" id="top-div">
+  <button
+    mat-raised-button
+    color="accent"
+    id="attserve_attention"
+    (click)="attserve.attention()"
+  >
+    Attention</button
+  >&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <button
+    mat-raised-button
+    color="primary"
+    id="choonBiButton"
+    (click)="choon_bi_up_arms()"
+  >
+    {{ choonbi | titlecase }}
+  </button>
+
+ 
+  <ngt-canvas [camera]="{ position: [0, 1.5, 4], fov: 75 }">
+    <ngt-ambient-light></ngt-ambient-light>
+    <ngt-ambient-light></ngt-ambient-light>
+    <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
+    </ngt-grid-helper>
+    <ng-container>
+      <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
+      <ngt-primitive
+        #primitiveModel
+        *ngIf="loadmodel.model$ | async as model"
+        (ready)="loadmodel.modelReadyService($event)"
+        [object]="model.scene"
+        [position]="[0, 0, 0]"
+      >
+      </ngt-primitive>
+    </ng-container>
+    <ngt-soba-orbit-controls
+      #controls
+      (ready)="setInitial(controls)"
+      [target]="[0, 0.5, 0]"
+    ></ngt-soba-orbit-controls>
+  </ngt-canvas>
+</div>

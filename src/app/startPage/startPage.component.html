@@ -1,46 +1,111 @@
-<button (click)="comp.attention()">Attention</button>
-<button (click)="choon_bi_up_arms()">{{ choonbi | titlecase}}</button>
-<button id="button_one" #button (click)="short_stance_leg_up()">
-  Short stance</button>
-<!-- <button (click)="callMe()">click</button> -->
-<!-- <button type="button" (click)="this.data.calling_data_service(button )">Buy</button> -->
+<div class="mat-app-background" backgroundColor="primary" id="top-div">
+  <div
+    [@openClose]="isOpen ? 'closed' : 'open'"
+    id="stanceDiv"
+    class="flex-container mat-app-background justify-content-between open-close-container"
+  >
+    <mat-card class="mat-card">
+      <mat-card-header>
+        <mat-card-title class="mat-body">Stance</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group class="radio-group">
+          <mat-radio-button value="horse">Horse</mat-radio-button>
+          <mat-radio-button value="back">Back</mat-radio-button>
+          <mat-radio-button value="short">Short</mat-radio-button>
+          <mat-radio-button value="long">Long</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-<ngt-canvas
+  <div
+    [@leftArmOpenClose]="leftisOpen ? 'closed' : 'open'"
+    id="leftArmDiv"
+    class="flex-container mat-app-background justify-content-between open-close-container"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Left arm</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group class="radio-group">
+          <mat-radio-button value="elbow_strike">Elbow strike</mat-radio-button>
+          <mat-radio-button value="middle_punch">Middle punch</mat-radio-button>
+          <mat-radio-button value="down_block">Down block</mat-radio-button>
+          <mat-radio-button value="middle_block">Middle block</mat-radio-button>
+          <mat-radio-button value="upper_block">Upper block</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div
+    [@openClose]="isOpen ? 'closed' : 'open'"
+    id="rightArmDiv"
+    class="flex-container mat-app-background justify-content-between open-close-container"
+  >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Right arm</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group class="radio-group">
+          <mat-radio-button value="elbow_strike">Elbow strike</mat-radio-button>
+          <mat-radio-button value="middle_punch">Middle punch</mat-radio-button>
+          <mat-radio-button value="down_block">Down block</mat-radio-button>
+          <mat-radio-button value="middle_block">Middle block</mat-radio-button>
+          <mat-radio-button value="upper_block">Upper block</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-[camera]="{ position: [0, 1.5, 4], fov: 75 }"
+  <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+    <!-- <p class="hero">The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p> -->
 
->
-
-
-<!-- [scene]="{background: bgcolor }" -->
-<!-- [camera]="{ position: [0, 1.5, 4], fov: 75 }" -->
-<ngt-ambient-light></ngt-ambient-light>
- <ngt-color attach="background" color="lightblue"></ngt-color>
-
-  <ngt-ambient-light></ngt-ambient-light>
-  <ngt-grid-helper [args]="[400, 40, grid_center_line_color, bgcolor]" 
-  
-  [position]="[0, 0, 0]">
-  </ngt-grid-helper>
-<ng-container>
-    <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
-    <ngt-primitive #primitiveModel
-      *ngIf="model$ | async as model"
-      (ready)="data.modelReadyService($event)"
-      [object]="model.scene"
-      
-      [position]="[0, 0, 0]"
-      
+    <button
+      mat-raised-button
+      color="accent"
+      id="attserve_attention"
+      [disabled]="attention_clicked"
+      (click)="attserve.attention(); attention_clicked = true"
     >
-      </ngt-primitive
+      Attention</button
+    ><br />
+
+    <button
+      class="choonBiButton"
+      mat-raised-button
+      color="primary"
+      #choonBiButton
+      [disabled]="choonBi_clicked"
+      (click)="choon_bi_up_arms(); choonBi_clicked = true; toggle()"
     >
-  </ng-container>
-  <ngt-soba-orbit-controls #controls 
-  (ready)="setInitial(controls)"
-  [target]="([0, 0.5, 0])"
-  
-  ></ngt-soba-orbit-controls>
-</ngt-canvas>
-
-
-
+      {{ choonbi | titlecase }}
+    </button>
+  </div>
+  <div id="ngt-canvas-container">
+    <ngt-canvas [camera]="{ position: [0, 1.5, 4], fov: 75 }">
+      <ngt-ambient-light></ngt-ambient-light>
+      <ngt-ambient-light></ngt-ambient-light>
+      <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
+      </ngt-grid-helper>
+      <ng-container>
+        <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
+        <ngt-primitive
+          #primitiveModel
+          *ngIf="loadmodel.model$ | async as model"
+          (ready)="loadmodel.modelReadyService($event)"
+          [object]="model.scene"
+          [position]="[0, 0, 0]"
+        >
+        </ngt-primitive>
+      </ng-container>
+      <ngt-soba-orbit-controls
+        #controls
+        (ready)="setInitial(controls)"
+        [target]="[0, 0.5, 0]"
+      ></ngt-soba-orbit-controls>
+    </ngt-canvas>
+  </div>
+</div>

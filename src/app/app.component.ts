@@ -1,8 +1,11 @@
 // angular core imports
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 // soba imports
 import { NgtGLTFLoader } from '@angular-three/soba/loaders';
+
+import { TogglerService } from './movement-services/toggler.service';
+import { ReturnToStartService } from './movement-services/return-to-start.service';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +13,15 @@ import { NgtGLTFLoader } from '@angular-three/soba/loaders';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Taekwondo patterns game';
+  title: string = 'Basic poomsae one';
+  
+  
 
-  multi: string[][] = [
-    [
-      '#FFFFFF',
-      '#b3478c',
-      '#1e62c0',
-      '#ffa764',
-      '#3de68b',
-      '#a11f2a',
-      '#ffbf00',
-    ],
-    ['White', 'Pink', 'Blue', 'Orange', 'Green', 'Red', 'Yellow'],
-  ];
-
-  selectedColor = this.multi[0][2];
-
-  constructor() {}
+  constructor(
+    public toggler: TogglerService,
+    public rts: ReturnToStartService,
+    ) {}
+    
 
   ngOnInit(): void {}
 }

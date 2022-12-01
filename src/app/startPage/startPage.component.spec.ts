@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Xyz3Component } from './startPage.component';
+import { StartPageComponent } from './startPage.component';
 
-describe('Xyz3Component', () => {
-  let component: Xyz3Component;
-  let fixture: ComponentFixture<Xyz3Component>;
+describe('StartPageComponent', () => {
+  let component: StartPageComponent;
+  let fixture: ComponentFixture<StartPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Xyz3Component ]
+      declarations: [ StartPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Xyz3Component);
+    fixture = TestBed.createComponent(StartPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,73 +1,29 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // <--- JavaScript import from Angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <--- JavaScript import from Angular
+import { MaterialDesignModule } from './material-design/material-design.module';
 
 import { AppComponent } from './app.component';
-
-
-// angular three imports
-import { NgtCanvas} from '@angular-three/core';
-import { NgtPrimitive } from '@angular-three/core/primitive'
-import { NgtColorAttribute, NgtVector2Attribute } from '@angular-three/core/attributes';
-//import { XyzComponent } from './xyz/xyz.component';
-import { NgtAmbientLight, NgtHemisphereLight, NgtPointLight, NgtSpotLight, NgtDirectionalLight } from '@angular-three/core/lights';
-import { NgtGridHelper, NgtAxesHelper, NgtBoxHelper } from '@angular-three/core/helpers'
-import {NgtPerspectiveCamera} from '@angular-three/core/cameras'
-import { NgtSkeletonHelper } from '@angular-three/core/helpers';
-import { NgtMeshStandardMaterial, NgtMeshBasicMaterial, NgtMeshPhongMaterial} from '@angular-three/core/materials'
-import {NgtMesh} from '@angular-three/core/meshes'
-import {NgtBoxGeometry, NgtPlaneGeometry} from '@angular-three/core/geometries'
-
-
-// soba imports
-import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
-import { AttentionComponent } from './attention/attention.component';
 import { StartPageComponent } from './startPage/startPage.component';
-//import { DemoPipe } from './demo.pipe';
+import { AngularThreeNGTModule } from './angular-three-ngt/angular-three-ngt.module';
+import { AppRoutingModule } from './app-routing.module';
+import { BP2Component } from './bp2/bp2.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    //XyzComponent,
-    AttentionComponent,
-    StartPageComponent,
-    //DemoPipe
-    
-  ],
+  declarations: [AppComponent, StartPageComponent, BP2Component],
   imports: [
     BrowserModule,
     FormsModule,
-    
-    
-    NgtCanvas,
-    NgtPrimitive,
-    NgtColorAttribute,
-    NgtAmbientLight,
-    NgtGridHelper,
-    NgtPerspectiveCamera,
-    NgtSobaOrbitControls,
-    NgtSkeletonHelper,
-    NgtMeshStandardMaterial,
-    NgtPointLight,
-    NgtAxesHelper,
-    NgtMesh,
-    NgtBoxGeometry,
-    NgtMeshBasicMaterial,
-    NgtBoxHelper,
-    NgtPlaneGeometry,
-    NgtMeshPhongMaterial,
-    NgtHemisphereLight,
-    NgtVector2Attribute,
-    NgtSpotLight,
-    NgtDirectionalLight,
-    
-    
-    
-    
-
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MaterialDesignModule,
+    AngularThreeNGTModule,
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

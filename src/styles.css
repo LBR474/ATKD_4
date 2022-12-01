@@ -1,48 +1,113 @@
-:host {
-    display: block;
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+/* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    z-index: 1;
+
 
 }
 
-.canvas-container {
-    position: relative;
-    background-color: gray;
-    height: 100vh;
-    margin: auto;
-    width: 100%;
-    border: 5px solid #FFFF00;
-    /* padding: 10px; */
-    display: flexbox;
+.flex-container {
+    display: flex;
     align-items: center;
     justify-content: center;
+    width: 20vw;
+
 }
 
-.dojang-container {
-    
+
+.flex-container>div {
+
+    margin: 10px;
+    padding: 20px;
+    font-size: 15px;
+}
+
+
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+#leftArmDiv {
+    position: absolute;
+    top: calc(10%) !important;
+    /* right: 0px; */
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+
+.mat-app-background {
+
     height: 100%;
     width: 100%;
-    border: 5px;
-    border-style: solid;
-    /* position: absolute;
-    top: 10%;
-    left: 10%; */
-    
-    align-items: center;
-    justify-content: center;
+
+
 
 }
 
-.button-div {
+.mat-card {
+    font-size: medium;
+    transform: scale(0.85);
+}
 
-height: 10%;
-    width: 80%;
-    border: 5px;
-    border-style: double;
+#ngt-canvas-container {
+   height: 80%;
+    border: 2px dotted rgb(192, 252, 255);
+}
+#ngt-canvas-container.after {
+   
+            content: "";
+            display: table;
+            clear: both;
+      
+}
+
+.open-close-container {
+    position: relative;
+    /* top: calc(50% - 250px) !important; */
+    width: 20vw;
+    border: 2px dotted pink;
+    font-size: medium;
+    z-index: 1;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    /* margin: 10px 5px; */
+    align-items: flex-start;
+}
+
+
+
+
+
+#rightArmDiv {
     position: absolute;
-    /* top: 10%; */
-    /* left: 10%; */
-display: flex;
-    align-items: center;
-    justify-content: center;
-    
+    top: calc(10%) !important;
+    left: calc(0%) !important;
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
+}
 
+#stanceDiv {
+    position: absolute;
+    top: calc(50%) !important;
+    left: calc(0%) !important;
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
 }
