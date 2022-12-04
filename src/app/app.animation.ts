@@ -9,6 +9,128 @@ import {
   query,
 } from '@angular/animations';
 
+
+
+export const attchoonOpenClose = trigger('attchoonOpenClose', [
+  // ...
+  state(
+    'open',
+    style({
+      height: 'fit-content',
+      width: 'fit-content',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      width: 'fit-content',
+      height: 'fit-content',
+      left: '-200px',
+    })
+  ),
+  transition('open => closed', [animate('1s')]),
+  transition('closed => open', [animate('1s')]),
+]);
+
+export const correctOpenClose = trigger('correctOpenClose', [
+  // ...
+  state(
+    'open',
+    style({
+      height: 'fit-content',
+      width: 'fit-content',
+      top: '-30%',
+      // transform: 'translateX(-200px)',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      width: 'fit-content',
+      height: 'fit-content',
+      // transform: 'translateX(600px)',
+      top: '10%',
+    })
+  ),
+  transition('open => closed', [animate('1s')]),
+  transition('closed => open', [animate('1s')]),
+]);
+
+export const instructionOpenClose = trigger('instructionOpenClose', [
+  // ...
+  state(
+    'closed',
+    style({
+      height: 'fit-content',
+      width: 'fit-content',
+      top: '-30%',
+      
+    })
+  ),
+  state(
+    'open',
+    style({
+      width: 'fit-content',
+      height: 'fit-content',
+      
+      top: '10%',
+    })
+  ),
+  transition('open => closed', [animate('1s')]),
+  transition('closed => open', [animate('1s')]),
+]);
+
+export const leftArmOpenClose = trigger('leftArmOpenClose', [
+  // ...
+  state(
+    'open',
+    style({
+      height: 'fit-content',
+      width: 'fit-content',
+      right: '-200px',
+      // transform: 'translateX(-200px)',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      width: 'fit-content',
+      height: 'fit-content',
+      // transform: 'translateX(600px)',
+      right: '0px',
+    })
+  ),
+  transition('open => closed', [animate('1s')]),
+  transition('closed => open', [animate('1s')]),
+]);
+
+export const openClose = trigger('openClose', [
+  // ...
+  state(
+    'open',
+    style({
+      height: 'fit-content',
+      width: 'fit-content',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      width: 'fit-content',
+      height: 'fit-content',
+      transform: 'translateX(-100%)',
+    })
+  ),
+  transition('open => closed', [animate('1s')]),
+  transition('closed => open', [animate('1s')]),
+]);
+
+export const rotator = trigger('rotator', [
+  state('open', style({ transform: 'rotateY(0deg)' })),
+  state('closed', style({ transform: 'rotateY(180deg)' })),
+  transition('* <=> *', [animate('1.5s')]),
+]);
+
 export const slideInAnimation = trigger('slideInAnimation', [
   // Transition between any two states
   transition('* <=> *', [
@@ -42,48 +164,22 @@ export const slideInAnimation = trigger('slideInAnimation', [
   ]),
 ]);
 
-export const leftArmOpenClose = trigger('leftArmOpenClose', [
+export const visibleInvisible = trigger('visibleInvisible', [
   // ...
   state(
     'open',
     style({
-      height: 'fit-content',
-      width: 'fit-content',
-      right: '-200px'
-      // transform: 'translateX(-200px)',
+      opacity: 1,
     })
   ),
   state(
     'closed',
     style({
-      width: 'fit-content',
-      height: 'fit-content',
-      // transform: 'translateX(600px)',
-      right: '500px',
+      opacity: 0,
+      transform: 'rotateY(-180deg)',
     })
   ),
-  transition('open => closed', [animate('1s')]),
-  transition('closed => open', [animate('1s')]),
+  transition('* <=> *', [animate('1.5s')]),
+  // transition('closed => open', [animate('1.5s')]),
 ]);
 
-
-export const openClose = trigger('openClose', [
-  // ...
-  state(
-    'open',
-    style({
-      height: 'fit-content',
-      width: 'fit-content',
-    })
-  ),
-  state(
-    'closed',
-    style({
-      width: 'fit-content',
-      height: 'fit-content',
-      transform: 'translateX(-100%)',
-    })
-  ),
-  transition('open => closed', [animate('1s')]),
-  transition('closed => open', [animate('1s')]),
-]);

@@ -9,6 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -41,6 +42,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCardModule,
     MatDividerModule,
     MatGridListModule,
+    MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSidenavModule,
@@ -54,6 +56,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCardModule,
     MatDividerModule,
     MatGridListModule,
+    MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSidenavModule,

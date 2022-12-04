@@ -1,10 +1,10 @@
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 
-/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 /* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
 
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+/* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
 
 html,
 body {
@@ -13,6 +13,27 @@ body {
     z-index: 1;
 
 
+}
+
+#correctDiv {
+    position: absolute;
+    /* top: calc(10%) !important; */
+    right: 50%;
+    margin: 10px;
+    width: fit-content;
+    height: fit-content;
+    font-size: medium;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    align-items: flex-start;
+}
+
+.example-radio-button {
+    margin: 5px;
 }
 
 .flex-container {
@@ -27,11 +48,30 @@ body {
 .flex-container>div {
 
     margin: 10px;
-    padding: 20px;
+    padding: 10px;
     font-size: 15px;
 }
+#instructionContainerDiv {
+    position: absolute;
+    /* top: calc(10%) !important; */
+    right: 50%;
+    margin: 0px;
+    width: fit-content;
+    height: fit-content;
+    font-size: medium;
+}
 
-
+#instructionDiv {
+    position: absolute;
+    /* top: calc(10%) !important; */
+    align-items: center;
+    
+    right: 50%;
+    margin: 0px;
+    width: fit-content;
+    height: fit-content;
+    font-size: medium;
+}
 
 .justify-content-between {
     justify-content: space-between;
@@ -52,7 +92,7 @@ body {
 
     height: 100%;
     width: 100%;
-
+    background-color: #696969;
 
 
 }
@@ -63,15 +103,17 @@ body {
 }
 
 #ngt-canvas-container {
-   height: 80%;
+    height: 80%;
     border: 2px dotted rgb(192, 252, 255);
+    background-color: #696969;
 }
+
 #ngt-canvas-container.after {
-   
-            content: "";
-            display: table;
-            clear: both;
-      
+
+    content: "";
+    display: table;
+    clear: both;
+
 }
 
 .open-close-container {
@@ -105,7 +147,7 @@ body {
 
 #stanceDiv {
     position: absolute;
-    top: calc(50%) !important;
+    top: calc(60%) !important;
     left: calc(0%) !important;
     margin: 10px;
     width: fit-content;
