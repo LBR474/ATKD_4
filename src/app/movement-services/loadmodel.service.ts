@@ -129,7 +129,8 @@ export class LoadModelService {
     // // left arm
     this.shoulderL = object.getObjectByName('shoulderL');
     this.upper_armL = object.getObjectByName('upper_armL');
-console.log(this.shoulderL?.quaternion);
+console.log("From loadmodel service: \n")
+console.log( this.shoulderL?.quaternion);
     
     this.forearmL = object.getObjectByName('forearmL');
     this.handL = object.getObjectByName('handL');

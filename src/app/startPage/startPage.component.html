@@ -1,50 +1,62 @@
 <!-- whole page div area begins -->
-<div class="mat-app-background" backgroundColor="primary" id="top-div">
-  <!-- instruction container div area begins -->
-  <div
-    [@instructionOpenClose]="instructionisOpen ? 'open' : 'closed'"
-    id="instructionContainerDiv"
-    class="mat-app-background justify-content-between open-close-container"
-  >
-    <!-- instruction div area begins -->
-    <!-- [@rotator]="rotatorisOpen ? 'open' : 'closed'" -->
-    <div id="instructionDiv" class="mat-app-background">
-      <mat-toolbar color="accent" class="justify-content-between">
-        <p
-          [@visibleInvisible]="correctisOpen ? 'open' : 'closed'"
-          class="mat-body"
-        >
-          Please make your selections for<br />
-          {{ title }},<br />
-          Count: {{ count_number[0] }}
-        </p>
+<div class="mat-app-background" id="top-div">
+  <!-- instruction div area begins -->
 
-        <p [@visibleInvisible]="correctisOpen ? 'closed' : 'open'">Your selections were correct!</p>
-      </mat-toolbar>
-    </div>
+  <div
+    id="instructionDiv"
+    class="flex-container"
+    [@.disabled]="toggler.isPaused"
+    [@instructionOpenClose]="toggler.instructionisOpen ? 'open' : 'closed'"
+  >
+    <p
+      class="correct-par mat-body"
+      [@visibleInvisible]="
+        toggler.correctisOpen && toggler.count_incrementer <= 8
+          ? 'open'
+          : 'closed'
+      "
+      class="mat-body"
+    >
+      Please make your <br />selections for count: <br />{{
+        toggler.count_number[toggler.count_incrementer] | uppercase
+      }}
+    </p>
+
+    <p
+      id="correct-par"
+      class="correct-par mat-body"
+      [@visibleInvisible]="toggler.correctisOpen ? 'closed' : 'open'"
+      *ngIf="toggler.count_incrementer < 9"
+    >
+      Your selections were correct!
+    </p>
+    <!-- </mat-toolbar> -->
   </div>
 
-  <!-- correct/incorrect div area begins -->
-  <!-- <div
-    [@correctOpenClose]="correctisOpen ? 'open' : 'closed'"
-    id="correctDiv"
-    class="flex-container mat-app-background justify-content-between open-close-container"
+  <div
+    id="finalDiv"
+    class="mat-body"
+    [@.disabled]="toggler.finalisPaused"
+    [@finalOpenClose]="toggler.finalisOpen ? 'open' : 'closed'"
+    *ngIf="toggler.count_incrementer >= 9"
   >
-    <mat-toolbar color="accent" class="flex justify-content-between">
-      <p class="mat-body">
-        Correct!<br />
-        {{ title }},<br> Count: one</p> 
-      </p></mat-toolbar
-    >
-  </div> -->
+    Congratulations, basic poomsae one is complete.
+  </div>
 
   <!-- stance div area begins -->
   <div
-    [@openClose]="isOpen ? 'closed' : 'open'"
+    [@.disabled]="toggler.isPaused"
+    [@stanceOpenClose]="toggler.stanceisOpen ? 'closed' : 'open'"
     id="stanceDiv"
-    class="flex-container mat-app-background justify-content-between open-close-container"
+    class="flex-container justify-content-between"
   >
-    <mat-card class="mat-card">
+    <mat-card
+      class="mat-card"
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
       <mat-card-header>
         <mat-card-title class="mat-body">Stance</mat-card-title>
       </mat-card-header>
@@ -52,22 +64,39 @@
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="stance"
+          [(ngModel)]="toggler.stance"
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let stance of stanceChoices"
+            *ngFor="let stance of toggler.stanceChoices"
             [value]="stance"
             (click)="
-              record_stance(stance); BP1_movement_1(stance, leftArm, rightArm)
+              toggler.record_stance(stance);
+              bp1MovementCollate.BP1_collate_movement(
+                stance,
+                toggler.leftArm,
+                toggler.rightArm
+              )
             "
           >
             {{ stance }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
-          Selected stance:<br />
-          {{ stance }}
+          <p
+            color="primary"
+            class="mat-app-background"
+            [ngStyle]="{
+              'background-color':
+                toggler.stancecorrectIncorrect == 'This stance is correct!'
+                  ? 'green'
+                  : 'red',
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ toggler.stancecorrectIncorrect }}
+          </p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -75,11 +104,17 @@
 
   <!-- left arm div area begins -->
   <div
-    [@leftArmOpenClose]="isOpen ? 'open' : 'closed'"
+    [@.disabled]="toggler.isPaused"
+    [@leftArmOpenClose]="toggler.isOpen ? 'open' : 'closed'"
     id="leftArmDiv"
-    class="flex-container mat-app-background justify-content-between open-close-container"
+    class="flex-container justify-content-between"
   >
-    <mat-card>
+    <mat-card
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
       <mat-card-header>
         <mat-card-title>Left arm</mat-card-title>
       </mat-card-header>
@@ -87,22 +122,40 @@
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="leftArm"
+          [(ngModel)]="toggler.leftArm"
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let leftArm of leftArmChoices"
+            *ngFor="let leftArm of toggler.leftArmChoices"
             [value]="leftArm"
             (click)="
-              record_leftArm(leftArm); BP1_movement_1(stance, leftArm, rightArm)
+              toggler.record_leftArm(leftArm);
+              bp1MovementCollate.BP1_collate_movement(
+                toggler.stance,
+                leftArm,
+                toggler.rightArm
+              )
             "
           >
             {{ leftArm }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
-          Left arm selection is:<br />
-          {{ leftArm }}
+          <p
+            class="mat-app-background"
+            [ngStyle]="{
+              'background-color':
+                toggler.leftArmcorrectIncorrect ==
+                'Left arm movement is correct!'
+                  ? 'green'
+                  : 'red',
+
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ toggler.leftArmcorrectIncorrect }}
+          </p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -110,11 +163,17 @@
 
   <!-- right arm div area begins -->
   <div
-    [@openClose]="isOpen ? 'closed' : 'open'"
+    [@.disabled]="toggler.isPaused"
+    [@openClose]="toggler.isOpen ? 'closed' : 'open'"
     id="rightArmDiv"
-    class="flex-container mat-app-background justify-content-between open-close-container"
+    class="flex-container justify-content-between"
   >
-    <mat-card>
+    <mat-card
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
       <mat-card-header>
         <mat-card-title>Right arm</mat-card-title>
       </mat-card-header>
@@ -122,23 +181,38 @@
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="rightArm"
+          [(ngModel)]="toggler.rightArm"
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let rightArm of rightArmChoices"
+            *ngFor="let rightArm of toggler.rightArmChoices"
             [value]="rightArm"
             (click)="
-              record_rightArm(rightArm);
-              BP1_movement_1(stance, leftArm, rightArm)
+              toggler.record_rightArm(rightArm);
+              bp1MovementCollate.BP1_collate_movement(
+                toggler.stance,
+                toggler.leftArm,
+                rightArm
+              )
             "
           >
             {{ rightArm }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
-          Right arm selection is:<br />
-          {{ rightArm }}
+          <p
+            [ngStyle]="{
+              'background-color':
+                toggler.rightArmcorrectIncorrect ==
+                'Right arm movement is correct!'
+                  ? 'green'
+                  : 'red',
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ toggler.rightArmcorrectIncorrect }}
+          </p>
         </div>
       </mat-card-content>
     </mat-card>
@@ -146,7 +220,8 @@
 
   <!-- open close div and attention and choonbi button   area begins -->
   <div
-    [@attchoonOpenClose]="attchoonisOpen ? 'open' : 'closed'"
+    [@.disabled]="toggler.finalisPaused"
+    [@attchoonOpenClose]="toggler.attchoonisOpen ? 'open' : 'closed'"
     class="open-close-container"
   >
     <button
@@ -165,7 +240,7 @@
       color="primary"
       #choonBiButton
       [disabled]="choonBi_clicked"
-      (click)="choon_bi_up_arms(); choonBi_clicked = true; toggle()"
+      (click)="choon_bi_up_arms(); choonBi_clicked = true; toggler.toggle()"
     >
       {{ choonbi | titlecase }}
     </button>
@@ -174,7 +249,7 @@
   <!-- ngt canvas container div area begins -->
 
   <div id="ngt-canvas-container">
-    <ngt-canvas [camera]="{ position: [0, 1.5, 4], fov: 75 }">
+    <ngt-canvas [camera]="{ position: [0, 2, 3], fov: 75 }">
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">

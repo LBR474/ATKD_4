@@ -1,95 +1,24 @@
-// Angular core imports
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-// angular animation.ts imports
-import {
-  attchoonOpenClose,
-  correctOpenClose,
-  finalOpenClose,
-  instructionOpenClose,
-  leftArmOpenClose,
-  openClose,
-  rotator,
-  stanceOpenClose,
-  slideInAnimation,
-  visibleInvisible,
-} from '../app.animation';
+// import { LoadModelService } from './loadmodel.service';
 
-// angular forms imports
-import { FormControl } from '@angular/forms';
+import { LoadModelService } from './loadmodel.service';
 
 // gsap import
 import { gsap } from 'gsap';
+import { LeftfistService } from './leftfist.service';
+import { RightfistService } from './rightfist.service';
 
-// soba imports
-import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
-import { NgtGLTFLoader } from '@angular-three/soba/loaders';
-
-// three imports
-import * as THREE from 'three';
-//import { Object3D } from 'three';
-
-// movement services imports
-import { AttentionService } from '../movement-services/attention.service';
-import { BP1CollateMovementServiceService } from '../movement-services/bp1collatemovementservice.service';
-import { HorsestanceService } from '../movement-services/horsestance.service';
-import { LeftarmwidedownblockService } from '../movement-services/leftarmwidedownblock.service';
-import { LeftfistService } from '../movement-services/leftfist.service';
-import { LoadModelService } from '../movement-services/loadmodel.service';
-import { ReturnToStartService } from '../movement-services/return-to-start.service';
-import { RightfistService } from '../movement-services/rightfist.service';
-import { TogglerService } from '../movement-services/toggler.service';
-
-@Component({
-  providers: [],
-  selector: 'app-startPage',
-  templateUrl: './startPage.component.html',
-  styleUrls: ['./startPage.component.css'],
-  animations: [
-    attchoonOpenClose,
-    correctOpenClose,
-    finalOpenClose,
-    instructionOpenClose,
-    leftArmOpenClose,
-
-    openClose,
-    rotator,
-    stanceOpenClose,
-    slideInAnimation,
-    visibleInvisible,
-  ],
+@Injectable({
+  providedIn: 'root',
 })
-export class StartPageComponent implements OnInit, AfterViewInit {
-  // global variables area
-
-  attention_clicked = false;
-  public bgcolor = new THREE.Color(0x5f5f00);
-  choonBi_clicked = false;
-
-  choonbi: string = 'choOn bi';
-  public grid_center_line_color = new THREE.Color(0xff5f00);
-
-  title: string = 'Basic poomsae one';
-
+export class ChoonbiservService {
   constructor(
-    public attserve: AttentionService,
-    public bp1MovementCollate: BP1CollateMovementServiceService,
-    public loadHorse: HorsestanceService,
-    public loadLeftArmwidedownBlock: LeftarmwidedownblockService,
-    public loadLeftFist: LeftfistService,
     public loadModel: LoadModelService,
+    public loadLeftFist: LeftfistService,
     public loadRightFist: RightfistService,
-    public ngtGLTFLoader: NgtGLTFLoader,
-    public rts: ReturnToStartService,
-    public toggler: TogglerService // public rts: ReturnToStartService,
-  ) {}
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    //console.log('From after view init: ' + this.loadModel.spine003);
-  }
-
+    
+    ) {}
   // // // choon bi function area begins
   choon_bi_up_arms = () => {
     if (
@@ -154,23 +83,23 @@ export class StartPageComponent implements OnInit, AfterViewInit {
         _z: 0.02,
       });
 
-      gsap.to(this.loadModel.thighL.quaternion, {
-        _w: 0.19,
-        _x: 0.98,
-        _y: 0.0,
-        _z: 0.0,
+      gsap.to(this.loadModel.handL.quaternion, {
+        _w: 0.99,
+        _x: -0.15,
+        _y: -0.01,
+        _z: -0.01,
         duration: 1,
       });
-      gsap.to(this.loadModel.thighR.quaternion, {
-        _w: 0.19,
-        _x: 0.98,
-        _y: 0.0,
-        _z: 0.0,
+      gsap.to(this.loadModel.handR.quaternion, {
+        _w: 0.99,
+        _x: -0.15,
+        _y: 0.01,
+        _z: 0.01,
         duration: 1,
       });
       gsap.to(this.loadModel.spine.position, {
         duration: 1,
-        x: 0.0,
+        y: 1.0,
         onComplete: this.choon_bi,
       });
     }
@@ -189,10 +118,67 @@ export class StartPageComponent implements OnInit, AfterViewInit {
       this.loadModel.forearmR &&
       this.loadModel.handR &&
       this.loadModel.pelvisL &&
-      this.loadModel.pelvisR
+      this.loadModel.pelvisR &&
+      this.loadModel.thighL &&
+      this.loadModel.thighR &&
+      this.loadModel.shinL &&
+      this.loadModel.shinR 
     ) {
       this.loadLeftFist.make_left_fist();
       this.loadRightFist.make_right_fist();
+
+      
+      gsap.to(this.loadModel.pelvisL.quaternion, {
+        _w: 0.47,
+        _x: -0.27,
+        _y: -0.71,
+        _z: -0.45,
+        duration: 1,
+      });
+      
+      
+      gsap.to(this.loadModel.pelvisR.quaternion, {
+        _w: 0.47,
+        _x: -0.27,
+        _y: 0.71,
+        _z: 0.45,
+        duration: 1,
+      });
+
+      gsap.to(this.loadModel.thighL.quaternion, {
+        _w: 0.19,
+        _x: 0.98,
+        _y: 0.0,
+        _z: 0.0,
+        duration: 1,
+      });
+
+      gsap.to(this.loadModel.thighR.quaternion, {
+        _w: 0.19,
+        _x: 0.98,
+        _y: 0.0,
+        _z: 0.0,
+        duration: 1,
+      });
+      gsap.to(this.loadModel.shinL.quaternion, {
+        _w: 0.99,
+        _x: 0.1,
+        _y: 0.0,
+        _z: -0.02,
+        duration: 1,
+      });
+
+      gsap.to(this.loadModel.shinR.quaternion, {
+        _w: 0.99,
+        _x: 0.1,
+        _y: -0.0,
+        _z: 0.02,
+        duration: 1,
+      });
+
+
+
+
       gsap.to(this.loadModel.shoulderL.quaternion, {
         _w: 0.26,
         _x: -0.53,
@@ -240,12 +226,4 @@ export class StartPageComponent implements OnInit, AfterViewInit {
       });
     }
   };
-
-  setInitial(controls: NgtSobaOrbitControls) {
-    const orbitControl = controls.camera;
-
-    if (orbitControl) {
-      orbitControl.position.setY(4);
-    }
-  }
 }

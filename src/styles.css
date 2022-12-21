@@ -1,10 +1,12 @@
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
 
 /* @import '~@angular/material/prebuilt-themes/pink-bluegrey.css'; */
 
 /* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
+
+@import 'app/indigo-pink-custom.css';
 
 html,
 body {
@@ -19,10 +21,19 @@ body {
     position: absolute;
     /* top: calc(10%) !important; */
     right: 50%;
-    margin: 10px;
+    padding: 5px;
     width: fit-content;
     height: fit-content;
     font-size: medium;
+}
+
+.correct-par {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    
+    padding: 3px;
+    background-color: green;
 }
 
 .example-radio-group {
@@ -30,10 +41,25 @@ body {
     flex-direction: column;
     margin: 5px 0;
     align-items: flex-start;
+
 }
 
 .example-radio-button {
     margin: 5px;
+}
+
+#finalDiv {
+    position: absolute;
+    /* top: calc(10%) !important; */
+    align-items: center;
+    justify-content: center;
+    right: 70%;
+    padding: 10px;
+    width: 20vw;
+    height: fit-content;
+    font-size: medium;
+    background-color: green;
+    color: aliceblue;
 }
 
 .flex-container {
@@ -41,6 +67,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 20vw;
+    z-index: 1;
 
 }
 
@@ -51,13 +78,14 @@ body {
     padding: 10px;
     font-size: 15px;
 }
+
 #instructionContainerDiv {
     position: absolute;
     /* top: calc(10%) !important; */
     right: 50%;
     margin: 0px;
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content;
+    height: fit-content; */
     font-size: medium;
 }
 
@@ -65,12 +93,14 @@ body {
     position: absolute;
     /* top: calc(10%) !important; */
     align-items: center;
-    
+    justify-content: center;
     right: 50%;
-    margin: 0px;
-    width: fit-content;
+    padding: 0px;
+    width: 20vw;
     height: fit-content;
     font-size: medium;
+    background-color: #3f51b5;
+    color:aliceblue;
 }
 
 .justify-content-between {
@@ -82,8 +112,9 @@ body {
     top: calc(10%) !important;
     /* right: 0px; */
     margin: 10px;
-    width: fit-content;
+    width: 50px;
     height: fit-content;
+
 }
 
 
@@ -92,7 +123,7 @@ body {
 
     height: 100%;
     width: 100%;
-    background-color: #696969;
+    /* background-color: #696969; */
 
 
 }
@@ -119,6 +150,7 @@ body {
 .open-close-container {
     position: relative;
     /* top: calc(50% - 250px) !important; */
+    padding-left: 30px;
     width: 20vw;
     border: 2px dotted pink;
     font-size: medium;
