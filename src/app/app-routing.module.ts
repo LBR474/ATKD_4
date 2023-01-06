@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import {bp2} from './bp2/bp2.component'
 import { BP2Component } from './bp2/bp2.component';
 import { StartPageComponent } from './startPage/startPage.component';
+import { BlankComponent } from './blank/blank.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     component: StartPageComponent,
   },
   { path: 'BP2', component: BP2Component },
-  { path: '', redirectTo: '/BP1', pathMatch: 'full'}
+  { path: 'Blank', component: BlankComponent },
+  { path: '', redirectTo: '/BP1', pathMatch: 'full' },
 ];
 
 

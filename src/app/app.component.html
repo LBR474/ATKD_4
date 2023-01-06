@@ -1,15 +1,4 @@
 <div class="mat-app-background">
-  <mat-toolbar color="primary" class="flex justify-content-between">
-    {{ title }}
-
-    <div>
-      <a mat-stroked-button (click)="rts.return_to_start_arms_only(); 
-      title='Basic poomsae two'"
-      
-      >BP2</a>
-      <a routerLink="/BP2" mat-stroked-button (click)="toggler.toggle()">BP3</a>
-    </div>
-  </mat-toolbar>
-  
-  <router-outlet></router-outlet>
+   <app-startPage></app-startPage>
+ 
 </div>

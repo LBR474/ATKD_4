@@ -9,16 +9,12 @@ import { LeftfistService } from './leftfist.service';
 import { RightfistService } from './rightfist.service';
 import { RightknifehandService } from './rightknifehand.service';
 import { LeftknifehandService } from './leftknifehand.service';
+import { TogglerService } from './toggler.service';
 
 // gsap import
 import { gsap } from 'gsap';
 
-// soba imports
-import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 
-// three imports
-import * as THREE from 'three';
-import { Object3D } from 'three';
 
 
 @Injectable({
@@ -26,11 +22,13 @@ import { Object3D } from 'three';
 })
 export class ReturnToStartService {
   constructor(
+    public leftknifehand: LeftknifehandService,
     public loadmodel: LoadModelService,
     public loadLeftFist: LeftfistService,
     public loadRightFist: RightfistService,
     public rightknifehand: RightknifehandService,
-    public leftknifehand: LeftknifehandService
+    public toggler: TogglerService,
+    
   ) {}
 
   // // // attention function area begins
@@ -54,35 +52,36 @@ export class ReturnToStartService {
     ) {
       this.leftknifehand.make_left_knife();
       this.rightknifehand.make_right_knife();
+      this.toggler.titler_counter += 1;
       // console.log(this.loadmodel.upper_armL.quaternion);
       gsap.to(this.loadmodel.shoulderL.quaternion, {
-        _w: 0.62,
-        _x: -0.61,
-        _y: -0.35,
-        _z: -0.36,
+        _w: 0.65417784,
+        _x: -0.33964056,
+        _y: -0.31106198,
+        _z: -0.5999468,
         duration: 1,
       });
       gsap.to(this.loadmodel.upper_armL.quaternion, {
-        _w: 0.55,
-        _x: -0.24,
-        _y: 0.6,
-        _z: -0.52,
+        _w: 0.64516646,
+        _x: -0.26719585,
+        _y: 0.69433504,
+        _z: -0.17396994,
         duration: 1,
       });
       gsap.to(this.loadmodel.shoulderR.quaternion, {
-        _w: 0.62,
-        _x: -0.61,
-        _y: 0.35,
-        _z: 0.36,
+        _w: 0.6541779,
+        _x: -0.33964077,
+        _y: 0.3110618,
+        _z: 0.59994668,
         duration: 1,
       });
 
       gsap.to(this.loadmodel.upper_armR.quaternion, {
         duration: 1,
-        _w: 0.55,
-        _x: -0.24,
-        _y: -0.6,
-        _z: 0.52,
+        _w: 0.64516646,
+        _x: -0.26719585,
+        _y: -0.69433504,
+        _z: 0.17396994,
       });
 
       gsap.to(this.loadmodel.forearmL.quaternion, {

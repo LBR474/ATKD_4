@@ -18,7 +18,7 @@ import { Object3D } from 'three';
   providedIn: 'root',
 })
 export class LoadModelService {
-  model$ = this.ngtGLTFLoader.load('/assets/TKD_girl_8.glb');
+  model$ = this.ngtGLTFLoader.load('/assets/TKD_girl_15.glb');
 
   // // whole skeleton
   public metarig: Object3D | undefined;

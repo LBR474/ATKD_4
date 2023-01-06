@@ -31,6 +31,26 @@ export const attchoonOpenClose = trigger('attchoonOpenClose', [
   transition('* <=> *', [animate('3.0s ease-out')]),
 ]);
 
+export const changeOverTitle = trigger('changeOverTitle', [
+  // ...
+  state(
+    'open',
+    style({
+      opacity: 1,
+    })
+  ),
+  state(
+    'closed',
+    style({
+      opacity: 0,
+      transform: 'rotateY(-180deg)',
+    })
+  ),
+  transition('* <=> *', [animate('1.0s')]),
+  // transition('closed => open', [animate('1.5s')]),
+]);
+
+
 export const correctOpenClose = trigger('correctOpenClose', [
   // ...
   state(
@@ -62,7 +82,7 @@ export const finalOpenClose = trigger('finalOpenClose', [
     style({
       // height: 'fit-content',
       // width: 'fit-content',
-      top: '-30%',
+      top: '20%',
     })
   ),
   state(
@@ -71,7 +91,7 @@ export const finalOpenClose = trigger('finalOpenClose', [
       // width: 'fit-content',
       // height: 'fit-content',
 
-      top: '10%',
+      top: '-30%',
     })
   ),
   transition('* => *', [animate('1s')]),
@@ -96,7 +116,7 @@ export const instructionOpenClose = trigger('instructionOpenClose', [
       // width: 'fit-content',
       // height: 'fit-content',
       
-      top: '10%',
+      top: '15%',
     })
   ),
   transition('* => *', [animate('1s')]),
@@ -110,10 +130,11 @@ export const leftArmOpenClose = trigger('leftArmOpenClose', [
   state(
     'open',
     style({
-      height: 'fit-content',
       width: 'fit-content',
-      right: '-300px',
-      // transform: 'translateX(-200px)',
+      height: 'fit-content',
+      top: '-50%',
+      right: '0px',
+      //transform: 'translateY(-100%)',
     })
   ),
   state(
@@ -121,7 +142,7 @@ export const leftArmOpenClose = trigger('leftArmOpenClose', [
     style({
       width: 'fit-content',
       height: 'fit-content',
-      // transform: 'translateX(600px)',
+      top: '10%',
       right: '0px',
     })
   ),

@@ -11,9 +11,14 @@ import { StartPageComponent } from './startPage/startPage.component';
 import { AngularThreeNGTModule } from './angular-three-ngt/angular-three-ngt.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BP2Component } from './bp2/bp2.component';
+import { BlankComponent } from './blank/blank.component';
+import { AttentionService } from './movement-services/attention.service';
+import { BP1CollateMovement } from './movement-services/bp1collatemovement.service';
+import { ChoonbiservService } from './movement-services/choonbiserv.service';
+
 
 @NgModule({
-  declarations: [AppComponent, StartPageComponent, BP2Component],
+  declarations: [AppComponent, StartPageComponent, BP2Component, BlankComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -23,7 +28,12 @@ import { BP2Component } from './bp2/bp2.component';
     AngularThreeNGTModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    AttentionService,
+    BP1CollateMovement,
+    ChoonbiservService,
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

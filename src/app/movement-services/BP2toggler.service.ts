@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { HorsestanceService } from '../movement-services/horsestance.service';
+import { HorsestanceService } from './horsestance.service';
 import { LeftarmblockService } from './leftarmblock.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TogglerService {
+export class BP2TogglerService {
   attchoonisOpen: boolean = true;
   changeOverTitleisOpen: boolean = true;
   correctisOpen: boolean = true;
@@ -22,7 +22,7 @@ export class TogglerService {
   rightArmcorrectIncorrect: string = '';
   leftArmcorrectIncorrect: string = '';
   count_incrementer = 1;
-  
+  BP2_countincrementer = 1;
   count_number = [
     'zero',
     'one',

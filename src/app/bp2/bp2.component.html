@@ -1,43 +1,252 @@
-<div class="mat-app-background" backgroundColor="primary" id="top-div">
-  <button
-    mat-raised-button
-    color="accent"
-    id="attserve_attention"
-    (click)="attserve.attention()"
-  >
-    Attention</button
-  >&nbsp;&nbsp;&nbsp;&nbsp;
+<!-- whole page div area begins -->
+<!-- <div class="mat-app-background" id="top-div"> -->
+  <!-- instruction div area begins -->
 
-  <button
-    mat-raised-button
-    color="primary"
-    id="choonBiButton"
-    (click)="choon_bi_up_arms()"
+  <!-- <div
+    id="instructionDiv"
+    class="flex-container"
+    [@.disabled]="bp2Toggler.isPaused"
+    [@instructionOpenClose]="bp2Toggler.instructionisOpen ? 'open' : 'closed'"
   >
-    {{ choonbi | titlecase }}
-  </button>
+    <p
+      class="correct-par mat-body"
+      [@visibleInvisible]="
+        bp2Toggler.correctisOpen && bp2Toggler.count_incrementer <= 8
+          ? 'open'
+          : 'closed'
+      "
+      class="mat-body"
+    >
+      Please make your <br />selections for count: <br />{{
+        bp2Toggler.count_number[bp2Toggler.count_incrementer] | uppercase
+      }}
+    </p>
 
- 
-  <ngt-canvas [camera]="{ position: [0, 1.5, 4], fov: 75 }">
-    <ngt-ambient-light></ngt-ambient-light>
-    <ngt-ambient-light></ngt-ambient-light>
-    <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
-    </ngt-grid-helper>
-    <ng-container>
-      <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
-      <ngt-primitive
-        #primitiveModel
-        *ngIf="loadmodel.model$ | async as model"
-        (ready)="loadmodel.modelReadyService($event)"
-        [object]="model.scene"
-        [position]="[0, 0, 0]"
-      >
-      </ngt-primitive>
-    </ng-container>
-    <ngt-soba-orbit-controls
-      #controls
-      (ready)="setInitial(controls)"
-      [target]="[0, 0.5, 0]"
-    ></ngt-soba-orbit-controls>
-  </ngt-canvas>
-</div>
+    <p
+      id="correct-par"
+      class="correct-par mat-body"
+      [@visibleInvisible]="bp2Toggler.correctisOpen ? 'closed' : 'open'"
+      *ngIf="bp2Toggler.count_incrementer < 9"
+    >
+      Your selections were correct!
+    </p>
+    
+  </div> -->
+
+  <!-- <div
+    id="finalDiv"
+    class="mat-body"
+    [@.disabled]="bp2Toggler.finalisPaused"
+    [@finalOpenClose]="bp2Toggler.finalisOpen ? 'open' : 'closed'"
+    *ngIf="bp2Toggler.count_incrementer >= 9"
+  >
+    Congratulations, <br>basic poomsae one is complete.
+  </div> -->
+
+  <!-- stance div area begins -->
+  <!-- <div
+    [@.disabled]="bp2Toggler.isPaused"
+    [@stanceOpenClose]="bp2Toggler.stanceisOpen ? 'closed' : 'open'"
+    id="stanceDiv"
+    class="flex-container justify-content-between"
+  >
+    <mat-card
+      class="mat-card"
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
+      <mat-card-header>
+        <mat-card-title class="mat-body">Stance</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="bp2Toggler.stance"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let stance of bp2Toggler.stanceChoices"
+            [value]="stance"
+            (click)="
+              bp2Toggler.record_stance(stance);
+              bp1MovementCollate.BP1_collate_movement(
+                stance,
+                bp2Toggler.leftArm,
+                bp2Toggler.rightArm
+              )
+            "
+          >
+            {{ stance }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <p
+            color="primary"
+            class="mat-app-background"
+            [ngStyle]="{
+              'background-color':
+                bp2Toggler.stancecorrectIncorrect == 'This stance is correct!'
+                  ? 'green'
+                  : 'red',
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ bp2Toggler.stancecorrectIncorrect }}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
+
+  <!-- left arm div area begins -->
+  <!-- <div
+    [@.disabled]="bp2Toggler.isPaused"
+    [@leftArmOpenClose]="bp2Toggler.isOpen ? 'open' : 'closed'"
+    id="leftArmDiv"
+    class="flex-container justify-content-between"
+  >
+    <mat-card
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
+      <mat-card-header>
+        <mat-card-title>Left arm</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="bp2Toggler.leftArm"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let leftArm of bp2Toggler.leftArmChoices"
+            [value]="leftArm"
+            (click)="
+              bp2Toggler.record_leftArm(leftArm);
+              bp1MovementCollate.BP1_collate_movement(
+                bp2Toggler.stance,
+                leftArm,
+                bp2Toggler.rightArm
+              )
+            "
+          >
+            {{ leftArm }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <p
+            class="mat-app-background"
+            [ngStyle]="{
+              'background-color':
+                bp2Toggler.leftArmcorrectIncorrect ==
+                'Left arm movement is correct!'
+                  ? 'green'
+                  : 'red',
+
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ bp2Toggler.leftArmcorrectIncorrect }}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
+
+  <!-- right arm div area begins -->
+  <!-- <div
+    [@.disabled]="bp2Toggler.isPaused"
+    [@openClose]="bp2Toggler.isOpen ? 'closed' : 'open'"
+    id="rightArmDiv"
+    class="flex-container justify-content-between"
+  >
+    <mat-card
+      [ngStyle]="{
+        'background-color': '#3f51b5',
+        color: 'white'
+      }"
+    >
+      <mat-card-header>
+        <mat-card-title>Right arm</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="bp2Toggler.rightArm"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let rightArm of bp2Toggler.rightArmChoices"
+            [value]="rightArm"
+            (click)="
+              bp2Toggler.record_rightArm(rightArm);
+              bp1MovementCollate.BP1_collate_movement(
+                bp2Toggler.stance,
+                bp2Toggler.leftArm,
+                rightArm
+              )
+            "
+          >
+            {{ rightArm }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <div>
+          <p
+            [ngStyle]="{
+              'background-color':
+                bp2Toggler.rightArmcorrectIncorrect ==
+                'Right arm movement is correct!'
+                  ? 'green'
+                  : 'red',
+              color: '#fff',
+              width: '100px'
+            }"
+          >
+            {{ bp2Toggler.rightArmcorrectIncorrect }}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
+
+  <!-- open close div and attention and choonbi button   area begins -->
+  <div
+    [@.disabled]="bp2Toggler.finalisPaused"
+    [@attchoonOpenClose]="bp2Toggler.attchoonisOpen ? 'open' : 'closed'"
+    class="open-close-container"
+  >
+    <button
+      mat-raised-button
+      color="accent"
+      id="attserve_attention"
+      [disabled]="attention_clicked"
+      (click)="attserve.attention(); attention_clicked = true"
+    >
+      Attention</button
+    ><br />
+
+    <button
+      class="choonBiButton"
+      mat-raised-button
+      color="primary"
+      #choonBiButton
+      [disabled]="choonBi_clicked"
+      (click)=" choonbiServ.choon_bi_up_arms(); choonBi_clicked = true; bp2Toggler.toggle()"
+    >
+      {{ choonbi | titlecase }}
+</button>
+  </div>
+  
+
+
+  <!-- </div> -->
+

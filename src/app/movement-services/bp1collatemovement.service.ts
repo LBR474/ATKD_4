@@ -1,30 +1,35 @@
 import { Injectable } from '@angular/core';
 
 import { AttentionService } from './attention.service';
-import { HorsestanceService } from '../movement-services/horsestance.service';
+import { HorsestanceService } from './horsestance.service';
 import { leftarmelbowstrike } from './leftarmelbowstrike.service';
-import { LeftarmwidedownblockService } from '../movement-services/leftarmwidedownblock.service';
+import { LeftarmblockService } from './leftarmblock.service';
+import {LeftarmpunchService} from './leftarmpunch.service'
 import { rightarmelbowstrike } from './rightarmelbowstrike.service';
-import { rightarmwidedownblockService } from './rightarmwidedownblock.service';
-import { TogglerService } from '../movement-services/toggler.service';
+import { rightarmblockService } from './rightarmblock.service';
+import {RightarmpunchService} from './rightarmpunch.service'
+import { TogglerService } from './toggler.service';
 import { ChoonbiservService } from './choonbiserv.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BP1CollateMovementServiceService {
+export class BP1CollateMovement {
   attchoonisOpen: boolean = true;
 
   constructor(
     public loadAttention: AttentionService,
     public loadChoonbiserv: ChoonbiservService,
     public loadHorse: HorsestanceService,
+    public loadLeftArmBlock: LeftarmblockService,
     public loadleftarmelbowstrike: leftarmelbowstrike,
+    public loadleftarmpunch: LeftarmpunchService,
+
     
-    public loadLeftArmwidedownBlock: LeftarmwidedownblockService,
-    
+
     public loadrightarmelbowstrike: rightarmelbowstrike,
-    public loadrightarmwidedownblock: rightarmwidedownblockService,
+    public loadrightarmblock: rightarmblockService,
+    public loadrightarmpunch: RightarmpunchService,
     public toggler: TogglerService
   ) {}
 
@@ -41,8 +46,8 @@ export class BP1CollateMovementServiceService {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.stanceisOpen = !this.toggler.stanceisOpen;
       this.toggler.toggle_correct();
-      this.loadHorse.horse_stance();
-      this.loadLeftArmwidedownBlock.left_arm_wide_down_block_arms_up();
+      this.loadHorse.horse_stance_legs_up();
+      this.loadLeftArmBlock.left_arm_wide_down_block_arms_up();
       this.loadrightarmelbowstrike.right_arm_elbow_strike_arms_up();
     }
     // count two
@@ -54,7 +59,7 @@ export class BP1CollateMovementServiceService {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
       this.loadleftarmelbowstrike.left_arm_elbow_strike_arms_up();
-      this.loadrightarmwidedownblock.right_arm_wide_down_block_arms_up();
+      this.loadrightarmblock.right_arm_wide_down_block_arms_up();
     }
     // count three
     else if (
@@ -64,8 +69,8 @@ export class BP1CollateMovementServiceService {
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
-      this.loadLeftArmwidedownBlock.left_arm_wide_down_block_arms_up();
-      this.loadrightarmelbowstrike.right_arm_elbow_strike_arms_up();
+      this.loadLeftArmBlock.left_arm_wide_middle_block_arms_up();
+      this.loadrightarmelbowstrike.right_arm_MandU_elbow_strike_arms_up();
     }
     // count four
     else if (
@@ -75,8 +80,8 @@ export class BP1CollateMovementServiceService {
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
-      this.loadleftarmelbowstrike.left_arm_elbow_strike_arms_up();
-      this.loadrightarmwidedownblock.right_arm_wide_down_block_arms_up();
+      this.loadleftarmelbowstrike.left_arm_MandU_elbow_strike_arms_up();
+      this.loadrightarmblock.right_arm_wide_middle_block_arms_up();
     }
     // count five
     else if (
@@ -86,8 +91,8 @@ export class BP1CollateMovementServiceService {
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
-      this.loadLeftArmwidedownBlock.left_arm_wide_down_block_arms_up();
-      this.loadrightarmelbowstrike.right_arm_elbow_strike_arms_up();
+      this.loadLeftArmBlock.left_arm_wide_upper_block_arms_up();
+      this.loadrightarmelbowstrike.right_arm_MandU_elbow_strike_arms_up();
     }
     // count six
     else if (
@@ -97,8 +102,8 @@ export class BP1CollateMovementServiceService {
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
-      this.loadleftarmelbowstrike.left_arm_elbow_strike_arms_up();
-      this.loadrightarmwidedownblock.right_arm_wide_down_block_arms_up();
+      this.loadleftarmelbowstrike.left_arm_MandU_elbow_strike_arms_up();
+      this.loadrightarmblock.right_arm_wide_upper_block_arms_up();
     }
     // count seven
     else if (
@@ -108,8 +113,8 @@ export class BP1CollateMovementServiceService {
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
-      this.loadLeftArmwidedownBlock.left_arm_wide_down_block_arms_up();
-      this.loadrightarmelbowstrike.right_arm_elbow_strike_arms_up();
+      this.loadleftarmpunch.left_arm_middle_punch()
+      this.loadrightarmelbowstrike.right_arm_MandU_elbow_strike_arms_down();
     }
     // count eight
     else if (
@@ -120,10 +125,10 @@ export class BP1CollateMovementServiceService {
       this.toggler.toggle_final();
       this.toggler.toggle_correct();
       this.toggler.toggle();
-      this.loadleftarmelbowstrike.left_arm_elbow_strike_arms_up();
-      this.loadrightarmwidedownblock.right_arm_wide_down_block_arms_up();
+      this.loadleftarmelbowstrike.left_arm_MandU_elbow_strike_arms_down();
+      this.loadrightarmpunch.right_arm_middle_punch();
       setTimeout(() => {
-        this.loadChoonbiserv.choon_bi_up_arms();
+        this.loadChoonbiserv.choon_bi_final();
       }, 2000);
     }
   }

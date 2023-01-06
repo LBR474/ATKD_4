@@ -1,7 +1,19 @@
 <!-- whole page div area begins -->
 <div class="mat-app-background" id="top-div">
-  <!-- instruction div area begins -->
+  <div id="titleDiv"
+  [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
+  >
+    <mat-toolbar color="primary" class="flex justify-content-between">
+    
+    
+      
+     {{ toggler.titlerChoices[toggler.titler_counter ] }}
+    
+  </mat-toolbar>
+    <!-- <h1 color="primary">{{ toggler.titlerChoices[toggler.titler_counter ] }}</h1> -->
+  </div>
 
+  <!-- instruction div area begins -->
   <div
     id="instructionDiv"
     class="flex-container"
@@ -33,6 +45,8 @@
     <!-- </mat-toolbar> -->
   </div>
 
+  <!-- final div area begins -->
+
   <div
     id="finalDiv"
     class="mat-body"
@@ -40,7 +54,13 @@
     [@finalOpenClose]="toggler.finalisOpen ? 'open' : 'closed'"
     *ngIf="toggler.count_incrementer >= 9"
   >
-    Congratulations, basic poomsae one is complete.
+   <div> Congratulations, basic poomsae one is complete. <br></div>
+   <div>Go on to basic poomsae two?  
+    <button
+      mat-raised-button
+      color="accent"
+   (click)="rts.return_to_start_function(); toggler.toggle_final(); toggler.toggle()"
+   >Yes</button></div>
   </div>
 
   <!-- stance div area begins -->
@@ -67,7 +87,7 @@
           [(ngModel)]="toggler.stance"
         >
           <mat-radio-button
-            class="example-radio-button"
+            class="example-radio-button .mat-mdc-radio-button ~ .mat-mdc-radio-button"
             *ngFor="let stance of toggler.stanceChoices"
             [value]="stance"
             (click)="
@@ -161,7 +181,7 @@
     </mat-card>
   </div>
 
-  <!-- right arm div area begins -->
+   <!-- right arm div area begins -->
   <div
     [@.disabled]="toggler.isPaused"
     [@openClose]="toggler.isOpen ? 'closed' : 'open'"
@@ -218,6 +238,8 @@
     </mat-card>
   </div>
 
+
+
   <!-- open close div and attention and choonbi button   area begins -->
   <div
     [@.disabled]="toggler.finalisPaused"
@@ -240,7 +262,9 @@
       color="primary"
       #choonBiButton
       [disabled]="choonBi_clicked"
-      (click)="choon_bi_up_arms(); choonBi_clicked = true; toggler.toggle()"
+      (click)="
+        choonbiServ.choon_bi_up_arms(); choonBi_clicked = true; toggler.toggle()
+      "
     >
       {{ choonbi | titlecase }}
     </button>
@@ -249,7 +273,7 @@
   <!-- ngt canvas container div area begins -->
 
   <div id="ngt-canvas-container">
-    <ngt-canvas [camera]="{ position: [0, 2, 3], fov: 75 }">
+    <ngt-canvas [camera]="{ position: [0.0, 0.7, 1.2], fov: 75 }">
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
@@ -261,18 +285,22 @@
           *ngIf="loadModel.model$ | async as model"
           (ready)="loadModel.modelReadyService($event)"
           [object]="model.scene"
-          [position]="[0, 0, 0]"
+          [position]="[-0.1, 0, 0]"
         >
         </ngt-primitive>
       </ng-container>
 
-      <!-- soba orbit controls area begins -->
+      <!-- 
+        soba orbit controls area begins 
+      -->
 
       <ngt-soba-orbit-controls
         #controls
         (ready)="setInitial(controls)"
-        [target]="[0, 0.5, 0]"
+        [target]="[0.0, 0.5, 0]"
       ></ngt-soba-orbit-controls>
     </ngt-canvas>
   </div>
+  <!-- <app-bp2></app-bp2> -->
+  <!-- <app-blank></app-blank> -->
 </div>
