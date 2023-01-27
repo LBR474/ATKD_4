@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { HorsestanceService } from './horsestance.service';
-import { LeftarmblockService } from './leftarmblock.service';
+import { HorsestanceService } from '../movement-services/horsestance.service';
+import { LeftarmblockService } from '../movement-services/leftarmblock.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class BP2TogglerService {
   rightArmcorrectIncorrect: string = '';
   leftArmcorrectIncorrect: string = '';
   count_incrementer = 1;
-  BP2_countincrementer = 1;
+  BP2_count_incrementer = 1;
   count_number = [
     'zero',
     'one',
@@ -82,45 +82,45 @@ export class BP2TogglerService {
   }
 
   // rightArm selection area begins
-  rightArm: string = '';
-  rightArmChoices: string[] = [
+  BP2rightArm: string = '';
+  BP2rightArmChoices: string[] = [
     'Elbow strike',
-    'Down block',
-    'Middle block',
-    'Upper block',
-    'Middle punch',
+    'Inside block',
+    'Knife strike palm up',
+    'Knife strike palm down',
+    'High punch',
   ];
-  record_rightArm(rightArm: any) {
-    console.log('Right arm selection is: ' + rightArm);
-    if (rightArm == 'Elbow strike' && this.count_incrementer % 2 == 1) {
+  record_BP2rightArm(BP2rightArm: any) {
+   console.log(BP2rightArm)
+    if (BP2rightArm == 'Elbow strike' && this.BP2_count_incrementer % 2 == 1) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Elbow strike' && this.count_incrementer % 2 == 1) {
+    } else if (BP2rightArm != 'Elbow strike' && this.BP2_count_incrementer % 2 == 1) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
     // movement two
-    else if (rightArm == 'Down block' && this.count_incrementer == 2) {
+    else if (BP2rightArm == 'Inside block' && this.BP2_count_incrementer == 2) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Down block' && this.count_incrementer == 2) {
+    } else if (BP2rightArm != 'Inside block' && this.BP2_count_incrementer == 2) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
     // movement four
-    else if (rightArm == 'Middle block' && this.count_incrementer == 4) {
+    else if (BP2rightArm == 'Middle block' && this.count_incrementer == 4) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Middle block' && this.count_incrementer == 4) {
+    } else if (BP2rightArm != 'Middle block' && this.count_incrementer == 4) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
 
     // movement six
-    else if (rightArm == 'Upper block' && this.count_incrementer == 6) {
+    else if (BP2rightArm == 'Upper block' && this.count_incrementer == 6) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Upper block' && this.count_incrementer == 6) {
+    } else if (BP2rightArm != 'Upper block' && this.count_incrementer == 6) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
 
     // movement eight
-    else if (rightArm == 'Middle punch' && this.count_incrementer == 8) {
+    else if (BP2rightArm == 'Middle punch' && this.count_incrementer == 8) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Middle punch' && this.count_incrementer == 8) {
+    } else if (BP2rightArm != 'Middle punch' && this.count_incrementer == 8) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
   }
@@ -151,8 +151,9 @@ export class BP2TogglerService {
 
   // toggle animation method area begins
   toggle() {
+    console.log("BP2 toggle called")
     this.isPaused = false;
-    if (this.count_incrementer < 8) {
+    if (this.BP2_count_incrementer < 8) {
       setTimeout(() => {
         this.attchoonisOpen = !this.attchoonisOpen;
         this.instructionisOpen = !this.instructionisOpen;
@@ -182,18 +183,18 @@ export class BP2TogglerService {
     }, 100);
 
     setTimeout(() => {
-      if (this.count_incrementer < 9) {
+      if (this.BP2_count_incrementer < 9) {
         this.correctisOpen = !this.correctisOpen;
       }
       this.isOpen = !this.isOpen;
       this.stance = '';
       this.leftArm = '';
-      this.rightArm = '';
-      this.count_incrementer += 1;
-      if (this.count_incrementer == 1) {
+      this.BP2rightArm = '';
+      this.BP2_count_incrementer += 1;
+      if (this.BP2_count_incrementer == 1) {
         this.stanceisOpen = !this.stanceisOpen;
       }
-      if (this.count_incrementer > 1) {
+      if (this.BP2_count_incrementer > 1) {
         this.stancecorrectIncorrect = '';
         this.leftArmcorrectIncorrect = '';
         this.rightArmcorrectIncorrect = '';

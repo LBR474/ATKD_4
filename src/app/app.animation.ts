@@ -9,8 +9,6 @@ import {
   query,
 } from '@angular/animations';
 
-
-
 export const attchoonOpenClose = trigger('attchoonOpenClose', [
   // ...
   state(
@@ -18,6 +16,7 @@ export const attchoonOpenClose = trigger('attchoonOpenClose', [
     style({
       height: 'fit-content',
       width: 'fit-content',
+      left: '50px',
     })
   ),
   state(
@@ -25,7 +24,7 @@ export const attchoonOpenClose = trigger('attchoonOpenClose', [
     style({
       width: 'fit-content',
       height: 'fit-content',
-      left: '-200px',
+      left: '-400px',
     })
   ),
   transition('* <=> *', [animate('3.0s ease-out')]),
@@ -37,6 +36,7 @@ export const changeOverTitle = trigger('changeOverTitle', [
     'open',
     style({
       opacity: 1,
+      transform: 'rotateY(0deg)',
     })
   ),
   state(
@@ -47,6 +47,48 @@ export const changeOverTitle = trigger('changeOverTitle', [
     })
   ),
   transition('* <=> *', [animate('1.0s')]),
+  // transition('closed => open', [animate('1.5s')]),
+]);
+
+export const changeOverFinal = trigger('changeOverFinal', [
+  // ...
+  state(
+    'open',
+    style({
+      opacity: 1,
+      left: '100px',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      opacity: 0,
+
+      left: '-500px',
+    })
+  ),
+  transition('* <=> *', [animate('5.0s ease-out')]),
+  // transition('closed => open', [animate('1.5s')]),
+]);
+
+export const changeOverKiop = trigger('changeOverKiop', [
+  // ...
+  state(
+    'open',
+    style({
+      opacity: 1,
+      // left: '100px',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      opacity: 0,
+
+      //left: '-500px',
+    })
+  ),
+  transition('* <=> *', [animate('0.01s')]),
   // transition('closed => open', [animate('1.5s')]),
 ]);
 
@@ -98,7 +140,6 @@ export const finalOpenClose = trigger('finalOpenClose', [
   //transition('closed => open', [animate('1s')]),
 ]);
 
-
 export const instructionOpenClose = trigger('instructionOpenClose', [
   // ...
   state(
@@ -107,7 +148,6 @@ export const instructionOpenClose = trigger('instructionOpenClose', [
       // height: 'fit-content',
       // width: 'fit-content',
       top: '-30%',
-      
     })
   ),
   state(
@@ -115,15 +155,13 @@ export const instructionOpenClose = trigger('instructionOpenClose', [
     style({
       // width: 'fit-content',
       // height: 'fit-content',
-      
+      left: '250px',
       top: '15%',
     })
   ),
   transition('* => *', [animate('1s')]),
   //transition('closed => open', [animate('1s')]),
 ]);
-
-
 
 export const leftArmOpenClose = trigger('leftArmOpenClose', [
   // ...
@@ -235,7 +273,6 @@ export const visibleInvisible = trigger('visibleInvisible', [
     'open',
     style({
       opacity: 1,
-      
     })
   ),
   state(
@@ -243,10 +280,8 @@ export const visibleInvisible = trigger('visibleInvisible', [
     style({
       opacity: 0,
       transform: 'rotateY(-180deg)',
-      
     })
   ),
   transition('* <=> *', [animate('1.0s')]),
   // transition('closed => open', [animate('1.5s')]),
 ]);
-

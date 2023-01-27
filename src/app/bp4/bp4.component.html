@@ -1,55 +1,40 @@
-
 <div class="mat-app-background" id="top-div">
- 
   <div
     class="titleDiv"
-    [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
+    [@changeOverTitle]="BP4toggler.changeOverTitleisOpen ? 'open' : 'closed'"
   >
-    <h1 class="mat-title" color="primary">
-     Basic poomsae two
-    </h1>
+    <h1 class="mat-title" color="primary">Basic poomsae four</h1>
   </div>
 
   <!-- instruction div area begins -->
   <div
     id="instructionDiv"
     class="flex-container mat-app-background"
-    [@.disabled]="toggler.isPaused"
-    [@instructionOpenClose]="toggler.instructionisOpen ? 'open' : 'closed'"
+    [@.disabled]="BP4toggler.isPaused"
+    [@instructionOpenClose]="BP4toggler.instructionisOpen ? 'open' : 'closed'"
   >
     <p
       class="mat-body"
       [@visibleInvisible]="
-        toggler.correctisOpen && toggler.count_incrementer <= 8
+        BP4toggler.correctisOpen && BP4toggler.count_incrementer <= 8
           ? 'open'
           : 'closed'
       "
     >
       Please make your <br />selections for count: <br />{{
-        toggler.count_number[toggler.count_incrementer] | uppercase
+        BP4toggler.count_number[BP4toggler.count_incrementer] | uppercase
       }}
     </p>
 
     <p
       id="correct-par"
       class="correct-par mat-body"
-      [@visibleInvisible]="toggler.correctisOpen ? 'closed' : 'open'"
-      *ngIf="toggler.count_incrementer < 9"
+      [@visibleInvisible]="BP4toggler.correctisOpen ? 'closed' : 'open'"
+      *ngIf="BP4toggler.count_incrementer < 9"
     >
       Your selections <br />were correct!
     </p>
   </div>
-
-
-  <div
-    id="kiopDiv"
-    [@.disabled]="toggler.isPaused"
-    [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
-  >
-  <img [src]="'./assets/kiop_voice_balloon_small.png'">
-   
-  </div>
-
 
   <!--  -->
   <!--  -->
@@ -68,24 +53,21 @@
   <!--  -->
   <!-- final div area begins -->
 
-  
   <div
     id="finalDiv"
     class="mat-body titleDiv finalDiv"
-    [@.disabled]="toggler.isPaused"
-    [@changeOverFinal]="toggler.changeOverTitleisOpen ? 'closed' : 'open'"
+    [@.disabled]="BP4toggler.isPaused"
+    [@changeOverFinal]="BP4toggler.changeOverTitleisOpen ? 'closed' : 'open'"
   >
-   
-    Congratulations, basic poomsae two is complete. <br />
+    Congratulations, basic poomsae four is complete. <br />
 
-    Go on to basic poomsae three?
+    Go on to one step sparring?
     <a
-      routerLink="/BP3"
+      routerLink="/BP4"
       (click)="
-        toggler.toggle_final();
-        toggler.toggle_new_poomsae_open();
-        toggler.count_incrementer = 1;
-        toggler.poomsae_number = 3;
+        BP4toggler.toggle_final();
+        BP4toggler.count_incrementer = 1;
+        BP4toggler.poomsae_number = 4;
         rts.return_to_start_function()
       "
       >Yes</a
@@ -106,39 +88,38 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
-  <!-- stance div area begins -->
+  <!-- rightLeg div area begins -->
   <div
-    [@.disabled]="toggler.isPaused"
-    [@stanceOpenClose]="toggler.isOpen ? 'closed' : 'open'"
+    [@.disabled]="BP4toggler.isPaused"
+    [@stanceOpenClose]="BP4toggler.isOpen ? 'closed' : 'open'"
     id="stanceDiv"
     class="flex-container justify-content-between"
   >
     <mat-card class="mat-card">
       <mat-card-header>
-        <mat-card-title class="mat-body">Stance</mat-card-title>
+        <mat-card-title class="mat-body">Right leg</mat-card-title>
       </mat-card-header>
       <mat-card-content class="mat-body">
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="toggler.stance"
+          [(ngModel)]="BP4toggler.rightLeg"
         >
           <mat-radio-button
             class="example-radio-button .mat-mdc-radio-button ~ .mat-mdc-radio-button"
-            *ngFor="let stance of toggler.BP2_stanceChoices"
-            [value]="stance"
+            *ngFor="let rightLeg of BP4toggler.BP4_rightLegChoices"
+            [value]="rightLeg"
             (click)="
-              toggler.BP2_record_stance(stance);
-              bp2MovementCollate.BP2_collate_movement(
-                stance,
-                toggler.leftArm,
-                toggler.rightArm
+              BP4toggler.BP4_record_rightLeg(rightLeg);
+              bp4MovementCollate.BP4_collate_movement(
+                rightLeg,
+                BP4toggler.leftLeg,
+                BP4toggler.Arms
               )
             "
           >
-            {{ stance }}
+            {{ rightLeg }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
@@ -147,14 +128,14 @@
             class="mat-app-background"
             [ngStyle]="{
               'background-color':
-                toggler.stancecorrectIncorrect == 'This stance is correct!'
+                BP4toggler.rightLegcorrectIncorrect == 'Kick is correct!'
                   ? 'green'
                   : 'red',
               color: '#fff',
               width: '100px'
             }"
           >
-            {{ toggler.stancecorrectIncorrect }}
+            {{ BP4toggler.rightLegcorrectIncorrect }}
           </p>
         </div>
       </mat-card-content>
@@ -175,39 +156,38 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- left arm div area begins -->
   <div
-    [@.disabled]="toggler.isPaused"
-    [@leftArmOpenClose]="toggler.isOpen ? 'open' : 'closed'"
+    [@.disabled]="BP4toggler.isPaused"
+    [@leftArmOpenClose]="BP4toggler.isOpen ? 'open' : 'closed'"
     id="leftArmDiv"
     class="flex-container justify-content-between"
   >
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Left arm</mat-card-title>
+        <mat-card-title>Left leg</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="toggler.leftArm"
+          [(ngModel)]="BP4toggler.leftLeg"
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let leftArm of toggler.BP2leftArmChoices"
-            [value]="leftArm"
+            *ngFor="let leftLeg of BP4toggler.BP4leftLegChoices"
+            [value]="leftLeg"
             (click)="
-              toggler.BP2_record_leftArm(leftArm);
-              bp2MovementCollate.BP2_collate_movement(
-                toggler.stance,
-                leftArm,
-                toggler.rightArm
+              BP4toggler.BP4_record_leftLeg(leftLeg);
+              bp4MovementCollate.BP4_collate_movement(
+                BP4toggler.rightLeg,
+                leftLeg,
+                BP4toggler.Arms
               )
             "
           >
-            {{ leftArm }}
+            {{ leftLeg }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
@@ -215,8 +195,7 @@
             class="mat-app-background"
             [ngStyle]="{
               'background-color':
-                toggler.leftArmcorrectIncorrect ==
-                'Left arm movement is correct!'
+                BP4toggler.leftLegcorrectIncorrect == 'Kick is correct!'
                   ? 'green'
                   : 'red',
 
@@ -224,7 +203,7 @@
               width: '100px'
             }"
           >
-            {{ toggler.leftArmcorrectIncorrect }}
+            {{ BP4toggler.leftLegcorrectIncorrect }}
           </p>
         </div>
       </mat-card-content>
@@ -245,54 +224,53 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
-  <!-- right arm div area begins -->
+  <!-- Arms div area begins -->
   <div
-    [@.disabled]="toggler.isPaused"
-    [@openClose]="toggler.isOpen ? 'closed' : 'open'"
+    [@.disabled]="BP4toggler.ArmsisPaused"
+    [@openClose]="BP4toggler.isOpen ? 'closed' : 'open'"
     id="rightArmDiv"
     class="flex-container justify-content-between"
+    *ngIf="BP4toggler.count_incrementer < 2"
   >
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Right arm</mat-card-title>
+        <mat-card-title>Arms</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
-          [(ngModel)]="toggler.rightArm"
+          [(ngModel)]="BP4toggler.Arms"
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let rightArm of toggler.BP2rightArmChoices"
-            [value]="rightArm"
+            *ngFor="let Arms of BP4toggler.BP4ArmsChoices"
+            [value]="Arms"
             (click)="
-              toggler.BP2_record_rightArm(rightArm);
-              bp2MovementCollate.BP2_collate_movement(
-                toggler.stance,
-                toggler.leftArm,
-                rightArm
+              BP4toggler.BP4_record_Arms(Arms);
+              bp4MovementCollate.BP4_collate_movement(
+                BP4toggler.rightLeg,
+                BP4toggler.leftLeg,
+                Arms
               )
             "
           >
-            {{ rightArm }}
+            {{ Arms }}
           </mat-radio-button>
         </mat-radio-group>
         <div>
           <p
             [ngStyle]="{
               'background-color':
-                toggler.rightArmcorrectIncorrect ==
-                'Right arm movement is correct!'
+                BP4toggler.ArmscorrectIncorrect == 'Arms movement is correct!'
                   ? 'green'
                   : 'red',
               color: '#fff',
               width: '100px'
             }"
           >
-            {{ toggler.rightArmcorrectIncorrect }}
+            {{ BP4toggler.ArmscorrectIncorrect }}
           </p>
         </div>
       </mat-card-content>
@@ -313,13 +291,12 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- open close div and attention and choonbi button   area begins -->
   <!--  -->
   <div
-    [@.disabled]="toggler.isPaused"
-    [@attchoonOpenClose]="toggler.attchoonisOpen ? 'open' : 'closed'"
+    [@.disabled]="BP4toggler.isPaused"
+    [@attchoonOpenClose]="BP4toggler.attchoonisOpen ? 'open' : 'closed'"
     class="open-close-container"
   >
     <button
@@ -327,10 +304,14 @@
       color="accent"
       id="attserve_attention"
       [disabled]="attention_clicked"
-      (click)="attserve.attention(); attention_clicked = true"
+      (click)="
+        attserve.attention();
+        attention_clicked = true;
+        BP4toggler.poomsae_number = 4
+      "
     >
-      Attention</button
-    ><br />
+      Attention
+    </button>
 
     <button
       class="choonBiButton"
@@ -341,12 +322,33 @@
       (click)="
         choonbiServ.choon_bi_up_arms();
         choonBi_clicked = true;
-        toggler.toggle();
-        toggler.poomsae_number = 2;
-        toggler.count_incrementer = 1
+        this.open_X_choonBi()
       "
     >
       {{ choonbi | titlecase }}
     </button>
+    <button
+      class="choonBiButton"
+      mat-raised-button
+      color="accent"
+      #choonBiButton
+      [disabled]="choonBi_X_clicked"
+      (click)="
+        choonbiServ.BP4_X_choon_bi_arms_and_legs_up();
+        choonBi_X_clicked = true;
+        BP4toggler.toggle();
+        BP4toggler.poomsae_number = 4;
+        BP4toggler.count_incrementer = 1
+      "
+    >
+      {{ BP4_X_choonbi }}
+    </button>
   </div>
+
+  <!-- <ngt-soba-orbit-controls
+      
+        #controls
+        [minDistance]="20"
+        [target]="[0.0, 0.5, 0]"
+      ></ngt-soba-orbit-controls> -->
 </div>

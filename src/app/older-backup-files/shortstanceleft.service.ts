@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { StartPageComponent } from '../startPage/startPage.component';
 
-import { LoadModelService } from './loadmodel.service';
+import { loadmodelService } from '../movement-services/loadmodel.service';
 
 // gsap import
 import { gsap } from 'gsap';
@@ -18,7 +18,7 @@ import { Object3D } from 'three';
   providedIn: 'root',
 })
 export class ShortstanceleftService {
-  constructor(public loadmodel: LoadModelService) {}
+  constructor(public loadmodel: loadmodelService) {}
 
   // // // short stance leg up function area begins
   short_stance_leg_up = () => {

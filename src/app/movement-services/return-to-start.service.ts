@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { StartPageComponent } from '../startPage/startPage.component';
 
-// import { LoadModelService } from './loadmodel.service';
+// import { loadmodelService } from './loadmodel.service';
 
-import { LoadModelService } from './loadmodel.service';
+import { loadmodelService } from './loadmodel.service';
 import { LeftfistService } from './leftfist.service';
 import { RightfistService } from './rightfist.service';
 import { RightknifehandService } from './rightknifehand.service';
@@ -23,7 +23,7 @@ import { gsap } from 'gsap';
 export class ReturnToStartService {
   constructor(
     public leftknifehand: LeftknifehandService,
-    public loadmodel: LoadModelService,
+    public loadmodel: loadmodelService,
     public loadLeftFist: LeftfistService,
     public loadRightFist: RightfistService,
     public rightknifehand: RightknifehandService,
@@ -100,34 +100,34 @@ export class ReturnToStartService {
         _z: -0.05,
       });
 
-      gsap.to(this.loadmodel.thighL.quaternion, {
-        _w: 0.19,
-        _x: 0.98,
-        _y: 0.0,
-        _z: 0.0,
-        duration: 1,
-      });
-      gsap.to(this.loadmodel.thighR.quaternion, {
-        _w: 0.19,
-        _x: 0.98,
-        _y: -0.0,
-        _z: -0.0,
-        duration: 1,
-      });
-      gsap.to(this.loadmodel.shinL.quaternion, {
-        duration: 1,
-        _w: 0.99,
-        _x: 0.1,
-        _y: 0.0,
-        _z: -0.02,
-      });
-      gsap.to(this.loadmodel.shinR.quaternion, {
-        duration: 1,
-        _w: 0.99,
-        _x: 0.1,
-        _y: -0.0,
-        _z: 0.02,
-      });
+      // gsap.to(this.loadmodel.pelvisL.quaternion, {
+      //   _w: 0.19,
+      //   _x: 0.98,
+      //   _y: 0.0,
+      //   _z: 0.0,
+      //   duration: 1,
+      // });
+      // gsap.to(this.loadmodel.pelvisR.quaternion, {
+      //   _w: 0.19,
+      //   _x: 0.98,
+      //   _y: -0.0,
+      //   _z: -0.0,
+      //   duration: 1,
+      // });
+      // gsap.to(this.loadmodel.shinL.quaternion, {
+      //   duration: 1,
+      //   _w: 0.99,
+      //   _x: 0.1,
+      //   _y: 0.0,
+      //   _z: -0.02,
+      // });
+      // gsap.to(this.loadmodel.shinR.quaternion, {
+      //   duration: 1,
+      //   _w: 0.99,
+      //   _x: 0.1,
+      //   _y: -0.0,
+      //   _z: 0.02,
+      // });
 
       gsap.to(this.loadmodel.spine.position, {
         duration: 1,

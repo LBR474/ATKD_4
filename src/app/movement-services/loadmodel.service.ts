@@ -17,7 +17,7 @@ import { Object3D } from 'three';
 @Injectable({
   providedIn: 'root',
 })
-export class LoadModelService {
+export class loadmodelService {
   model$ = this.ngtGLTFLoader.load('/assets/TKD_girl_15.glb');
 
   // // whole skeleton
@@ -30,7 +30,7 @@ export class LoadModelService {
   public spine003: Object3D | undefined;
   public spine004: Object3D | undefined;
   public spine005: Object3D | undefined;
-  //public spine006: Object3D | undefined;
+  public spine006: Object3D | undefined;
 
   // // arms
   public shoulderL: Object3D | undefined;
@@ -116,6 +116,9 @@ export class LoadModelService {
 
   
   modelReadyService(object: Object3D) {
+
+    // metarig
+    this.metarig = object.getObjectByName('metarig')
     // spine bones
     this.spine = object.getObjectByName('spine');
     this.spine001 = object.getObjectByName('spine001');
@@ -123,14 +126,14 @@ export class LoadModelService {
     this.spine003 = object.getObjectByName('spine003');
     this.spine004 = object.getObjectByName('spine004');
     this.spine005 = object.getObjectByName('spine005');
-    //this.spine006 = object.getObjectByName('spine006');
+    this.spine006 = object.getObjectByName('spine006');
 
     
     // // left arm
     this.shoulderL = object.getObjectByName('shoulderL');
     this.upper_armL = object.getObjectByName('upper_armL');
-console.log("From loadmodel service: \n")
-console.log( this.shoulderL?.quaternion);
+// console.log("From loadmodel service: \n")
+// console.log( this.shoulderL?.quaternion);
     
     this.forearmL = object.getObjectByName('forearmL');
     this.handL = object.getObjectByName('handL');
@@ -153,6 +156,7 @@ console.log( this.shoulderL?.quaternion);
     this.f_ring02L = object.getObjectByName('f_ring02L');
     this.f_ring03L = object.getObjectByName('f_ring03L');
 
+    this.palm04L = object.getObjectByName('palm04L');
     this.f_pinky01L = object.getObjectByName('f_pinky01L');
     this.f_pinky02L = object.getObjectByName('f_pinky02L');
     this.f_pinky03L = object.getObjectByName('f_pinky03L');
@@ -181,6 +185,7 @@ console.log( this.shoulderL?.quaternion);
     this.f_ring02R = object.getObjectByName('f_ring02R');
     this.f_ring03R = object.getObjectByName('f_ring03R');
 
+     this.palm04R = object.getObjectByName('palm04R');
     this.f_pinky01R = object.getObjectByName('f_pinky01R');
     this.f_pinky02R = object.getObjectByName('f_pinky02R');
     this.f_pinky03R = object.getObjectByName('f_pinky03R');

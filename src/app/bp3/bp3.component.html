@@ -1,4 +1,3 @@
-
 <div class="mat-app-background" id="top-div">
  
   <div
@@ -6,7 +5,7 @@
     [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
   >
     <h1 class="mat-title" color="primary">
-     Basic poomsae two
+     Basic poomsae three
     </h1>
   </div>
 
@@ -40,14 +39,31 @@
     </p>
   </div>
 
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!-- final div area begins -->
 
+  
   <div
     id="kiopDiv"
     [@.disabled]="toggler.isPaused"
     [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
   >
-  <img [src]="'./assets/kiop_voice_balloon_small.png'">
    
+   <img [src]="'./assets/kiop_voice_balloon_small.png'">
   </div>
 
 
@@ -76,21 +92,22 @@
     [@changeOverFinal]="toggler.changeOverTitleisOpen ? 'closed' : 'open'"
   >
    
-    Congratulations, basic poomsae two is complete. <br />
+    Congratulations, basic poomsae three is complete. <br />
 
-    Go on to basic poomsae three?
+    Go on to basic poomsae four?
     <a
-      routerLink="/BP3"
+      routerLink="/BP4"
       (click)="
         toggler.toggle_final();
         toggler.toggle_new_poomsae_open();
         toggler.count_incrementer = 1;
-        toggler.poomsae_number = 3;
+        toggler.poomsae_number = 4;
         rts.return_to_start_function()
       "
-      >Yes</a
-    >
+      >Yes</a>
   </div>
+
+  
   <!--  -->
   <!--  -->
   <!--  -->
@@ -114,6 +131,7 @@
     [@stanceOpenClose]="toggler.isOpen ? 'closed' : 'open'"
     id="stanceDiv"
     class="flex-container justify-content-between"
+    *ngIf="toggler.count_incrementer < 2"
   >
     <mat-card class="mat-card">
       <mat-card-header>
@@ -127,11 +145,11 @@
         >
           <mat-radio-button
             class="example-radio-button .mat-mdc-radio-button ~ .mat-mdc-radio-button"
-            *ngFor="let stance of toggler.BP2_stanceChoices"
+            *ngFor="let stance of toggler.BP3_stanceChoices"
             [value]="stance"
             (click)="
-              toggler.BP2_record_stance(stance);
-              bp2MovementCollate.BP2_collate_movement(
+              toggler.BP3_record_stance(stance);
+              bp3MovementCollate.BP3_collate_movement(
                 stance,
                 toggler.leftArm,
                 toggler.rightArm
@@ -196,11 +214,11 @@
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let leftArm of toggler.BP2leftArmChoices"
+            *ngFor="let leftArm of toggler.BP3leftArmChoices"
             [value]="leftArm"
             (click)="
-              toggler.BP2_record_leftArm(leftArm);
-              bp2MovementCollate.BP2_collate_movement(
+              toggler.BP3_record_leftArm(leftArm);
+              bp3MovementCollate.BP3_collate_movement(
                 toggler.stance,
                 leftArm,
                 toggler.rightArm
@@ -248,11 +266,13 @@
   
 
   <!-- right arm div area begins -->
+  <!-- *ngIf="toggler.count_incrementer != 3" -->
   <div
     [@.disabled]="toggler.isPaused"
     [@openClose]="toggler.isOpen ? 'closed' : 'open'"
     id="rightArmDiv"
     class="flex-container justify-content-between"
+    
   >
     <mat-card>
       <mat-card-header>
@@ -266,11 +286,11 @@
         >
           <mat-radio-button
             class="example-radio-button"
-            *ngFor="let rightArm of toggler.BP2rightArmChoices"
+            *ngFor="let rightArm of toggler.BP3rightArmChoices"
             [value]="rightArm"
             (click)="
-              toggler.BP2_record_rightArm(rightArm);
-              bp2MovementCollate.BP2_collate_movement(
+              toggler.BP3_record_rightArm(rightArm);
+              bp3MovementCollate.BP3_collate_movement(
                 toggler.stance,
                 toggler.leftArm,
                 rightArm
@@ -342,7 +362,7 @@
         choonbiServ.choon_bi_up_arms();
         choonBi_clicked = true;
         toggler.toggle();
-        toggler.poomsae_number = 2;
+        toggler.poomsae_number = 3;
         toggler.count_incrementer = 1
       "
     >

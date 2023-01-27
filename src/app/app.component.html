@@ -1,4 +1,30 @@
-<div class="mat-app-background">
-   <app-startPage></app-startPage>
- 
+<!-- <a routerLink="BP2">BP2</a> -->
+<div id="wholePageDiv" class="mat-app-background">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <!-- <app-startPage></app-startPage> -->
+  <div id="ngt-canvas-container">
+    <ngt-canvas [camera]="{ position: [0.0, 0.7, this.camera_z_pos], fov: 75 }">
+      <ngt-ambient-light></ngt-ambient-light>
+      <ngt-ambient-light></ngt-ambient-light>
+      <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
+      </ngt-grid-helper>
+      <ng-container>
+        <ngt-primitive
+          #primitiveModel
+          *ngIf="loadModel.model$ | async as model"
+          (ready)="loadModel.modelReadyService($event)"
+          [object]="model.scene"
+          [position]="[-0.0, 0, 0]"
+        >
+        </ngt-primitive>
+      </ng-container>
+      <ngt-soba-orbit-controls
+        #controls
+        [minDistance]="this.min_distance"
+        [target]="[0.0, 0.5, 0]"
+      ></ngt-soba-orbit-controls>
+    </ngt-canvas>
+  </div>
 </div>

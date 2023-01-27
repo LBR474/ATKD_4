@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { StartPageComponent } from '../startPage/startPage.component';
 
-import { LoadModelService } from './loadmodel.service';
+import { loadmodelService } from './loadmodel.service';
 
 // gsap import
 import { gsap } from 'gsap';
@@ -18,55 +18,92 @@ import { Object3D } from 'three';
   providedIn: 'root',
 })
 export class LeftknifehandService {
-  constructor(public loadmodel: LoadModelService) {}
+  constructor(public loadmodel: loadmodelService) {}
   // // // make left knife function area
 
   make_left_knife = () => {
     // // thumb left
-    if (this.loadmodel.thumb03L) {
-      gsap.to(this.loadmodel.thumb03L.quaternion, {
-        _w: 1.0,
-        _x: 0.02,
-        _y: 0.0,
-        _z: -0.04,
+    if (this.loadmodel.thumb01L) {
+      gsap.to(this.loadmodel.thumb01L.quaternion, {
+        _w: 0.6165,
+        _x: 0.0904,
+        _y: 0.7555,
+        _z: -0.2025,
         duration: 1,
       });
     }
+    if (this.loadmodel.thumb02L) {
+      gsap.to(this.loadmodel.thumb02L.quaternion, {
+        _w: 0.9974,
+        _x: -0.0706,
+        _y: 0.0073,
+        _z: -0.0161,
+        duration: 1,
+      });
+    }
+     if (this.loadmodel.thumb03L) {
+       gsap.to(this.loadmodel.thumb03L.quaternion, {
+         _w: 0.99899215,
+         _x: -0.01559444,
+         _y: 0.00294079,
+         _z: -0.04198668,
+         duration: 1,
+       });
+     }
+
+     if (this.loadmodel.thumb02L) {
+       gsap.to(this.loadmodel.thumb02L.quaternion, {
+         _w: 0.9793,
+         _x: -0.1677,
+         _y: -0.0115,
+         _z: 0.1132,
+         duration: 1,
+       });
+     }
+     if (this.loadmodel.thumb03L) {
+       gsap.to(this.loadmodel.thumb03L.quaternion, {
+         _w: 0.999,
+         _x: -0.0156,
+         _y: -0.0029,
+         _z: 0.042,
+         duration: 1,
+       });
+     }
 
     // // first knuckle
     if (this.loadmodel.f_index01L) {
       gsap.to(this.loadmodel.f_index01L.quaternion, {
-        _w: 0.98,
-        _x: -0.12,
-        _y: 0.05,
-        _z: -0.12,
+        _w: 0.9912,
+        _x: -0.0782,
+        _y: 0.0561,
+        _z: -0.0907,
         duration: 1,
       });
     }
     if (this.loadmodel.f_middle01L) {
       gsap.to(this.loadmodel.f_middle01L.quaternion, {
-        _w: 0.99,
-        _x: -0.07,
-        _y: 0.02,
-        _z: -0.12,
+        _w: 0.9961,
+        _x: -0.0666,
+        _y: 0.046,
+        _z: 0.0338,
         duration: 1,
       });
     }
     if (this.loadmodel.f_ring01L) {
       gsap.to(this.loadmodel.f_ring01L.quaternion, {
-        _w: 1.0,
-        _x: -0.01,
-        _y: -0.01,
-        _z: -0.07,
+        _w: 0.9794,
+        _x: -0.0811,
+        _y: 0.0277,
+        _z: 0.1829,
         duration: 1,
       });
     }
     if (this.loadmodel.f_pinky01L) {
       gsap.to(this.loadmodel.f_pinky01L.quaternion, {
-        _w: 0.98,
-        _x: -0.02,
-        _y: -0.1,
-        _z: 0.14,
+        _w: 0.9688,
+        _x: -0.0449,
+        _y: -0.0852,
+        _z: 0.2284,
         duration: 1,
       });
     }

@@ -1,33 +1,29 @@
-<!-- whole page div area begins -->
+
 <div class="mat-app-background" id="top-div">
-  <div id="titleDiv"
-  [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
+ 
+  <div
+    class="titleDiv"
+    [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
   >
-    <mat-toolbar color="primary" class="flex justify-content-between">
-    
-    
-      
-     {{ toggler.titlerChoices[toggler.titler_counter ] }}
-    
-  </mat-toolbar>
-    <!-- <h1 color="primary">{{ toggler.titlerChoices[toggler.titler_counter ] }}</h1> -->
+    <h1 class="mat-title" color="primary">
+      Basic poomsae one
+    </h1>
   </div>
 
   <!-- instruction div area begins -->
   <div
     id="instructionDiv"
-    class="flex-container"
+    class="flex-container mat-app-background"
     [@.disabled]="toggler.isPaused"
     [@instructionOpenClose]="toggler.instructionisOpen ? 'open' : 'closed'"
   >
     <p
-      class="correct-par mat-body"
+      class="mat-body"
       [@visibleInvisible]="
         toggler.correctisOpen && toggler.count_incrementer <= 8
           ? 'open'
           : 'closed'
       "
-      class="mat-body"
     >
       Please make your <br />selections for count: <br />{{
         toggler.count_number[toggler.count_incrementer] | uppercase
@@ -42,26 +38,76 @@
     >
       Your selections were correct!
     </p>
-    <!-- </mat-toolbar> -->
   </div>
 
+
+
+    <div
+    id="kiopDiv"
+    [@.disabled]="toggler.isPaused"
+    [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
+  >
+   
+   <img [src]="'./assets/kiop_voice_balloon_small.png'">
+  </div>
+
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
   <!-- final div area begins -->
 
+  
   <div
     id="finalDiv"
-    class="mat-body"
-    [@.disabled]="toggler.finalisPaused"
-    [@finalOpenClose]="toggler.finalisOpen ? 'open' : 'closed'"
-    *ngIf="toggler.count_incrementer >= 9"
+    class="mat-body titleDiv finalDiv"
+    [@.disabled]="toggler.isPaused"
+    [@changeOverFinal]="toggler.changeOverTitleisOpen ? 'closed' : 'open'"
   >
-   <div> Congratulations, basic poomsae one is complete. <br></div>
-   <div>Go on to basic poomsae two?  
-    <button
-      mat-raised-button
-      color="accent"
-   (click)="rts.return_to_start_function(); toggler.toggle_final(); toggler.toggle()"
-   >Yes</button></div>
+   
+    Congratulations, basic poomsae one is complete. <br />
+
+    Go on to basic poomsae two?
+    <a
+      routerLink="/BP2"
+      (click)="
+        toggler.toggle_final();
+        toggler.toggle_new_poomsae_open();
+        toggler.count_incrementer = 1;
+        toggler.titler_counter = 1;
+        toggler.poomsae_number = 2;
+        rts.return_to_start_function()
+      "
+      >Yes</a
+    >
   </div>
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  
 
   <!-- stance div area begins -->
   <div
@@ -70,17 +116,11 @@
     id="stanceDiv"
     class="flex-container justify-content-between"
   >
-    <mat-card
-      class="mat-card"
-      [ngStyle]="{
-        'background-color': '#3f51b5',
-        color: 'white'
-      }"
-    >
+    <mat-card class="mat-card">
       <mat-card-header>
         <mat-card-title class="mat-body">Stance</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content class="mat-body">
         <mat-radio-group
           aria-labelledby="example-radio-group-label"
           class="example-radio-group"
@@ -121,6 +161,22 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  
 
   <!-- left arm div area begins -->
   <div
@@ -129,12 +185,7 @@
     id="leftArmDiv"
     class="flex-container justify-content-between"
   >
-    <mat-card
-      [ngStyle]="{
-        'background-color': '#3f51b5',
-        color: 'white'
-      }"
-    >
+    <mat-card>
       <mat-card-header>
         <mat-card-title>Left arm</mat-card-title>
       </mat-card-header>
@@ -180,20 +231,31 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  
 
-   <!-- right arm div area begins -->
+  <!-- right arm div area begins -->
   <div
     [@.disabled]="toggler.isPaused"
     [@openClose]="toggler.isOpen ? 'closed' : 'open'"
     id="rightArmDiv"
     class="flex-container justify-content-between"
   >
-    <mat-card
-      [ngStyle]="{
-        'background-color': '#3f51b5',
-        color: 'white'
-      }"
-    >
+    <mat-card>
       <mat-card-header>
         <mat-card-title>Right arm</mat-card-title>
       </mat-card-header>
@@ -237,12 +299,27 @@
       </mat-card-content>
     </mat-card>
   </div>
-
-
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  
 
   <!-- open close div and attention and choonbi button   area begins -->
+  <!--  -->
   <div
-    [@.disabled]="toggler.finalisPaused"
+    [@.disabled]="toggler.isPaused"
     [@attchoonOpenClose]="toggler.attchoonisOpen ? 'open' : 'closed'"
     class="open-close-container"
   >
@@ -263,44 +340,14 @@
       #choonBiButton
       [disabled]="choonBi_clicked"
       (click)="
-        choonbiServ.choon_bi_up_arms(); choonBi_clicked = true; toggler.toggle()
+        choonbiServ.choon_bi_up_arms();
+        choonBi_clicked = true;
+        toggler.toggle();
+        toggler.poomsae_number = 1;
+        toggler.count_incrementer = 1
       "
     >
       {{ choonbi | titlecase }}
     </button>
   </div>
-
-  <!-- ngt canvas container div area begins -->
-
-  <div id="ngt-canvas-container">
-    <ngt-canvas [camera]="{ position: [0.0, 0.7, 1.2], fov: 75 }">
-      <ngt-ambient-light></ngt-ambient-light>
-      <ngt-ambient-light></ngt-ambient-light>
-      <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
-      </ngt-grid-helper>
-      <ng-container>
-        <!-- 👇 NgtPrimitive exposes this object instead of itself like a NgtMesh -->
-        <ngt-primitive
-          #primitiveModel
-          *ngIf="loadModel.model$ | async as model"
-          (ready)="loadModel.modelReadyService($event)"
-          [object]="model.scene"
-          [position]="[-0.1, 0, 0]"
-        >
-        </ngt-primitive>
-      </ng-container>
-
-      <!-- 
-        soba orbit controls area begins 
-      -->
-
-      <ngt-soba-orbit-controls
-        #controls
-        (ready)="setInitial(controls)"
-        [target]="[0.0, 0.5, 0]"
-      ></ngt-soba-orbit-controls>
-    </ngt-canvas>
-  </div>
-  <!-- <app-bp2></app-bp2> -->
-  <!-- <app-blank></app-blank> -->
 </div>

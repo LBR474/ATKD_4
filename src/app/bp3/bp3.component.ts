@@ -28,8 +28,9 @@ import * as THREE from 'three';
 
 // movement services imports
 import { AttentionService } from '../movement-services/attention.service';
-import { BP1CollateMovement } from '../movement-services/bp1collatemovement.service';
-
+// import { BP1CollateMovement } from '../movement-services/bp1collatemovement.service';
+// import { Bp2collatemovementService } from '../movement-services/bp2collatemovement.service';
+import { Bp3collatemovementService } from '../movement-services/bp3collatemovement.service';
 import { ChoonbiservService } from '../movement-services/choonbiserv.service';
 import { HorsestanceService } from '../movement-services/horsestance.service';
 import { LeftarmblockService } from '../movement-services/leftarmblock.service';
@@ -38,12 +39,14 @@ import { loadmodelService } from '../movement-services/loadmodel.service';
 import { ReturnToStartService } from '../movement-services/return-to-start.service';
 import { RightfistService } from '../movement-services/rightfist.service';
 import { TogglerService } from '../movement-services/toggler.service';
+import { BP2TogglerService } from '../older-backup-files/BP2toggler.service';
+//import { Bp3collatemovementService } from '../movement-services/bp3collatemovement.service';
 
 @Component({
   providers: [],
-  selector: 'app-startPage',
-  templateUrl: './startPage.component.html',
-  styleUrls: ['./startPage.component.css'],
+  selector: 'app-bp3',
+  templateUrl: './bp3.component.html',
+  styleUrls: ['./bp3.component.css'],
   animations: [
     attchoonOpenClose,
     changeOverFinal,
@@ -61,7 +64,7 @@ import { TogglerService } from '../movement-services/toggler.service';
     visibleInvisible,
   ],
 })
-export class StartPageComponent implements OnInit, AfterViewInit {
+export class Bp3Component implements OnInit, AfterViewInit {
   // global variables area
 
   BP1_colors = ['#7b1fa2', '#69f0ae', '#f44336'];
@@ -77,7 +80,10 @@ export class StartPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     public attserve: AttentionService,
-    public bp1MovementCollate: BP1CollateMovement,
+    // public bp1MovementCollate: BP1CollateMovement,
+    // public bp2MovementCollate: Bp2collatemovementService,
+    public bp3MovementCollate: Bp3collatemovementService,
+    public BP2toggler: BP2TogglerService,
     public choonbiServ: ChoonbiservService,
     public loadHorse: HorsestanceService,
     public loadLeftArmBlock: LeftarmblockService,

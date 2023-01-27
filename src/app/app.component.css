@@ -1,2 +1,24 @@
 
 
+#ngt-canvas-container {
+    height: 100%;
+    border: 2px dotted rgb(192, 252, 255);
+    background-color: #696969;
+    z-index: -3;
+}
+
+#ngt-canvas-container.after {
+
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+
+#wholePageDiv {
+    width: 100vw;
+    height: 100vh;
+    z-index: -3;
+    background-color: #171751;
+}

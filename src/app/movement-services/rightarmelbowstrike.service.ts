@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 
-import { LoadModelService } from './loadmodel.service';
+import { loadmodelService } from './loadmodel.service';
 
 // gsap import
 import { gsap } from 'gsap';
+import { TimerVariablesService } from './timer-variables.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class rightarmelbowstrike {
-  constructor(public loadmodel: LoadModelService) {}
+  constructor(
+    public loadmodel: loadmodelService,
+    public loadTimer: TimerVariablesService,
+    ) {}
 
 
 
@@ -40,7 +44,7 @@ export class rightarmelbowstrike {
     ) {
     
       gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
         _w: 0.5667,
         _x: -0.0575,
         _y: -0.4206,
@@ -48,7 +52,7 @@ export class rightarmelbowstrike {
       });
 
       gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
         _w: 0.9947,
         _x: 0.0867,
         _y: -0.05,
@@ -64,7 +68,7 @@ export class rightarmelbowstrike {
         _x: -0.02,
         _y: 0.9185,
         _z: -0.1034,
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
       });
     }
   };
@@ -81,7 +85,7 @@ export class rightarmelbowstrike {
       //
 
       gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         // _w: 0.426,
         // _x: -0.3376,
         // _y: -0.8393,
@@ -94,20 +98,20 @@ export class rightarmelbowstrike {
       });
 
       gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         // _w: 0.6,
         // _x: 0.78,
         // _y: -0.04,
         // _z: -0.16,
-        _w: 0.5703,
-        _x: 0.8138,
-        _y: -0.0967,
-        _z: -0.0569,
+        _w: 0.562,
+        _x: 0.8194,
+        _y: -0.0165,
+        _z: -0.1125,
         //ease: 'power4.in',
       });
 
       gsap.to(this.loadmodel.handR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         // _w: 0.46,
         // _x: -0.08,
         // _y: 0.88,
@@ -163,7 +167,7 @@ export class rightarmelbowstrike {
       this.loadmodel.handR
     ) {
       gsap.to(this.loadmodel.shoulderR.quaternion, {
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
         _w: 0.6541779,
         _x: -0.33964077,
         _y: 0.3110618,
@@ -171,19 +175,19 @@ export class rightarmelbowstrike {
       });
 
       gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
         // _w: 0.4,
         // _x: 0.01,
         // _y: -0.27,
         // _z: 0.88,
         _w: 0.4785,
-        _x: 0.0131,
+        _x: 0.011,
         _y: -0.3066,
         _z: 0.8227,
       });
 
       gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
         // _w: 0.98,
         // _x: 0.1,
         // _y: -0.04,
@@ -202,7 +206,7 @@ export class rightarmelbowstrike {
         _x: -0.17,
         _y: 0.83,
         _z: -0.06,
-        duration: 1.1,
+        duration: this.loadTimer.up_arms_timer,
       });
     }
   };
@@ -217,7 +221,7 @@ export class rightarmelbowstrike {
       this.loadmodel.handR
     ) {
       gsap.to(this.loadmodel.shoulderR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         _w: 0.6541779,
         _x: -0.33964077,
         _y: 0.3110618,
@@ -226,7 +230,7 @@ export class rightarmelbowstrike {
 
 
       gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         // _w: 0.426,
         // _x: -0.3376,
         // _y: -0.8393,
@@ -238,19 +242,19 @@ export class rightarmelbowstrike {
       });
 
       gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         // _w: 0.6,
         // _x: 0.78,
         // _y: -0.04,
         // _z: -0.16,
-        _w: 0.5703,
-        _x: 0.8138,
-        _y: -0.0967,
-        _z: -0.0569,
+        _w: 0.562,
+        _x: 0.8194,
+        _y: -0.0165,
+        _z: -0.1125,
       });
 
       gsap.to(this.loadmodel.handR.quaternion, {
-        duration: 0.25,
+        duration: this.loadTimer.down_arms_timer,
         _w: 0.6311,
         _x: -0.0492,
         _y: 0.7685,
