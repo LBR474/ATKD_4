@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 
 import { HorsestanceService } from '../movement-services/horsestance.service';
-// import { LeftarmblockService } from './leftarmblock.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Bp4TogglerService {
   ArmsisOpen: boolean = true;
+  leftLegisOpen: boolean = true;
   ArmsisPaused: boolean = true;
   attchoonisOpen: boolean = true;
   changeOverFinalisOpen: boolean = true;
   changeOverKiopisOpen: boolean = false;
+  KiopRightisOpen: boolean = false;
   changeOverTitleisOpen: boolean = true;
   correctisOpen: boolean = true;
   // finalisOpen: boolean = false;
@@ -19,15 +20,12 @@ export class Bp4TogglerService {
   instructionisOpen: boolean = false;
   isOpen: boolean = true;
   isPaused: boolean = true;
-  // stanceisOpen: boolean = true;
-  // nextMovementisOpen: boolean = false;
   visibleInvisible: boolean = true;
   rightLegcorrectIncorrect: string = '';
   ArmscorrectIncorrect: string = '';
   leftLegcorrectIncorrect: string = '';
   count_incrementer = 1;
   poomsae_number: number = 1;
-  // camera_z_pos = 1.2;
 
   count_number = [
     'zero',
@@ -42,10 +40,7 @@ export class Bp4TogglerService {
     'nine',
   ];
 
-  constructor(
-    public loadHorse: HorsestanceService,
-    // public loadLeftArmBlock: LeftarmblockService
-  ) {}
+  constructor(public loadHorse: HorsestanceService) {}
 
   // leftLeg selection area begins
   leftLeg: string = '';
@@ -57,81 +52,71 @@ export class Bp4TogglerService {
   ];
 
   BP4_record_leftLeg(leftLeg: any) {
-    // count one
-    // if (leftLeg == 'Inside block' && this.count_incrementer == 1) {
-    //   this.leftLegcorrectIncorrect = 'Kick is correct!';
-    // } else if (leftLeg != 'Inside block' && this.count_incrementer == 1) {
-    //   this.leftLegcorrectIncorrect = 'Kick is incorrect.';
-    // }
-    // // count two
-    // else if (leftLeg == 'Elbow strike' && this.count_incrementer % 2 == 0) {
-    //   this.leftLegcorrectIncorrect = 'Kick is correct!';
-    // } else if (leftLeg != 'Elbow strike' && this.count_incrementer % 2 == 0) {
-    //   this.leftLegcorrectIncorrect = 'Kick is incorrect.';
-    // }
-    // count three
-    // else
-   if (leftLeg == 'Knife strike' && this.count_incrementer == 3) {
+    if (leftLeg == 'Rising kick' && this.count_incrementer == 3) {
       this.leftLegcorrectIncorrect = 'Kick is correct!';
-    } else if (leftLeg != 'Knife strike' && this.count_incrementer == 3) {
+    } else if (leftLeg != 'Rising kick' && this.count_incrementer == 3) {
+      this.leftLegcorrectIncorrect = 'Kick is incorrect.';
+    }
+    // count four
+    else if (leftLeg == 'Snap kick with kiop' && this.count_incrementer == 4) {
+      this.leftLegcorrectIncorrect = 'Kick is correct!';
+    } else if (
+      leftLeg != 'Snap kick with kiop' &&
+      this.count_incrementer == 4
+    ) {
       this.leftLegcorrectIncorrect = 'Kick is incorrect.';
     }
     // count five
-    else if (leftLeg == 'Knife block' && this.count_incrementer == 5) {
+    else if (leftLeg == 'Rising kick' && this.count_incrementer == 5) {
       this.leftLegcorrectIncorrect = 'Kick is correct!';
-    } else if (leftLeg != 'Knife block' && this.count_incrementer == 5) {
+    } else if (leftLeg != 'Rising kick' && this.count_incrementer == 5) {
       this.leftLegcorrectIncorrect = 'Kick is incorrect.';
     }
-    // count seven
-    else if (leftLeg == 'High punch' && this.count_incrementer == 7) {
+    // count six
+    else if (leftLeg == 'Snap kick' && this.count_incrementer == 6) {
       this.leftLegcorrectIncorrect = 'Kick is correct!';
-    } else if (leftLeg != 'High punch' && this.count_incrementer == 7) {
+    } else if (leftLeg != 'Snap kick' && this.count_incrementer == 6) {
       this.leftLegcorrectIncorrect = 'Kick is incorrect.';
     }
   }
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Arms selection area begins
   Arms: string = '';
   BP4ArmsChoices: string[] = ['Double wide down block'];
 
   BP4_record_Arms(Arms: any) {
     // count one
-    if (Arms == 'Double wide down block' && this.count_incrementer % 2 == 1) {
+    if (Arms == 'Double wide down block' && this.count_incrementer == 1) {
       this.ArmscorrectIncorrect = 'Arms movement is correct!';
     } else if (
       Arms != 'Double wide down block' &&
-      this.count_incrementer % 2 == 1
+      this.count_incrementer == 1
     ) {
       this.ArmscorrectIncorrect = 'Arms movement is incorrect.';
     }
-    // // movement two
-    // else if (Arms == 'Inside block' && this.count_incrementer == 2) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is correct!';
-    // } else if (Arms != 'Inside block' && this.count_incrementer == 2) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is incorrect.';
-    // }
-    // // movement four
-    // else if (Arms == 'Knife strike' && this.count_incrementer == 4) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is correct!';
-    // } else if (Arms != 'Knife strike' && this.count_incrementer == 4) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is incorrect.';
-    // }
-
-    // // movement six
-    // else if (Arms == 'Knife block' && this.count_incrementer == 6) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is correct!';
-    // } else if (Arms != 'Knife block' && this.count_incrementer == 6) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is incorrect.';
-    // }
-
-    // // movement eight
-    // else if (Arms == 'High punch' && this.count_incrementer == 8) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is correct!';
-    // } else if (Arms != 'High punch' && this.count_incrementer == 8) {
-    //   this.ArmscorrectIncorrect = 'Arms movement is incorrect.';
-    // }
   }
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // rightLeg selection area begins
   rightLeg: string = '';
 
@@ -149,64 +134,41 @@ export class Bp4TogglerService {
     }
     // count two rightLeg
     else if (this.count_incrementer == 2 && rightLeg == 'Snap kick') {
-      this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
+      this.rightLegcorrectIncorrect = 'Kick is correct!';
     } else if (this.count_incrementer == 2 && rightLeg != 'Snap kick') {
-      this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
+      this.rightLegcorrectIncorrect = 'Kick is incorrect.';
+      console.log(this.count_incrementer);
     }
 
-    // // count three rightLeg
-    // else if (this.count_incrementer == 3 && rightLeg == 'Long - facing right') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
-    // } else if (
-    //   this.count_incrementer == 3 &&
-    //   rightLeg != 'Long - facing right'
-    // ) {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
-    // }
+    // count seven rightLeg
+    else if (this.count_incrementer == 7 && rightLeg == 'Rising kick') {
+      this.rightLegcorrectIncorrect = 'Kick is correct!';
+    } else if (this.count_incrementer == 7 && rightLeg != 'Rising kick') {
+      this.rightLegcorrectIncorrect = 'Kick is incorrect.';
+    }
 
-    // // count four rightLeg
-    // else if (this.count_incrementer == 4 && rightLeg == 'Long - facing left') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
-    // } else if (
-    //   this.count_incrementer == 4 &&
-    //   rightLeg != 'Long - facing left'
-    // ) {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
-    // }
-
-    // count five rightLeg
-    else if (this.count_incrementer == 5 && rightLeg == 'Long - facing right') {
-      this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
+    // count eight rightLeg
+    else if (this.count_incrementer == 8 && rightLeg == 'Snap kick with kiop') {
+      this.rightLegcorrectIncorrect = 'Kick is correct!';
     } else if (
-      this.count_incrementer == 5 &&
-      rightLeg != 'Long - facing right'
+      this.count_incrementer == 4 &&
+      rightLeg != 'Snap kick with kiop'
     ) {
-      this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
+      this.rightLegcorrectIncorrect = 'Kick is incorrect.';
     }
-
-    // count six rightLeg
-    else if (this.count_incrementer == 6 && rightLeg == 'Long - facing left') {
-      this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
-    } else if (
-      this.count_incrementer == 6 &&
-      rightLeg != 'Long - facing left'
-    ) {
-      this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
-    }
-    // // count seven rightLeg
-    // else if (this.count_incrementer == 7 && rightLeg == 'Horse') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
-    // } else if (this.count_incrementer == 7 && rightLeg != 'Horse') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
-    // }
-    // // count eight rightLeg
-    // else if (this.count_incrementer == 8 && rightLeg == 'Horse') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is correct!';
-    // } else if (this.count_incrementer == 8 && rightLeg != 'Horse') {
-    //   this.rightLegcorrectIncorrect = 'This rightLeg is incorrect.';
-    // }
   }
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // toggle animation method area begins
   toggle() {
     this.isPaused = false;
@@ -215,10 +177,17 @@ export class Bp4TogglerService {
       setTimeout(() => {
         this.attchoonisOpen = !this.attchoonisOpen;
         this.instructionisOpen = !this.instructionisOpen;
-        this.ArmsisOpen = !this.ArmsisOpen;
-        this.isOpen = !this.isOpen;
-        // this.stanceisOpen = !this.stanceisOpen;
-      }, 1000);
+        if (this.count_incrementer < 2) {
+          this.ArmsisOpen = !this.ArmsisOpen;
+        }
+        if (this.count_incrementer >= 3 && this.count_incrementer <= 6) {
+          this.leftLegisOpen = !this.leftLegisOpen;
+        }
+
+        if (this.count_incrementer < 2 || this.count_incrementer > 6) {
+          this.isOpen = !this.isOpen;
+        }
+      }, 500);
     } else {
       setTimeout(() => {
         this.instructionisOpen = !this.instructionisOpen;
@@ -226,28 +195,45 @@ export class Bp4TogglerService {
     }
   }
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // correct toggle animation method area begins
   toggle_correct() {
     setTimeout(() => {
       this.correctisOpen = !this.correctisOpen;
     }, 100);
-    setTimeout(() => {
-      this.ArmsisPaused = true;
-    }, 1000);
-    
+
     setTimeout(() => {
       if (this.count_incrementer < 9) {
         this.correctisOpen = !this.correctisOpen;
       }
+      if (this.count_incrementer >= 3 && this.count_incrementer <= 6) {
+        this.leftLegisOpen = !this.leftLegisOpen;
+      }
+     
+      if (this.count_incrementer < 2 || this.count_incrementer > 6
+        
+        ) {
+         setTimeout(() => {
+           this.isOpen = !this.isOpen;
+         }, 500);
+       
+      }
 
-      // this.ArmsisOpen = !this.ArmsisOpen
-
-      this.isOpen = !this.isOpen;
       this.rightLeg = '';
       this.leftLeg = '';
       this.Arms = '';
       this.count_incrementer += 1;
-
+      console.log(this.count_incrementer);
       if (this.count_incrementer > 1) {
         this.rightLegcorrectIncorrect = '';
         this.leftLegcorrectIncorrect = '';
@@ -256,15 +242,26 @@ export class Bp4TogglerService {
     }, 2000);
   }
 
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // toggle animation method area begins
   toggle_final() {
     this.isPaused = false;
-    // this.finalisOpen = !this.finalisOpen;
-    //this.rightLegisOpen = !this.rightLegisOpen;
-    //this.attchoonisOpen = !this.attchoonisOpen
-    //this.changeOverTitleisOpen = !this.changeOverTitleisOpen;
+    this.changeOverTitleisOpen = false;
   }
-  toggle_kiop() {
+  toggle_kiop_left() {
     this.changeOverKiopisOpen = !this.changeOverKiopisOpen;
+  }
+  toggle_kiop_right() {
+    this.KiopRightisOpen = !this.KiopRightisOpen;
   }
 }

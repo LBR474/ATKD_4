@@ -3,9 +3,12 @@
   <div>
     <router-outlet></router-outlet>
   </div>
-  <!-- <app-startPage></app-startPage> -->
+  <!-- <app-startPage> </app-startPage> -->
+  <!-- this.camera_z_pos -->
   <div id="ngt-canvas-container">
-    <ngt-canvas [camera]="{ position: [0.0, 0.7, this.camera_z_pos], fov: 75 }">
+    <ngt-canvas [camera]="{ position: [0.0, 0.7, 
+      this.timerVar.camera_z_pos
+      ], fov: 75 }">
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-ambient-light></ngt-ambient-light>
       <ngt-grid-helper [args]="[400, 40]" [position]="[0, 0, 0]">
@@ -22,7 +25,7 @@
       </ng-container>
       <ngt-soba-orbit-controls
         #controls
-        [minDistance]="this.min_distance"
+        [minDistance]="this.timerVar.min_distance"
         [target]="[0.0, 0.5, 0]"
       ></ngt-soba-orbit-controls>
     </ngt-canvas>

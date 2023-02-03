@@ -116,13 +116,29 @@ body {
 .justify-content-between {
     justify-content: space-between;
 }
-#kiopDiv {
+#kiopDivleft {
     position: absolute;
-    top: calc(20%) !important;
-    left: calc(35%) !important;
+    top: calc(10%) !important;
+    left: calc(40%) !important;
     align-items: center;
     justify-content: center;
     
+    padding: 10px;
+    width: 300px;
+    height: fit-content;
+    font-size: medium;
+    /* background-color: rgb(255, 255, 255); */
+    /* color: rgb(0, 0, 0); */
+    z-index: 2;
+}
+
+#kiopDivright {
+    position: absolute;
+    top: calc(10%) !important;
+    left: calc(55%) !important;
+    align-items: center;
+    justify-content: center;
+
     padding: 10px;
     width: 300px;
     height: fit-content;

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { loadmodelService } from './loadmodel.service';
 import { TimerVariablesService } from './timer-variables.service';
-
+import { Bp4TogglerService } from './bp4-toggler.service';
 // gsap import
 import { gsap } from 'gsap';
 import { LeftfistService } from './leftfist.service';
@@ -18,7 +18,8 @@ export class ChoonbiservService {
     public loadmodel: loadmodelService,
     public loadLeftFist: LeftfistService,
     public loadRightFist: RightfistService,
-    public loadTimer: TimerVariablesService
+    public loadTimer: TimerVariablesService,
+    public loadBP4toggler: Bp4TogglerService
   ) {}
 
   // // // choon bi function area begins
@@ -203,6 +204,19 @@ export class ChoonbiservService {
         x: 0.0,
         y: 0.0,
         z: -0.0,
+        duration: 0.5,
+        onComplete: () => {
+          setTimeout(() => {
+            this.loadBP4toggler.toggle_kiop_left();
+          }, 0);
+        },
+      });
+
+      gsap.to(this.loadmodel.metarig.quaternion, {
+        _w: 1.0,
+        _x: 0.0,
+        _y: -0.0,
+        _z: 0.0,
         duration: 0.5,
       });
 
@@ -445,11 +459,12 @@ export class ChoonbiservService {
     ) {
       this.loadLeftFist.make_left_fist();
       this.loadRightFist.make_right_fist();
-      gsap.to(this.loadmodel.pelvisL.quaternion, {
-        _w: 0.1296,
-        _x: -0.2179,
-        _y: -0.963,
-        _z: 0.0916,
+
+      gsap.to(this.loadmodel.thighL.quaternion, {
+        _w: -0.2146373,
+        _x: -0.32570417,
+        _y: -0.92059852,
+        _z: 0.01860214,
         duration: this.loadTimer.full_turn_duration,
       });
 
@@ -461,13 +476,6 @@ export class ChoonbiservService {
         duration: this.loadTimer.full_turn_duration,
       });
 
-      gsap.to(this.loadmodel.thighL.quaternion, {
-        // _w: 0.147,
-        // _x: -0.3613,
-        // _y: -0.8993,
-        // _z: 0.1978,
-        duration: this.loadTimer.full_turn_duration,
-      });
       gsap.to(this.loadmodel.shinL.quaternion, {
         _w: 0.7388,
         _x: 0.6736,
@@ -543,42 +551,57 @@ export class ChoonbiservService {
     ) {
       // this.loadLeftFist.make_left_fist();
       // this.loadRightFist.make_right_fist();
-
-      gsap.to(this.loadmodel.metarig.quaternion, {
-        _w: 0.957,
-        _x: 0.0,
-        _y: 0.2901,
-        _z: 0.0,
-        duration: this.loadTimer.down_arms_timer,
-      });
-
-      gsap.to(this.loadmodel.metarig.position, {
-        x: 0.2,
-        y: -0.1,
-        z: 0.2,
-        duration: this.loadTimer.down_arms_timer,
-      });
-
+      if (this.loadBP4toggler.count_incrementer < 7 ) {
+        gsap.to(this.loadmodel.metarig.quaternion, {
+          _w: 0.957,
+          _x: 0.0,
+          _y: 0.2901,
+          _z: 0.0,
+          duration: this.loadTimer.down_arms_timer,
+        });
+      }
+      if (this.loadBP4toggler.count_incrementer < 2) {
+        gsap.to(this.loadmodel.metarig.position, {
+          x: '+=0.2',
+          y: '-=0.1',
+          z: '+=0.2',
+          duration: this.loadTimer.down_arms_timer,
+        });
+      } else {
+      }
+      //
+      //
+      //
+      //
+      // pelvis area and leg area
       gsap.to(this.loadmodel.pelvisL.quaternion, {
-        _w: 0.2706,
-        _x: -0.2153,
-        _y: -0.9274,
-        _z: -0.1427,
+        _w: 0.25233466,
+        _x: -0.24536509,
+        _y: -0.92138991,
+        _z: -0.16481488,
         duration: this.loadTimer.down_arms_timer,
       });
 
-      gsap.to(this.loadmodel.pelvisR.quaternion, {
-        _w: 0.2952,
-        _x: 0.0314,
-        _y: 0.5392,
-        _z: 0.7882,
+      gsap.to(this.loadmodel.thighL.quaternion, {
+        _w: 0.078384,
+        _x: -0.38211036,
+        _y: -0.63807213,
+        _z: 0.66386116,
+        duration: this.loadTimer.down_arms_timer,
+      });
+
+      gsap.to(this.loadmodel.thighR.quaternion, {
+        _w: 0.18587835,
+        _x: -0.34293094,
+        _y: 0.41801074,
+        _z: -0.82043568,
         duration: this.loadTimer.down_arms_timer,
       });
       gsap.to(this.loadmodel.shinL.quaternion, {
-        _w: 0.856,
-        _x: 0.5166,
-        _y: -0.0112,
-        _z: -0.0195,
+        _w: 0.90244086,
+        _x: 0.43022802,
+        _y: -0.00918848,
+        _z: -0.02049092,
         duration: this.loadTimer.down_arms_timer,
       });
 
@@ -589,139 +612,13 @@ export class ChoonbiservService {
         _z: 0.1837,
         duration: this.loadTimer.down_arms_timer,
       });
-
-      gsap.to(this.loadmodel.upper_armL.quaternion, {
-        _w: 0.64516646,
-        _x: -0.26719579,
-        _y: 0.69433504,
-        _z: -0.17396998,
-        duration: this.loadTimer.down_arms_timer,
-      });
-
-      gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: this.loadTimer.down_arms_timer,
-
-        _w: 0.64516646,
-        _x: -0.26719585,
-        _y: -0.69433504,
-        _z: 0.17396994,
-      });
-      gsap.to(this.loadmodel.forearmL.quaternion, {
-        _w: 0.9841,
-        _x: 0.1768,
-        _y: 0.016,
-        _z: 0.0089,
-        duration: this.loadTimer.down_arms_timer,
-      });
-
-      gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: this.loadTimer.down_arms_timer,
-        _w: 0.9841,
-        _x: 0.1768,
-        _y: -0.016,
-        _z: -0.0089,
-      });
-      gsap.to(this.loadmodel.handR.quaternion, {
-        duration: this.loadTimer.down_arms_timer,
-        _w: 0.9955,
-        _x: 0.0927,
-        _y: -0.004,
-        _z: -0.0207,
-      });
-      gsap.to(this.loadmodel.handL.quaternion, {
-        duration: this.loadTimer.down_arms_timer,
-        _w: 0.9955,
-        _x: 0.0927,
-        _y: 0.004,
-        _z: 0.0207,
-      });
-    }
-  };
-
-  // // // choon bi function area begins
-  BP4_X_choon_bi_arms_only_up = () => {
-    if (
-      this.loadmodel.metarig &&
-      // arms area
-      this.loadmodel.shoulderL &&
-      this.loadmodel.shoulderR &&
-      this.loadmodel.upper_armL &&
-      this.loadmodel.upper_armR &&
-      this.loadmodel.forearmL &&
-      this.loadmodel.forearmR &&
-      this.loadmodel.handL &&
-      this.loadmodel.handR
-    ) {
-      gsap.to(this.loadmodel.upper_armL.quaternion, {
-        _w: 0.4785,
-        _x: -0.0131,
-        _y: 0.3066,
-        _z: -0.8227,
-        duration: this.loadTimer.full_turn_duration,
-      });
-
-      gsap.to(this.loadmodel.upper_armR.quaternion, {
-        duration: this.loadTimer.full_turn_duration,
-
-        _w: 0.4785,
-        _x: 0.011,
-        _y: -0.3066,
-        _z: 0.8227,
-      });
-      gsap.to(this.loadmodel.forearmL.quaternion, {
-        _w: 0.4589,
-        _x: 0.5419,
-        _y: 0.0202,
-        _z: -0.7038,
-        duration: this.loadTimer.full_turn_duration,
-      });
-
-      gsap.to(this.loadmodel.forearmR.quaternion, {
-        duration: this.loadTimer.full_turn_duration,
-
-        _w: 0.4589,
-        _x: 0.5419,
-        _y: 0.0202,
-        _z: 0.7038,
-        onComplete: () => {
-          this.BP4_X_choon_bi_arms_only();
-        },
-      });
-    }
-  };
-
-  //
-  //
-  //
-
-  // // // choon bi function area begins
-  BP4_X_choon_bi_arms_only = () => {
-    if (
-      this.loadmodel.metarig &&
-      // arms area
-      this.loadmodel.shoulderL &&
-      this.loadmodel.shoulderR &&
-      this.loadmodel.upper_armL &&
-      this.loadmodel.upper_armR &&
-      this.loadmodel.forearmL &&
-      this.loadmodel.forearmR &&
-      this.loadmodel.handL &&
-      this.loadmodel.handR
-    ) {
-      gsap.to(this.loadmodel.metarig.quaternion, {
-        _w: 0.957,
-        _x: 0.0,
-        _y: 0.2901,
-        _z: 0.0,
-        duration: this.loadTimer.down_arms_timer,
-      });
-
-      gsap.to(this.loadmodel.metarig.position, {
-        x: 0.2,
-        y: -0.1,
-        z: 0.2,
-        duration: this.loadTimer.down_arms_timer,
-      });
+      //
+      //
+      //
+      //
+      //
+      //
+      // arms and hands area
 
       gsap.to(this.loadmodel.upper_armL.quaternion, {
         _w: 0.64516646,

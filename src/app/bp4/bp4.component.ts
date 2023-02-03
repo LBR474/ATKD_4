@@ -7,6 +7,7 @@ import { AppComponent } from '../app.component';
 import {
   attchoonOpenClose,
   changeOverFinal,
+  changeOverKiop,
   changeOverTitle,
   correctOpenClose,
   finalOpenClose,
@@ -51,6 +52,7 @@ import { BP2TogglerService } from '../older-backup-files/BP2toggler.service';
   animations: [
     attchoonOpenClose,
     changeOverFinal,
+    changeOverKiop,
     changeOverTitle,
     correctOpenClose,
     finalOpenClose,
@@ -70,8 +72,8 @@ export class Bp4Component implements OnInit {
   BP1_colors = ['#7b1fa2', '#69f0ae', '#f44336'];
   attention_clicked = false;
   public bgcolor = new THREE.Color(0xff0000);
-  camera_z_pos = 2.4;
-  choonBi_clicked = false;
+  //camera_z_pos = 2.4;
+  choonBi_clicked = true;
   choonBi_X_clicked = true;
 
   choonbi: string = 'choOn bi';
@@ -97,7 +99,7 @@ export class Bp4Component implements OnInit {
     public rts: ReturnToStartService,
     public toggler: TogglerService // public rts: ReturnToStartService,
   ) {
-    toggler.poomsae_number = 4;
+    toggler.poomsae_number = 4
   }
 
   ngOnInit(): void {}

@@ -36,6 +36,22 @@
     </p>
   </div>
 
+  <div
+    id="kiopDivleft"
+    [@.disabled]="BP4toggler.isPaused"
+    [@changeOverKiop]="BP4toggler.changeOverKiopisOpen ? 'open' : 'closed'"
+  >
+    <img [src]="'./assets/kiop_voice_balloon_small_left.png'" />
+  </div>
+
+   <div
+    id="kiopDivright"
+    [@.disabled]="BP4toggler.isPaused"
+    [@changeOverKiop]="BP4toggler.KiopRightisOpen ? 'open' : 'closed'"
+  >
+    <img [src]="'./assets/kiop_voice_balloon_small_right.png'" />
+  </div>
+
   <!--  -->
   <!--  -->
   <!--  -->
@@ -67,7 +83,7 @@
       (click)="
         BP4toggler.toggle_final();
         BP4toggler.count_incrementer = 1;
-        BP4toggler.poomsae_number = 4;
+        BP4toggler.poomsae_number = 1;
         rts.return_to_start_function()
       "
       >Yes</a
@@ -157,10 +173,10 @@
   <!--  -->
   <!--  -->
 
-  <!-- left arm div area begins -->
+  <!-- left leg div area begins -->
   <div
     [@.disabled]="BP4toggler.isPaused"
-    [@leftArmOpenClose]="BP4toggler.isOpen ? 'open' : 'closed'"
+    [@leftArmOpenClose]="BP4toggler.leftLegisOpen ? 'open' : 'closed'"
     id="leftArmDiv"
     class="flex-container justify-content-between"
   >
@@ -223,15 +239,14 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  <!--  -->
+  <!-- *ngIf="BP4toggler.count_incrementer < 2" -->
 
   <!-- Arms div area begins -->
   <div
     [@.disabled]="BP4toggler.ArmsisPaused"
-    [@openClose]="BP4toggler.isOpen ? 'closed' : 'open'"
+    [@openClose]="BP4toggler.ArmsisOpen ? 'closed' : 'open'"
     id="rightArmDiv"
     class="flex-container justify-content-between"
-    *ngIf="BP4toggler.count_incrementer < 2"
   >
     <mat-card>
       <mat-card-header>
@@ -307,6 +322,7 @@
       (click)="
         attserve.attention();
         attention_clicked = true;
+        choonBi_clicked = false;
         BP4toggler.poomsae_number = 4
       "
     >
