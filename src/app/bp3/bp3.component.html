@@ -57,13 +57,13 @@
   <!-- final div area begins -->
 
   
-  <div
-    id="kiopDiv"
+ <div
+    id="kiopDivleft"
     [@.disabled]="toggler.isPaused"
     [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
   >
+  <img [src]="'./assets/kiop_voice_balloon_small_left.png'">
    
-   <img [src]="'./assets/kiop_voice_balloon_small.png'">
   </div>
 
 
@@ -102,6 +102,8 @@
         toggler.toggle_new_poomsae_open();
         toggler.count_incrementer = 1;
         toggler.poomsae_number = 4;
+        
+
         rts.return_to_start_function()
       "
       >Yes</a>
@@ -344,10 +346,13 @@
   >
     <button
       mat-raised-button
-      color="accent"
+      color="primary"
       id="attserve_attention"
       [disabled]="attention_clicked"
-      (click)="attserve.attention(); attention_clicked = true"
+      (click)="attserve.attention(); attention_clicked = true;
+      choonBi_clicked = false;
+      
+      "
     >
       Attention</button
     ><br />

@@ -1,13 +1,9 @@
-
 <div class="mat-app-background" id="top-div">
- 
   <div
     class="titleDiv"
     [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
   >
-    <h1 class="mat-title" color="primary">
-     Basic poomsae two
-    </h1>
+    <h1 class="mat-title" color="primary">Basic poomsae two</h1>
   </div>
 
   <!-- instruction div area begins -->
@@ -40,16 +36,13 @@
     </p>
   </div>
 
-
   <div
-    id="kiopDiv"
+    id="kiopDivleft"
     [@.disabled]="toggler.isPaused"
     [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
   >
-  <img [src]="'./assets/kiop_voice_balloon_small.png'">
-   
+    <img [src]="'./assets/kiop_voice_balloon_small_left.png'" />
   </div>
-
 
   <!--  -->
   <!--  -->
@@ -68,14 +61,12 @@
   <!--  -->
   <!-- final div area begins -->
 
-  
   <div
     id="finalDiv"
     class="mat-body titleDiv finalDiv"
     [@.disabled]="toggler.isPaused"
     [@changeOverFinal]="toggler.changeOverTitleisOpen ? 'closed' : 'open'"
   >
-   
     Congratulations, basic poomsae two is complete. <br />
 
     Go on to basic poomsae three?
@@ -106,7 +97,6 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- stance div area begins -->
   <div
@@ -175,7 +165,6 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- left arm div area begins -->
   <div
@@ -245,7 +234,6 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- right arm div area begins -->
   <div
@@ -313,7 +301,6 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  
 
   <!-- open close div and attention and choonbi button   area begins -->
   <!--  -->
@@ -327,7 +314,9 @@
       color="accent"
       id="attserve_attention"
       [disabled]="attention_clicked"
-      (click)="attserve.attention(); attention_clicked = true"
+      (click)="
+        attserve.attention(); attention_clicked = true; choonBi_clicked = false
+      "
     >
       Attention</button
     ><br />

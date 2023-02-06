@@ -203,7 +203,7 @@ export class Bp2collatemovementService {
       this.loadrightarmpunch.right_arm_high_punch();
       setTimeout(() => {
         this.toggler.toggle_kiop();
-        this.loadChoonbiserv.choon_bi_final();
+        this.loadChoonbiserv.choon_bi_up_arms();
       }, 4000);
     }
   }

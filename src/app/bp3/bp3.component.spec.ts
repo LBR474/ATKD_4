@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Bp3Component } from './bp3.component';
 
@@ -8,7 +9,8 @@ describe('Bp3Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Bp3Component ]
+      declarations: [ Bp3Component ],
+      imports: [BrowserAnimationsModule]
     })
     .compileComponents();
 

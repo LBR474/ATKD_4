@@ -1,6 +1,9 @@
-
+ <!-- whole page div area begins -->
 <div class="mat-app-background" id="top-div">
  
+
+   <!-- title div area begins -->
+   <!-- [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'" -->
   <div
     class="titleDiv"
     [@changeOverTitle]="toggler.changeOverTitleisOpen ? 'open' : 'closed'"
@@ -36,19 +39,19 @@
       [@visibleInvisible]="toggler.correctisOpen ? 'closed' : 'open'"
       *ngIf="toggler.count_incrementer < 9"
     >
-      Your selections were correct!
+      Your selections <br>were correct!
     </p>
   </div>
 
-
+ <!-- kiop left div area begins -->
 
     <div
-    id="kiopDiv"
+    id="kiopDivleft"
     [@.disabled]="toggler.isPaused"
     [@changeOverKiop]="toggler.changeOverKiopisOpen ? 'open' : 'closed'"
   >
    
-   <img [src]="'./assets/kiop_voice_balloon_small.png'">
+   <img [src]="'./assets/kiop_voice_balloon_small_left.png'">
   </div>
 
   <!--  -->
@@ -328,7 +331,9 @@
       color="accent"
       id="attserve_attention"
       [disabled]="attention_clicked"
-      (click)="attserve.attention(); attention_clicked = true"
+      (click)="attserve.attention(); attention_clicked = true;
+      choonBi_clicked = false;
+      "
     >
       Attention</button
     ><br />

@@ -9,7 +9,7 @@ import { gsap } from 'gsap';
 import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 
 // three imports
-import * as THREE from 'three';
+
 import { Object3D } from 'three';
 
 
@@ -31,6 +31,8 @@ export class loadmodelService {
   public spine004: Object3D | undefined;
   public spine005: Object3D | undefined;
   public spine006: Object3D | undefined;
+
+  public position_test: number| undefined;
 
   // // arms
   public shoulderL: Object3D | undefined;
@@ -128,6 +130,8 @@ export class loadmodelService {
     this.spine005 = object.getObjectByName('spine005');
     this.spine006 = object.getObjectByName('spine006');
 
+    this.position_test = this.spine006?.position.y
+    
     
     // // left arm
     this.shoulderL = object.getObjectByName('shoulderL');
@@ -206,7 +210,7 @@ export class loadmodelService {
   constructor(public ngtGLTFLoader: NgtGLTFLoader) {}
 
   calling_data_service(current_target: any) {
-    console.log('From data service: \n');
+    console.log('From loadmodel service: \n');
     console.log(current_target);
     if (this.spine) {
       gsap.to(this.spine.quaternion, {

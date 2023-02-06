@@ -20,7 +20,8 @@ import { Bp4Component } from './bp4/bp4.component';
 
 
 @NgModule({
-  declarations: [AppComponent, StartPageComponent, BP2Component, BlankComponent, Bp3Component, Bp4Component],
+  declarations: [AppComponent, StartPageComponent, BP2Component,
+     BlankComponent, Bp3Component, Bp4Component],
   imports: [
     BrowserModule,
     FormsModule,

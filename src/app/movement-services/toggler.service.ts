@@ -69,6 +69,7 @@ export class TogglerService {
   BP3leftArmChoices: string[] = [
     'Elbow strike',
     'Middle knife block',
+    'Double knife block (left)', 
     'Down block - knife hand',
     'Knife block - palm up',
     'Knife strike',
@@ -124,9 +125,9 @@ export class TogglerService {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
     // count two
-    else if (leftArm == 'Elbow strike' && this.count_incrementer % 2 == 0) {
+    else if (leftArm == 'Elbow strike' && this.count_incrementer == 2) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
-    } else if (leftArm != 'Elbow strike' && this.count_incrementer % 2 == 0) {
+    } else if (leftArm != 'Elbow strike' && this.count_incrementer == 2) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
     // count three
@@ -135,16 +136,34 @@ export class TogglerService {
     } else if (leftArm != 'Knife strike' && this.count_incrementer == 3) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
+    // count four
+    else if (leftArm == 'Elbow strike' && this.count_incrementer == 4) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
+    } else if (leftArm != 'Elbow strike' && this.count_incrementer == 4) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
+    }
     // count five
     else if (leftArm == 'Knife block' && this.count_incrementer == 5) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
     } else if (leftArm != 'Knife block' && this.count_incrementer == 5) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
+    // count six
+    else if (leftArm == 'Elbow strike' && this.count_incrementer == 6) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
+    } else if (leftArm != 'Elbow strike' && this.count_incrementer == 6) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
+    }
     // count seven
     else if (leftArm == 'High punch' && this.count_incrementer == 7) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
     } else if (leftArm != 'High punch' && this.count_incrementer == 7) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
+    }
+    // count eight
+    else if (leftArm == 'Elbow strike' && this.count_incrementer == 8) {
+      this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
+    } else if (leftArm != 'Elbow strike' && this.count_incrementer == 8) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
   }
@@ -187,23 +206,23 @@ export class TogglerService {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
     // count five
-    else if (leftArm == 'Middle knife block' && this.count_incrementer == 5) {
+    else if (leftArm == 'Double knife block (left)' && this.count_incrementer == 5) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
-    } else if (leftArm != 'Middle knife block' && this.count_incrementer == 5) {
+    } else if (leftArm != 'Double knife block (left)' && this.count_incrementer == 5) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
     // count six
-    else if (
-      leftArm == 'Knife block - palm up' &&
-      this.count_incrementer == 6
-    ) {
-      this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
-    } else if (
-      leftArm != 'Knife block - palm up' &&
-      this.count_incrementer == 6
-    ) {
-      this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
-    }
+    // else if (
+    //   leftArm == 'Knife block - palm up' &&
+    //   this.count_incrementer == 6
+    // ) {
+    //   this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
+    // } else if (
+    //   leftArm != 'Knife block - palm up' &&
+    //   this.count_incrementer == 6
+    // ) {
+    //   this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
+    // }
     // count seven
     else if (leftArm == 'Knife strike' && this.count_incrementer == 7) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
@@ -212,9 +231,15 @@ export class TogglerService {
     }
 
     // count eight
-    else if (leftArm == 'Crossover palm down block' && this.count_incrementer == 8) {
+    else if (
+      leftArm == 'Crossover palm down block' &&
+      this.count_incrementer == 8
+    ) {
       this.leftArmcorrectIncorrect = 'Left arm movement is correct!';
-    } else if (leftArm != 'Crossover palm down block' && this.count_incrementer == 8) {
+    } else if (
+      leftArm != 'Crossover palm down block' &&
+      this.count_incrementer == 8
+    ) {
       this.leftArmcorrectIncorrect = 'Left arm movement is incorrect.';
     }
   }
@@ -240,6 +265,7 @@ export class TogglerService {
   BP3rightArmChoices: string[] = [
     'Elbow strike',
     'Middle knife block',
+    'Double knife block (right)',
     'Down block - knife hand',
     'Knife block - palm up',
     'Knife strike',
@@ -287,15 +313,21 @@ export class TogglerService {
 
   BP2_record_rightArm(rightArm: any) {
     // count one
-    if (rightArm == 'Elbow strike' && this.count_incrementer % 2 == 1) {
+    if (rightArm == 'Elbow strike' && this.count_incrementer == 1) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Elbow strike' && this.count_incrementer % 2 == 1) {
+    } else if (rightArm != 'Elbow strike' && this.count_incrementer == 1) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
     // movement two
     else if (rightArm == 'Inside block' && this.count_incrementer == 2) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
     } else if (rightArm != 'Inside block' && this.count_incrementer == 2) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
+    }
+    // movement three
+    else if (rightArm == 'Elbow strike' && this.count_incrementer == 3) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
+    } else if (rightArm != 'Elbow strike' && this.count_incrementer == 3) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
     // movement four
@@ -305,10 +337,23 @@ export class TogglerService {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
 
+    // movement five
+    else if (rightArm == 'Elbow strike' && this.count_incrementer == 5) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
+    } else if (rightArm != 'Elbow strike' && this.count_incrementer == 5) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
+    }
+
     // movement six
     else if (rightArm == 'Knife block' && this.count_incrementer == 6) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
     } else if (rightArm != 'Knife block' && this.count_incrementer == 6) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
+    }
+    // movement three
+    else if (rightArm == 'Elbow strike' && this.count_incrementer == 7) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
+    } else if (rightArm != 'Elbow strike' && this.count_incrementer == 7) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
 
@@ -325,9 +370,9 @@ export class TogglerService {
     if (rightArm == 'Elbow strike' && this.count_incrementer == 1) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
     }
-    // else if (rightArm != 'Elbow strike' && this.count_incrementer % 2 == 1) {
-    //   this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
-    // }
+    else if (rightArm != 'Elbow strike' && this.count_incrementer == 1) {
+      this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
+    }
     // movement two
     else if (rightArm == 'Middle knife block' && this.count_incrementer == 2) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
@@ -363,25 +408,31 @@ export class TogglerService {
     }
 
     // movement five
-    else if (
-      rightArm == 'Knife block - palm up' &&
-      this.count_incrementer == 5
-    ) {
+    // else if (
+    //   rightArm == 'Knife block - palm up' &&
+    //   this.count_incrementer == 5
+    // ) {
+    //   this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
+    // } else if (
+    //   rightArm != 'Knife block - palm up' &&
+    //   this.count_incrementer == 5
+    // ) {
+    //   this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
+    // }
+    // movement six
+    else if (rightArm == 'Double knife block (right)' && this.count_incrementer == 6) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
     } else if (
-      rightArm != 'Knife block - palm up' &&
-      this.count_incrementer == 5
+      rightArm != 'Double knife block (right)' &&
+      this.count_incrementer == 6
     ) {
-      this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
-    }
-    // movement six
-    else if (rightArm == 'Middle knife block' && this.count_incrementer == 6) {
-      this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (rightArm != 'Middle knife block' && this.count_incrementer == 6) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
     // movement seven
-    else if (rightArm == 'Crossover palm down block' && this.count_incrementer == 7) {
+    else if (
+      rightArm == 'Crossover palm down block' &&
+      this.count_incrementer == 7
+    ) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
     } else if (
       rightArm != 'Crossover palm down block' &&
@@ -391,15 +442,9 @@ export class TogglerService {
     }
 
     // movement eight
-    else if (
-      rightArm == 'Knife strike' &&
-      this.count_incrementer == 8
-    ) {
+    else if (rightArm == 'Knife strike' && this.count_incrementer == 8) {
       this.rightArmcorrectIncorrect = 'Right arm movement is correct!';
-    } else if (
-      rightArm != 'Knife strike' &&
-      this.count_incrementer == 8
-    ) {
+    } else if (rightArm != 'Knife strike' && this.count_incrementer == 8) {
       this.rightArmcorrectIncorrect = 'Right arm movement is incorrect.';
     }
   }
@@ -571,6 +616,6 @@ export class TogglerService {
     //this.changeOverTitleisOpen = !this.changeOverTitleisOpen;
   }
   toggle_kiop () {
-    this.changeOverKiopisOpen = !this.changeOverKiopisOpen;
+    this.changeOverKiopisOpen = !this.changeOverKiopisOpen
   }
 }

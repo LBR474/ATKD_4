@@ -11,7 +11,7 @@ export class Bp4TogglerService {
   ArmsisPaused: boolean = true;
   attchoonisOpen: boolean = true;
   changeOverFinalisOpen: boolean = true;
-  changeOverKiopisOpen: boolean = false;
+  KiopLeftisOpen: boolean = false;
   KiopRightisOpen: boolean = false;
   changeOverTitleisOpen: boolean = true;
   correctisOpen: boolean = true;
@@ -137,7 +137,7 @@ export class Bp4TogglerService {
       this.rightLegcorrectIncorrect = 'Kick is correct!';
     } else if (this.count_incrementer == 2 && rightLeg != 'Snap kick') {
       this.rightLegcorrectIncorrect = 'Kick is incorrect.';
-      console.log(this.count_incrementer);
+      //console.log(this.count_incrementer);
     }
 
     // count seven rightLeg
@@ -151,7 +151,7 @@ export class Bp4TogglerService {
     else if (this.count_incrementer == 8 && rightLeg == 'Snap kick with kiop') {
       this.rightLegcorrectIncorrect = 'Kick is correct!';
     } else if (
-      this.count_incrementer == 4 &&
+      this.count_incrementer == 8 &&
       rightLeg != 'Snap kick with kiop'
     ) {
       this.rightLegcorrectIncorrect = 'Kick is incorrect.';
@@ -233,7 +233,7 @@ export class Bp4TogglerService {
       this.leftLeg = '';
       this.Arms = '';
       this.count_incrementer += 1;
-      console.log(this.count_incrementer);
+      //console.log(this.count_incrementer);
       if (this.count_incrementer > 1) {
         this.rightLegcorrectIncorrect = '';
         this.leftLegcorrectIncorrect = '';
@@ -257,9 +257,10 @@ export class Bp4TogglerService {
   toggle_final() {
     this.isPaused = false;
     this.changeOverTitleisOpen = false;
+    this.KiopLeftisOpen = !this.KiopLeftisOpen
   }
   toggle_kiop_left() {
-    this.changeOverKiopisOpen = !this.changeOverKiopisOpen;
+    this.KiopLeftisOpen = !this.KiopLeftisOpen;
   }
   toggle_kiop_right() {
     this.KiopRightisOpen = !this.KiopRightisOpen;

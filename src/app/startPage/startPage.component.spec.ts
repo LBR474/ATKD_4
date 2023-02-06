@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { BP2Component } from './bp2.component';
+import { StartPageComponent } from './startPage.component';
 
-describe('BP2Component', () => {
-  let component: BP2Component;
-  let fixture: ComponentFixture<BP2Component>;
+describe('startPageComponent', () => {
+  let component: StartPageComponent;
+  let fixture: ComponentFixture<StartPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BP2Component ],
-      imports: [BrowserAnimationsModule]
-    })
-    .compileComponents();
+      declarations: [StartPageComponent],
+      imports: [BrowserAnimationsModule],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(BP2Component);
+    fixture = TestBed.createComponent(StartPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

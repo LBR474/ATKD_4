@@ -1,17 +1,19 @@
-
-
-
 import { Injectable } from '@angular/core';
 
 // movent services imports
 import { Bp4TogglerService } from './bp4-toggler.service';
 import { ChoonbiservService } from './choonbiserv.service';
 import { loadmodelService } from './loadmodel.service';
-import { TimerVariablesService } from './timer-variables.service';
 
+import { TimerVariablesService } from './timer-variables.service';
 
 // gsap import
 import { gsap } from 'gsap';
+
+// three imports
+import * as THREE from 'three';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,7 @@ export class LeftlegkickService {
     public loadBP4toggler: Bp4TogglerService,
     public loadchoonbiserv: ChoonbiservService,
     public loadmodel: loadmodelService,
+    
     public loadTimer: TimerVariablesService
   ) {}
 
@@ -28,6 +31,7 @@ export class LeftlegkickService {
     if (
       this.loadmodel.metarig &&
       this.loadmodel.spine &&
+      this.loadmodel.spine006 &&
       this.loadmodel.pelvisL &&
       this.loadmodel.pelvisR &&
       this.loadmodel.thighL &&
@@ -36,6 +40,10 @@ export class LeftlegkickService {
       this.loadmodel.footL &&
       this.loadmodel.footR
     ) {
+     
+       
+     
+      
       if (this.loadBP4toggler.count_incrementer == 3) {
         gsap.to(this.loadmodel.metarig.position, {
           x: '+=0.1',
@@ -240,21 +248,21 @@ export class LeftlegkickService {
       this.loadmodel.footL &&
       this.loadmodel.footR
     ) {
-     if (this.loadBP4toggler.count_incrementer == 4) {
-       gsap.to(this.loadmodel.metarig.position, {
-         x: '+=0.1',
-         y: '+=0.1',
-         z: '+=0.1',
-         duration: this.loadTimer.down_arms_timer,
-       });
-     } else if (this.loadBP4toggler.count_incrementer == 6) {
-       gsap.to(this.loadmodel.metarig.position, {
-         x: '-=0.1',
-         y: '+=0.1',
-         z: '+=0.1',
-         duration: this.loadTimer.down_arms_timer,
-       });
-     }
+      if (this.loadBP4toggler.count_incrementer == 4) {
+        gsap.to(this.loadmodel.metarig.position, {
+          x: '+=0.1',
+          y: '+=0.1',
+          z: '+=0.1',
+          duration: this.loadTimer.down_arms_timer,
+        });
+      } else if (this.loadBP4toggler.count_incrementer == 6) {
+        gsap.to(this.loadmodel.metarig.position, {
+          x: '-=0.1',
+          y: '+=0.1',
+          z: '+=0.1',
+          duration: this.loadTimer.down_arms_timer,
+        });
+      }
 
       gsap.to(this.loadmodel.pelvisR.quaternion, {
         _w: 0.36227676,
@@ -362,7 +370,7 @@ export class LeftlegkickService {
     }
   }
   left_leg_snap_fold_back() {
-    if (this.loadmodel.shinL) {
+    if (this.loadmodel.shinL && this.loadmodel.spine006) {
       gsap.to(this.loadmodel.shinL.quaternion, {
         _w: 0.3343,
         _x: 0.9422,
@@ -370,11 +378,12 @@ export class LeftlegkickService {
         _z: -0.008,
         duration: this.loadTimer.down_arms_timer,
         onComplete: () => {
+          // console.log(this.loadmodel.spine006?.position.y)
           setTimeout(() => {
             if (this.loadBP4toggler.leftLeg == 'Snap kick with kiop') {
               this.loadBP4toggler.toggle_kiop_right();
             }
-            this.left_leg_snap_kick_leg_down()
+            this.left_leg_snap_kick_leg_down();
           }, 500);
         },
       });
@@ -428,7 +437,6 @@ export class LeftlegkickService {
           duration: this.loadTimer.down_arms_timer,
         });
       }
-
 
       gsap.to(this.loadmodel.pelvisR.quaternion, {
         _w: 0.362277,
@@ -485,11 +493,11 @@ export class LeftlegkickService {
         _z: 0.01100774,
         duration: this.loadTimer.down_arms_timer,
         onComplete: () => {
-         // this.left_leg_snap_kick_change_stance();
+          // this.left_leg_snap_kick_change_stance();
           if (this.loadBP4toggler.count_incrementer < 6) {
             this.left_leg_snap_kick_change_stance();
           } else {
-            this.loadchoonbiserv.BP4_X_choon_bi();
+            this.left_leg_change_stance_pelvis_only()
             this.Double_wide_arms_up();
           }
         },
@@ -565,6 +573,76 @@ export class LeftlegkickService {
         onComplete: () => {
           this.Double_wide_arms_up();
         },
+      });
+    }
+  }
+
+
+
+  left_leg_change_stance_pelvis_only() {
+    if (
+      this.loadmodel.metarig &&
+      // arms area
+      this.loadmodel.shoulderL &&
+      this.loadmodel.shoulderR &&
+      this.loadmodel.upper_armL &&
+      this.loadmodel.upper_armR &&
+      this.loadmodel.forearmL &&
+      this.loadmodel.forearmR &&
+      this.loadmodel.handL &&
+      this.loadmodel.handR &&
+      // legs area
+      this.loadmodel.pelvisL &&
+      this.loadmodel.pelvisR &&
+      this.loadmodel.thighL &&
+      this.loadmodel.thighR &&
+      this.loadmodel.shinL &&
+      this.loadmodel.shinR &&
+      this.loadmodel.footL &&
+      this.loadmodel.footR
+    ) {
+      //
+      //
+      //
+      //
+      // pelvis area and leg area
+      gsap.to(this.loadmodel.pelvisL.quaternion, {
+        _w: 0.25233466,
+        _x: -0.24536509,
+        _y: -0.92138991,
+        _z: -0.16481488,
+        duration: this.loadTimer.down_arms_timer,
+      });
+
+      gsap.to(this.loadmodel.thighL.quaternion, {
+        _w: 0.078384,
+        _x: -0.38211036,
+        _y: -0.63807213,
+        _z: 0.66386116,
+        duration: this.loadTimer.down_arms_timer,
+      });
+
+      gsap.to(this.loadmodel.thighR.quaternion, {
+        _w: 0.18587835,
+        _x: -0.34293094,
+        _y: 0.41801074,
+        _z: -0.82043568,
+        duration: this.loadTimer.down_arms_timer,
+      });
+      gsap.to(this.loadmodel.shinL.quaternion, {
+        _w: 0.90244086,
+        _x: 0.43022802,
+        _y: -0.00918848,
+        _z: -0.02049092,
+        duration: this.loadTimer.down_arms_timer,
+      });
+
+      gsap.to(this.loadmodel.footR.quaternion, {
+        _w: 0.6383,
+        _x: -0.7127,
+        _y: 0.2258,
+        _z: 0.1837,
+        duration: this.loadTimer.down_arms_timer,
       });
     }
   }

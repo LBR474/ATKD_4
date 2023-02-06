@@ -7,3 +7,21 @@
 /* @import '~@angular/material/prebuilt-themes/purple-green.css'; */
 
 /* @import 'app/indigo-pink-custom.css'; */
+
+
+#kiopDivBP4left {
+    position: absolute;
+    /* top: calc(10%) !important; */
+    /* top: 125px; */
+    /* left: calc(30%) !important; */
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    font-size: medium;
+    /* background-color: rgb(52, 20, 233); */
+    /* color: rgb(0, 0, 0); */
+    z-index: 1;
+}

@@ -1,7 +1,7 @@
 import {
   trigger,
   state,
-  stagger,
+  // stagger,
   animate,
   transition,
   style,
@@ -77,7 +77,8 @@ export const changeOverKiop = trigger('changeOverKiop', [
     'open',
     style({
       opacity: 1,
-      // left: '100px',
+      // left: '60%',
+      // top: '15%',
     })
   ),
   state(
@@ -92,6 +93,49 @@ export const changeOverKiop = trigger('changeOverKiop', [
   // transition('closed => open', [animate('1.5s')]),
 ]);
 
+export const changeOverBP4KiopLeft = trigger('changeOverBP4KiopLeft', [
+  // ...
+  state(
+    'open',
+    style({
+      opacity: 1,
+      left: '37%',
+      top: '15%',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      opacity: 0,
+      // left: '60%',
+      // top: '25%',
+    })
+  ),
+  transition('* <=> *', [animate('0.01s')]),
+  // transition('closed => open', [animate('1.5s')]),
+]);
+
+export const changeOverBP4KiopRight = trigger('changeOverBP4KiopRight', [
+  // ...
+  state(
+    'open',
+    style({
+      opacity: 1,
+      left: '60%',
+      top: '5%',
+    })
+  ),
+  state(
+    'closed',
+    style({
+      opacity: 0,
+
+      //left: '-500px',
+    })
+  ),
+  transition('* <=> *', [animate('0.01s')]),
+  // transition('closed => open', [animate('1.5s')]),
+]);
 
 export const correctOpenClose = trigger('correctOpenClose', [
   // ...
@@ -170,9 +214,8 @@ export const leftArmOpenClose = trigger('leftArmOpenClose', [
     style({
       width: 'fit-content',
       height: 'fit-content',
-      top: '-50%',
+      top: '-350px',
       right: '0px',
-      //transform: 'translateY(-100%)',
     })
   ),
   state(
@@ -180,7 +223,7 @@ export const leftArmOpenClose = trigger('leftArmOpenClose', [
     style({
       width: 'fit-content',
       height: 'fit-content',
-      top: '10%',
+      top: '50px',
       right: '0px',
     })
   ),
@@ -253,6 +296,7 @@ export const stanceOpenClose = trigger('stanceOpenClose', [
     style({
       height: 'fit-content',
       width: 'fit-content',
+      left: '250px',
     })
   ),
   state(
@@ -260,7 +304,7 @@ export const stanceOpenClose = trigger('stanceOpenClose', [
     style({
       width: 'fit-content',
       height: 'fit-content',
-      transform: 'translateX(-100%)',
+      transform: 'translateX(-300px)',
     })
   ),
   transition('open => closed', [animate('1s')]),

@@ -132,8 +132,9 @@ export class Bp3collatemovementService {
     else if (
       this.toggler.count_incrementer == 5 &&
       //stance == 'Long - facing right' &&
-      leftArm == 'Middle knife block' &&
-      rightArm == 'Knife block - palm up'
+      leftArm == 'Double knife block (left)' 
+      // &&
+      // rightArm == 'Knife block - palm up'
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
@@ -153,8 +154,8 @@ export class Bp3collatemovementService {
     else if (
       this.toggler.count_incrementer == 6 &&
       //stance == 'Long - facing left' &&
-      leftArm == 'Knife block - palm up' &&
-      rightArm == 'Middle knife block'
+      //leftArm == 'Knife block - palm up' &&
+      rightArm == 'Double knife block (right)'
     ) {
       this.toggler.isOpen = !this.toggler.isOpen;
       this.toggler.toggle_correct();
@@ -217,7 +218,7 @@ export class Bp3collatemovementService {
       }, 1000);
       
       setTimeout(() => {
-        this.loadChoonbiserv.choon_bi_final();
+        this.loadChoonbiserv.choon_bi_up_arms();
         this.toggler.toggle_kiop();
       }, 4000);
     }

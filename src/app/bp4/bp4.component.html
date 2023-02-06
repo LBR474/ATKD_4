@@ -1,4 +1,20 @@
+ <!-- <style>       
+        @supports (display: grid) {
+            section h1 {
+              position: absolute;
+              top: position_test + 'px';
+                background-color: rgb(231, 32, 6);
+                color: white;
+                padding: 15px;
+            }
+        }
+    </style> -->
+
+
+
+
 <div class="mat-app-background" id="top-div">
+   
   <div
     class="titleDiv"
     [@changeOverTitle]="BP4toggler.changeOverTitleisOpen ? 'open' : 'closed'"
@@ -35,19 +51,22 @@
       Your selections <br />were correct!
     </p>
   </div>
-
+<!-- [ngStyle]="{'top.px': position_test}" -->
   <div
-    id="kiopDivleft"
+    id="kiopDivBP4left"
     [@.disabled]="BP4toggler.isPaused"
-    [@changeOverKiop]="BP4toggler.changeOverKiopisOpen ? 'open' : 'closed'"
+    [@changeOverBP4KiopLeft]="BP4toggler.KiopLeftisOpen ? 'open' : 'closed'"
+    
   >
     <img [src]="'./assets/kiop_voice_balloon_small_left.png'" />
+    
   </div>
-
+ <!-- [ngStyle]="{'top.px': this.loadModel.position_test  }" -->
    <div
     id="kiopDivright"
     [@.disabled]="BP4toggler.isPaused"
-    [@changeOverKiop]="BP4toggler.KiopRightisOpen ? 'open' : 'closed'"
+    [@changeOverBP4KiopRight]="BP4toggler.KiopRightisOpen ? 'open' : 'closed'"
+   
   >
     <img [src]="'./assets/kiop_voice_balloon_small_right.png'" />
   </div>
@@ -75,9 +94,9 @@
     [@.disabled]="BP4toggler.isPaused"
     [@changeOverFinal]="BP4toggler.changeOverTitleisOpen ? 'closed' : 'open'"
   >
-    Congratulations, basic poomsae four is complete. <br />
+    Congratulations, all basic poomsaes are complete. <br />
 
-    Go on to one step sparring?
+    <!-- Go on to one step sparring?
     <a
       routerLink="/BP4"
       (click)="
@@ -87,7 +106,7 @@
         rts.return_to_start_function()
       "
       >Yes</a
-    >
+    > -->
   </div>
   <!--  -->
   <!--  -->

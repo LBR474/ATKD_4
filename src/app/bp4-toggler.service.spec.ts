@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BP4TogglerService } from './movement-services/bp4-toggler.service';
+import { Bp4TogglerService } from './movement-services/bp4-toggler.service';
 
 describe('BP4TogglerService', () => {
-  let service: BP4TogglerService;
+  let service: Bp4TogglerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BP4TogglerService);
+    service = TestBed.inject(Bp4TogglerService);
   });
 
   it('should be created', () => {

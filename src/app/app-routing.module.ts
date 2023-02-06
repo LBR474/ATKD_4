@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-// import {bp2} from './bp2/bp2.component'
+
 import { AppComponent } from './app.component';
 import { BP2Component } from './bp2/bp2.component';
 import { Bp3Component } from './bp3/bp3.component';
-import { StartPageComponent } from './startPage/startPage.component';
+
 import { Bp4Component } from './bp4/bp4.component';
+import { StartPageComponent } from './startPage/startPage.component';
 
 const routes: Routes = [
   { path: 'Home', component: AppComponent },

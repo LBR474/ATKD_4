@@ -1,5 +1,5 @@
 // Angular core imports
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // angular animation.ts imports
 import {
@@ -18,13 +18,7 @@ import {
   visibleInvisible,
 } from '../app.animation';
 
-// soba imports
-import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
-
 import { NgtGLTFLoader } from '@angular-three/soba/loaders';
-
-// three imports
-import * as THREE from 'three';
 
 // movement services imports
 import { AttentionService } from '../movement-services/attention.service';
@@ -61,19 +55,13 @@ import { TogglerService } from '../movement-services/toggler.service';
     visibleInvisible,
   ],
 })
-export class StartPageComponent implements OnInit, AfterViewInit {
+export class StartPageComponent implements OnInit {
   // global variables area
 
-  BP1_colors = ['#7b1fa2', '#69f0ae', '#f44336'];
   attention_clicked = false;
-  public bgcolor = new THREE.Color(0xff0000);
-  camera_x_pos = 0.0;
-  choonBi_clicked = false;
+  choonBi_clicked = true;
 
   choonbi: string = 'choOn bi';
-  public grid_center_line_color = new THREE.Color(0xff5f00);
-
-  title: string = 'Basic poomsae one';
 
   constructor(
     public attserve: AttentionService,
@@ -86,25 +74,8 @@ export class StartPageComponent implements OnInit, AfterViewInit {
     public loadRightFist: RightfistService,
     public ngtGLTFLoader: NgtGLTFLoader,
     public rts: ReturnToStartService,
-    public toggler: TogglerService // public rts: ReturnToStartService,
+    public toggler: TogglerService 
   ) {}
 
   ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    //console.log('From after view init: ' + this.loadModel.spine003);
-  }
-  move_camera() {
-    this.camera_x_pos = 0.7;
-  }
-
-  setInitial(controls: NgtSobaOrbitControls) {
-    const orbitControl = controls.camera;
-    console.log(controls.camera);
-
-    if (orbitControl) {
-      orbitControl.position.setY(5);
-      orbitControl.position.setX(0.7);
-    }
-  }
 }

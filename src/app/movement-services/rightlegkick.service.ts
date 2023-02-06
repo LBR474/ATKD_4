@@ -25,6 +25,7 @@ export class RightlegkickService {
   right_leg_rising_kick_leg_up() {
     if (
       this.loadmodel.metarig &&
+      this.loadmodel.spine006 &&
       this.loadmodel.spine &&
       this.loadmodel.pelvisL &&
       this.loadmodel.pelvisR &&
@@ -34,6 +35,7 @@ export class RightlegkickService {
       this.loadmodel.footL &&
       this.loadmodel.footR
     ) {
+      //console.log(this.loadmodel.spine006.position)
       if (this.loadbp4toggler.count_incrementer == 1) {
         gsap.to(this.loadmodel.metarig.position, {
           x: '+=0.1',
@@ -230,7 +232,6 @@ export class RightlegkickService {
         _y: 0.2258,
         _z: 0.1837,
         duration: this.loadTimer.down_arms_timer,
-        
       });
     }
   }
@@ -353,7 +354,6 @@ export class RightlegkickService {
         _z: 0.013,
         duration: this.loadTimer.down_arms_timer,
         onComplete: () => {
-         
           setTimeout(() => {
             if (this.loadbp4toggler.rightLeg == 'Snap kick with kiop') {
               this.loadbp4toggler.toggle_kiop_left();
@@ -370,7 +370,6 @@ export class RightlegkickService {
         duration: this.loadTimer.down_arms_timer,
         onComplete: () => {
           this.right_leg_snap_kick_leg_middle();
-
         },
       });
     }
@@ -409,12 +408,7 @@ export class RightlegkickService {
           setTimeout(() => {
             this.right_leg_snap_fold_back();
           }, 20);
-          
         },
-
-        
-         
-        
       });
     }
   }
@@ -431,7 +425,6 @@ export class RightlegkickService {
   //
   right_leg_snap_fold_back() {
     if (this.loadmodel.metarig && this.loadmodel.shinR) {
-
       // if (this.loadbp4toggler.count_incrementer < 5) {
       //   gsap.to(this.loadmodel.metarig.quaternion, {
       //     _w: 0.95698367,
@@ -592,9 +585,10 @@ export class RightlegkickService {
         _z: -0.01100774,
         duration: this.loadTimer.down_arms_timer,
         onComplete: () => {
+          
           this.right_leg_snap_kick_change_stance();
         },
-      });
+      })
     }
   }
 
@@ -621,28 +615,26 @@ export class RightlegkickService {
       this.loadmodel.footR
     ) {
       if (this.loadbp4toggler.count_incrementer > 7) {
-      gsap.to(this.loadmodel.metarig.position, {
-        x: '+=0.1',
-        y: '-=0.1',
-        z: '+=0.1',
-        duration: this.loadTimer.down_arms_timer,
-        onComplete: () => {
-          setTimeout(() => {
-            
+        gsap.to(this.loadmodel.metarig.position, {
+          x: '+=0.1',
+          y: '-=0.1',
+          z: '+=0.1',
+          duration: this.loadTimer.down_arms_timer,
+          onComplete: () => {
+            setTimeout(() => {
               this.loadbp4toggler.toggle_kiop_left();
-           
-          }, 100);
-        },
-      });
+            }, 100);
+          },
+        });
       }
       // if (this.loadbp4toggler.count_incrementer < 4) {
-        gsap.to(this.loadmodel.metarig.quaternion, {
-          _w: 0.957,
-          _x: 0.0,
-          _y: 0.2901,
-          _z: 0.0,
-          duration: this.loadTimer.down_arms_timer,
-        });
+      gsap.to(this.loadmodel.metarig.quaternion, {
+        _w: 0.957,
+        _x: 0.0,
+        _y: 0.2901,
+        _z: 0.0,
+        duration: this.loadTimer.down_arms_timer,
+      });
       //}
 
       gsap.to(this.loadmodel.pelvisL.quaternion, {

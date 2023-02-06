@@ -1,14 +1,14 @@
 // Angular core imports
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { AppComponent } from '../app.component';
 
 // angular animation.ts imports
 import {
   attchoonOpenClose,
   changeOverFinal,
-  changeOverKiop,
-  changeOverTitle,
+  changeOverBP4KiopLeft,
+  changeOverBP4KiopRight,
+ 
   correctOpenClose,
   finalOpenClose,
   instructionOpenClose,
@@ -18,10 +18,10 @@ import {
   stanceOpenClose,
   slideInAnimation,
   visibleInvisible,
+  changeOverTitle,
 } from '../app.animation';
 
-// soba imports
-import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
+
 
 import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 
@@ -30,8 +30,6 @@ import * as THREE from 'three';
 
 // movement services imports
 import { AttentionService } from '../movement-services/attention.service';
-// import { BP1CollateMovement } from '../movement-services/bp1collatemovement.service';
-// import { Bp2collatemovementService } from '../movement-services/bp2collatemovement.service';
 import { Bp4collatemovementService } from '../movement-services/bp4collatemovement.service';
 import { Bp4TogglerService } from '../movement-services/bp4-toggler.service';
 import { ChoonbiservService } from '../movement-services/choonbiserv.service';
@@ -42,8 +40,8 @@ import { loadmodelService } from '../movement-services/loadmodel.service';
 import { ReturnToStartService } from '../movement-services/return-to-start.service';
 import { RightfistService } from '../movement-services/rightfist.service';
 import { TogglerService } from '../movement-services/toggler.service';
-import { BP2TogglerService } from '../older-backup-files/BP2toggler.service';
-//import { Bp3collatemovementService } from '../movement-services/bp3collatemovement.service';
+
+import { TimerVariablesService } from '../movement-services/timer-variables.service';
 
 @Component({
   selector: 'app-bp4',
@@ -52,7 +50,8 @@ import { BP2TogglerService } from '../older-backup-files/BP2toggler.service';
   animations: [
     attchoonOpenClose,
     changeOverFinal,
-    changeOverKiop,
+    changeOverBP4KiopLeft,
+    changeOverBP4KiopRight,
     changeOverTitle,
     correctOpenClose,
     finalOpenClose,
@@ -69,25 +68,23 @@ import { BP2TogglerService } from '../older-backup-files/BP2toggler.service';
 export class Bp4Component implements OnInit {
   // global variables area
 
-  BP1_colors = ['#7b1fa2', '#69f0ae', '#f44336'];
+  
   attention_clicked = false;
-  public bgcolor = new THREE.Color(0xff0000);
-  //camera_z_pos = 2.4;
+  
   choonBi_clicked = true;
   choonBi_X_clicked = true;
+  position_test = this.loadModel.spine006?.position.y;
 
   choonbi: string = 'choOn bi';
   BP4_X_choonbi: string = 'B.P.4 Starting choonbi';
-  public grid_center_line_color = new THREE.Color(0xff5f00);
+  
 
   title: string = 'Basic poomsae one';
   constructor(
     public attserve: AttentionService,
-    public appComponent: AppComponent,
-    // public bp1MovementCollate: BP1CollateMovement,
-    // public bp2MovementCollate: Bp2collatemovementService,
+   
     public bp4MovementCollate: Bp4collatemovementService,
-    public BP2toggler: BP2TogglerService,
+    
     public BP4toggler: Bp4TogglerService,
     public choonbiServ: ChoonbiservService,
     public loadHorse: HorsestanceService,
@@ -97,23 +94,27 @@ export class Bp4Component implements OnInit {
     public loadRightFist: RightfistService,
     public ngtGLTFLoader: NgtGLTFLoader,
     public rts: ReturnToStartService,
-    public toggler: TogglerService // public rts: ReturnToStartService,
+    public timerVar: TimerVariablesService,
+    public toggler: TogglerService 
   ) {
-    toggler.poomsae_number = 4
+    toggler.poomsae_number = 4;
   }
 
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    // this.appComponent.min_distance = 1.5;
+   
     setTimeout(() => {
-      this.appComponent.min_distance = 1.5;
+      this.timerVar.min_distance = 1.5;
     }, 0);
   }
 
-  open_X_choonBi () {
+  open_X_choonBi() {
     setTimeout(() => {
       this.choonBi_X_clicked = false;
-    }, 1200);
+    }, 1100);
   }
-}
+
+  
+  }
+

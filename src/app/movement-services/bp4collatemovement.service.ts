@@ -45,14 +45,12 @@ export class Bp4collatemovementService {
       this.BP4toggler.isOpen = !this.BP4toggler.isOpen;
       this.BP4toggler.ArmsisOpen = !this.BP4toggler.ArmsisOpen;
 
-      // this.BP4toggler.stanceisOpen = !this.BP4toggler.stanceisOpen;
       this.BP4toggler.toggle_correct();
 
       // C1 right arms movement(s)
       setTimeout(() => {
-      this.loadleftlegkick.Double_wide_arms_up();  
+        this.loadleftlegkick.Double_wide_arms_up();
       }, 500);
-      
 
       // C1 right leg movement(s)
 
@@ -70,9 +68,6 @@ export class Bp4collatemovementService {
 
       this.BP4toggler.toggle_correct();
 
-      // C2 right arms movement(s)
-      //this.loadChoonbiserv.BP4_X_choon_bi_arms_only_up();
-
       // C2 right leg movement(s)
 
       this.loadrightlegkick.right_leg_snap_kick_leg_up();
@@ -82,13 +77,8 @@ export class Bp4collatemovementService {
       this.BP4toggler.count_incrementer == 3 &&
       leftLeg == 'Rising kick'
     ) {
-      //this.BP4toggler.isOpen = !this.BP4toggler.isOpen;
       this.BP4toggler.leftLegisOpen = !this.BP4toggler.leftLegisOpen;
       this.BP4toggler.toggle_correct();
-
-      // C3 right arm movement(s)
-      // this.loadrightknifehand.make_right_knife();
-      // this.loadrightarmblock.right_arm_knife_block_palm_up_arms_up();
 
       // // C3 left leg movement(s)
       this.loadleftlegkick.left_leg_rising_kick_leg_up();
@@ -111,7 +101,6 @@ export class Bp4collatemovementService {
     // count five
     else if (
       this.BP4toggler.count_incrementer == 5 &&
-      //stance == 'Long - facing right' &&
       leftLeg == 'Rising kick'
     ) {
       this.BP4toggler.leftLegisOpen = !this.BP4toggler.leftLegisOpen;
@@ -122,11 +111,7 @@ export class Bp4collatemovementService {
       this.loadleftlegkick.left_leg_rising_kick_leg_up();
     }
     // count six
-    else if (
-      this.BP4toggler.count_incrementer == 6 &&
-      //stance == 'Long - facing left' &&
-      leftLeg == 'Snap kick'
-    ) {
+    else if (this.BP4toggler.count_incrementer == 6 && leftLeg == 'Snap kick') {
       setTimeout(() => {
         this.BP4toggler.isOpen = !this.BP4toggler.isOpen;
       }, 2000);
@@ -135,13 +120,10 @@ export class Bp4collatemovementService {
 
       // // C6 left leg movement(s)
       this.loadleftlegkick.left_leg_snap_kick_leg_up();
-      // C6  arms movement(s)
-      //this.loadleftlegkick.Double_wide_arms_up();
     }
     // count seven
     else if (
       this.BP4toggler.count_incrementer == 7 &&
-      //stance == 'Horse' &&
       rightLeg == 'Rising kick'
     ) {
       setTimeout(() => {
@@ -157,7 +139,6 @@ export class Bp4collatemovementService {
       this.BP4toggler.count_incrementer == 8 &&
       rightLeg == 'Snap kick with kiop'
     ) {
-      //this.BP4toggler.isOpen = !this.BP4toggler.isOpen;
       setTimeout(() => {
         this.BP4toggler.toggle_final();
       }, 2000);
@@ -169,9 +150,9 @@ export class Bp4collatemovementService {
       this.loadrightlegkick.right_leg_snap_kick_leg_up();
 
       setTimeout(() => {
-        this.loadChoonbiserv.choon_bi_final();
-        //this.BP4toggler.toggle_kiop_left();
-      }, 4000);
+        this.loadChoonbiserv.choon_bi_up_arms()
+        //this.loadChoonbiserv.choon_bi_final()
+      }, 4000)
     }
   }
 }

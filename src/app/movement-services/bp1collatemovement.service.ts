@@ -162,12 +162,12 @@ export class BP1CollateMovement {
 
       // C8 right arm movement(s)
       this.loadrightarmpunch.right_arm_middle_punch();
-      this.toggler.toggle_kiop();
+      this.toggler.toggle_kiop()
 
       //BP one finish
       setTimeout(() => {
         this.toggler.toggle_kiop();
-        this.loadChoonbiserv.choon_bi_final();
+        this.loadChoonbiserv.choon_bi_up_arms();
       }, 2000);
     }
   }

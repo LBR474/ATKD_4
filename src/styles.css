@@ -106,7 +106,7 @@ body {
     justify-content: center;
     left: 30%;
     padding: 0px;
-    width: 20vw;
+    width: 15vw;
     height: fit-content;
     font-size: medium;
     /* background-color: #3f51b5; */
@@ -116,35 +116,38 @@ body {
 .justify-content-between {
     justify-content: space-between;
 }
+
+
 #kiopDivleft {
     position: absolute;
-    top: calc(10%) !important;
-    left: calc(40%) !important;
+    /* top: calc(10%) !important; */
+    top: 125px;
+    left: calc(35%) !important;
     align-items: center;
     justify-content: center;
     
     padding: 10px;
-    width: 300px;
+    width: fit-content;
     height: fit-content;
     font-size: medium;
-    /* background-color: rgb(255, 255, 255); */
+    /* background-color: rgb(52, 20, 233); */
     /* color: rgb(0, 0, 0); */
-    z-index: 2;
+    z-index: 1;
 }
 
 #kiopDivright {
     position: absolute;
-    top: calc(10%) !important;
+    /* top: calc(10%) !important; */
+    /* top: 100px; */
     left: calc(55%) !important;
     align-items: center;
     justify-content: center;
 
     padding: 10px;
-    width: 300px;
+    width: fit-content;
     height: fit-content;
     font-size: medium;
-    /* background-color: rgb(255, 255, 255); */
-    /* color: rgb(0, 0, 0); */
+   
     z-index: 2;
 }
 
@@ -247,8 +250,8 @@ body {
 
 #stanceDiv {
     position: absolute;
-    top: calc(60%) !important;
-    left: calc(0%) !important;
+     top: calc(60%) !important;
+    /*left: calc(20%) !important; */
     margin: 10px;
     width: fit-content;
     height: fit-content;

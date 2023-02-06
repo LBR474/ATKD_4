@@ -1,25 +1,29 @@
 // angular core imports
 import { Component, OnInit } from '@angular/core';
 
+
+
 import { Title } from '@angular/platform-browser';
 import { loadmodelService } from './movement-services/loadmodel.service';
 import { TimerVariablesService } from './movement-services/timer-variables.service';
 import { TogglerService } from './movement-services/toggler.service';
 import { ReturnToStartService } from './movement-services/return-to-start.service';
-import { slideInAnimation } from './app.animation';
+import { slideInAnimation, changeOverTitle } from './app.animation';
 import { Router } from '@angular/router';
+
+import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [slideInAnimation],
+  animations: [slideInAnimation, changeOverTitle],
   
 })
 export class AppComponent implements OnInit {
-  toolbar_title: string = 'Basic poomsae one';
-  //camera_z_pos = 1.2;
+ 
+  
   min_distance = 1.5;
 
   public href: string = '';
@@ -37,6 +41,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.href = this.router.url ;
-    console.log(this.router.url);
+   
   }
 }

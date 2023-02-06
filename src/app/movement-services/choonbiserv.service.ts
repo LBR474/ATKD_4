@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { loadmodelService } from './loadmodel.service';
 import { TimerVariablesService } from './timer-variables.service';
+import { TogglerService } from './toggler.service';
 import { Bp4TogglerService } from './bp4-toggler.service';
 // gsap import
 import { gsap } from 'gsap';
@@ -19,6 +20,7 @@ export class ChoonbiservService {
     public loadLeftFist: LeftfistService,
     public loadRightFist: RightfistService,
     public loadTimer: TimerVariablesService,
+    public loadtoggler: TogglerService,
     public loadBP4toggler: Bp4TogglerService
   ) {}
 
@@ -77,7 +79,29 @@ export class ChoonbiservService {
         _y: -0.006,
         _z: -0.0202,
         duration: this.loadTimer.full_turn_duration,
-        onComplete: this.choon_bi,
+        onComplete: () => {
+          if (
+            this.loadBP4toggler.count_incrementer < 7 &&
+            this.loadBP4toggler.poomsae_number == 4
+          ) {
+            this.choon_bi();
+          } else if (
+            this.loadBP4toggler.count_incrementer >= 7 &&
+            this.loadBP4toggler.poomsae_number == 4
+          ) {
+            this.choon_bi_final();
+          } 
+          
+          if (
+            this.loadtoggler.count_incrementer < 7 &&
+            this.loadtoggler.poomsae_number != 4
+          ) {
+            this.choon_bi();
+          } else {
+            this.choon_bi_final();
+          }
+        },
+        
       });
     }
   };
@@ -207,7 +231,7 @@ export class ChoonbiservService {
         duration: 0.5,
         onComplete: () => {
           setTimeout(() => {
-            this.loadBP4toggler.toggle_kiop_left();
+            //this.loadBP4toggler.toggle_kiop_left();
           }, 0);
         },
       });
@@ -610,6 +634,13 @@ export class ChoonbiservService {
         _x: -0.7127,
         _y: 0.2258,
         _z: 0.1837,
+        duration: this.loadTimer.down_arms_timer,
+      });
+      gsap.to(this.loadmodel.footL.quaternion, {
+        _w: 0.7971319,
+        _x: -0.60366088,
+        _y: -0.00728697,
+        _z: 0.01100774,
         duration: this.loadTimer.down_arms_timer,
       });
       //
