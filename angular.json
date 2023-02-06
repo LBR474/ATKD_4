@@ -16,7 +16,7 @@
 "allowedCommonJsDependencies": [
         "lodash"
      ],
-            "outputPath": "dist/angular-tkd-4",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
