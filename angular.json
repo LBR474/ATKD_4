@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
 "allowedCommonJsDependencies": [
-        "lodash"
+        "lodash",
+        "mmd-parser"
      ],
             "outputPath": "docs",
             "index": "src/index.html",
